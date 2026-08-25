@@ -8,141 +8,165 @@
 <style>
 *{box-sizing:border-box}
 
+html{
+  scroll-behavior:smooth;
+}
+
 body{
   margin:0;
   font-family:Georgia,"Times New Roman",serif;
+  color:#52283b;
+  overflow-x:hidden;
   background:#f9d7e5;
-  color:#4b2637;
 }
 
 .page{
   min-height:100vh;
-  padding:25px 16px 45px;
+  padding:35px 16px 55px;
   display:flex;
-  align-items:center;
   justify-content:center;
-  text-align:center;
+  align-items:center;
   position:relative;
   overflow:hidden;
 }
 
-.page1{background:linear-gradient(135deg,#fff1f7,#f4c9da)}
-.page2{background:linear-gradient(135deg,#fff5f8,#f1c5d8)}
-.page3{background:linear-gradient(135deg,#ffeaf3,#f5c4d7)}
-.page4{background:linear-gradient(135deg,#fff0f0,#e9c5d0)}
-.page5{background:linear-gradient(135deg,#332132,#70455c);color:white}
-.page6{background:linear-gradient(135deg,#fff0f5,#edbfd1)}
-.page7{background:linear-gradient(135deg,#fff5f8,#e8c5d6)}
-.page8{background:linear-gradient(135deg,#fff1f6,#f1cadb)}
-.page9{background:linear-gradient(135deg,#fff7fa,#e9cbd8)}
-.page10{background:linear-gradient(135deg,#f8f2f5,#dbc5d0)}
-.page11{background:linear-gradient(135deg,#fff2f5,#ecc8d5)}
-.page12{background:linear-gradient(135deg,#eee8f6,#d5c7e1)}
-.page13{background:linear-gradient(135deg,#fff1ea,#f3c9c1)}
-.page14{background:linear-gradient(135deg,#f7e4ed,#d7b5c6)}
-.page15{background:linear-gradient(135deg,#fff0f6,#e8c2d5)}
+.page:nth-of-type(1){background:linear-gradient(135deg,#fff0f7,#f4bfd6)}
+.page:nth-of-type(2){background:linear-gradient(135deg,#fff7fb,#efc4d8)}
+.page:nth-of-type(3){background:linear-gradient(135deg,#ffeaf4,#f4c2d8)}
+.page:nth-of-type(4){background:linear-gradient(135deg,#fff2f5,#edc8d4)}
+.page:nth-of-type(5){background:linear-gradient(135deg,#3a2638,#7c4c66);color:#fff}
+.page:nth-of-type(6){background:linear-gradient(135deg,#fff0f5,#edbfd2)}
+.page:nth-of-type(7){background:linear-gradient(135deg,#fff5f9,#eac3d5)}
+.page:nth-of-type(8){background:linear-gradient(135deg,#fff0f6,#f0c3d6)}
+.page:nth-of-type(9){background:linear-gradient(135deg,#fff5f8,#e8c7d7)}
+.page:nth-of-type(10){background:linear-gradient(135deg,#fff3ed,#efc9bf)}
+.page:nth-of-type(11){background:linear-gradient(135deg,#fff1f6,#edc3d5)}
+.page:nth-of-type(12){background:linear-gradient(135deg,#f7eff9,#dbc9e5)}
+.page:nth-of-type(13){background:linear-gradient(135deg,#fff0e9,#f2c9bd)}
+.page:nth-of-type(14){background:linear-gradient(135deg,#fceef5,#e4c1d1)}
+.page:nth-of-type(15){background:linear-gradient(135deg,#fff0f6,#e7bdd2)}
 
 .card{
-  width:min(760px,100%);
-  padding:30px 20px 38px;
-  background:rgba(255,255,255,.72);
-  border-radius:32px;
-  box-shadow:0 18px 60px rgba(70,30,50,.18);
-  backdrop-filter:blur(10px);
+  width:min(790px,100%);
+  padding:32px 22px 42px;
+  background:rgba(255,255,255,.70);
+  border:1px solid rgba(255,255,255,.75);
+  border-radius:34px;
+  box-shadow:0 20px 70px rgba(75,30,55,.20);
+  backdrop-filter:blur(12px);
+  position:relative;
+  z-index:5;
 }
 
 .top{
-  font-size:27px;
-  letter-spacing:6px;
-  margin-bottom:14px;
+  font-size:30px;
+  letter-spacing:7px;
+  margin-bottom:12px;
 }
 
 .label{
   font-size:12px;
   letter-spacing:3px;
   text-transform:uppercase;
-  color:#96516e;
-  margin-bottom:12px;
+  color:#99536f;
+  margin-bottom:13px;
 }
 
 h1{
-  font-size:clamp(42px,10vw,76px);
-  line-height:1.05;
-  margin:10px 0 22px;
-  color:#742e4e;
+  font-size:clamp(44px,10vw,78px);
+  line-height:1.02;
+  margin:10px 0 25px;
+  color:#742f50;
 }
 
 h2{
-  font-size:clamp(28px,7vw,48px);
+  font-size:clamp(30px,7vw,50px);
+  line-height:1.1;
   margin:10px 0 22px;
-  color:#742e4e;
-}
-
-.big{
-  font-size:clamp(100px,25vw,180px);
-  font-weight:bold;
-  color:#7d3154;
-  line-height:.85;
-  margin:10px 0 20px;
+  color:#742f50;
 }
 
 p{
   font-size:18px;
-  line-height:1.75;
+  line-height:1.8;
 }
 
-.quote{
-  background:rgba(255,255,255,.45);
-  border-left:4px solid #a55575;
-  border-radius:14px;
-  padding:17px;
-  margin:22px 0;
-  text-align:left;
-  line-height:1.7;
+.big{
+  font-size:clamp(105px,25vw,185px);
+  line-height:.8;
+  font-weight:bold;
+  color:#7d3154;
+  margin:15px 0 25px;
 }
 
 .flowers{
-  font-size:28px;
-  margin:20px 0;
-  letter-spacing:5px;
+  font-size:30px;
+  letter-spacing:7px;
+  margin:24px 0;
 }
 
 .next{
   display:inline-flex;
-  width:70px;
-  height:70px;
-  border-radius:50%;
   align-items:center;
   justify-content:center;
-  text-decoration:none;
+  min-width:72px;
+  min-height:72px;
+  padding:10px 18px;
+  border-radius:50px;
   background:#793250;
-  color:white;
-  font-size:30px;
-  box-shadow:0 9px 25px rgba(100,40,70,.25);
-  transition:.25s;
+  color:#fff;
+  text-decoration:none;
+  font-size:27px;
+  box-shadow:0 10px 30px rgba(90,35,65,.25);
+  transition:.3s;
+  border:0;
 }
 
 .next:hover{
-  transform:scale(1.08);
+  transform:translateY(-4px) scale(1.04);
+}
+
+.small{
+  font-size:14px;
+  color:#89556b;
+}
+
+.quote{
+  text-align:left;
+  background:rgba(255,255,255,.48);
+  border-left:4px solid #a65375;
+  border-radius:16px;
+  padding:18px;
+  margin:22px 0;
+  line-height:1.75;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-  margin:22px 0;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin:24px 0;
 }
 
 .item{
-  padding:15px 8px;
-  background:rgba(255,255,255,.5);
-  border-radius:17px;
+  padding:17px 10px;
+  background:rgba(255,255,255,.55);
+  border-radius:18px;
+  box-shadow:0 5px 20px rgba(80,30,55,.07);
+  font-size:25px;
 }
 
 .item b{
   display:block;
-  margin-top:5px;
+  font-size:16px;
   color:#71314f;
+  margin-top:7px;
+}
+
+.item span{
+  display:block;
+  font-size:13px;
+  margin-top:4px;
 }
 
 .timeline{
@@ -150,57 +174,112 @@ p{
 }
 
 .timeline div{
-  padding:13px 15px;
-  margin:10px 0;
-  background:rgba(255,255,255,.45);
-  border-radius:15px;
+  margin:12px 0;
+  padding:16px;
+  border-radius:17px;
+  background:rgba(255,255,255,.48);
 }
 
 .truck{
-  font-size:55px;
-  margin:15px;
+  font-size:65px;
+  animation:truck 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes truck{
+  from{transform:translateX(-8px)}
+  to{transform:translateX(8px)}
 }
 
 .progress{
-  width:100%;
-  height:15px;
+  height:16px;
   background:#ead8df;
-  border-radius:20px;
+  border-radius:30px;
   overflow:hidden;
+  margin:20px 0 8px;
 }
 
 .progress div{
   width:98%;
   height:100%;
-  background:#793250;
+  background:linear-gradient(90deg,#9b496b,#71304f);
+  border-radius:30px;
 }
 
-.note{
-  text-align:left;
-  max-height:60vh;
-  overflow:auto;
+.dark h2{color:#fff0f7}
+.dark .label{color:#e8bfd1}
+.dark .quote{background:rgba(255,255,255,.10);border-color:#e8aac4}
+.dark .small{color:#f0cbd9}
+
+/* FLOATING BACKGROUND */
+
+.decor{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:1;
 }
 
-.dark{
-  color:white;
+.float{
+  position:absolute;
+  bottom:-80px;
+  opacity:.65;
+  animation:floatUp linear infinite;
+  filter:drop-shadow(0 4px 8px rgba(90,30,60,.12));
 }
 
-.dark h2{
-  color:#fff0f6;
+@keyframes floatUp{
+  0%{
+    transform:translateY(0) rotate(0deg);
+    opacity:0;
+  }
+  10%{opacity:.7}
+  50%{
+    transform:translateY(-50vh) rotate(150deg);
+    opacity:.65;
+  }
+  100%{
+    transform:translateY(-115vh) rotate(320deg);
+    opacity:0;
+  }
 }
 
-.dark .label{
-  color:#e9bfd2;
+.sparkle{
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 14px #fff;
+  animation:twinkle 2s ease-in-out infinite;
 }
 
-.small{
-  font-size:14px;
-  color:#86546a;
+@keyframes twinkle{
+  0%,100%{opacity:.15;transform:scale(.6)}
+  50%{opacity:1;transform:scale(1.4)}
+}
+
+.soft-heart{
+  position:absolute;
+  color:rgba(180,75,120,.12);
+  font-size:90px;
+  animation:heartPulse 4s ease-in-out infinite;
+}
+
+@keyframes heartPulse{
+  0%,100%{transform:scale(1) rotate(-8deg)}
+  50%{transform:scale(1.15) rotate(8deg)}
 }
 
 @media(max-width:600px){
-  .card{padding:25px 16px 32px}
+  .card{padding:27px 16px 35px}
   p{font-size:16px}
+  .grid{grid-template-columns:1fr 1fr}
+  .item{font-size:22px}
+  .item b{font-size:14px}
 }
 </style>
 </head>
@@ -208,9 +287,21 @@ p{
 <body>
 
 <!-- PAGE 1 -->
-<section class="page page1">
-<div class="card">
+<section class="page">
+<div class="decor">
+<span class="float" style="left:5%;font-size:28px;animation-duration:12s">💗</span>
+<span class="float" style="left:20%;font-size:24px;animation-duration:15s;animation-delay:2s">🌸</span>
+<span class="float" style="left:40%;font-size:30px;animation-duration:13s;animation-delay:4s">💕</span>
+<span class="float" style="left:65%;font-size:25px;animation-duration:16s;animation-delay:1s">🌷</span>
+<span class="float" style="left:85%;font-size:30px;animation-duration:14s;animation-delay:3s">❤️</span>
+<span class="soft-heart" style="left:4%;top:12%">♥</span>
+<span class="soft-heart" style="right:3%;bottom:10%">♥</span>
+<span class="sparkle" style="left:15%;top:20%"></span>
+<span class="sparkle" style="left:80%;top:30%"></span>
+<span class="sparkle" style="left:50%;top:12%"></span>
+</div>
 
+<div class="card">
 <div class="top">🌷 ✨ 🎀 ✨ 🌷</div>
 <div class="label">A little world made especially for you</div>
 
@@ -218,11 +309,12 @@ p{
 
 <p>
 <strong>20 saal mubarak</strong> uss khoobsurat larki ko
-jiske liye lafz hamesha kam par jaate hain. 🥹❤️
+jiske liye mere paas jitne bhi lafz hon,
+phir bhi kam hi lagte hain. 🥹❤️
 <br><br>
-Aaj sirf birthday nahi...
-<br>
-aaj aapki zindagi ka ek aur beautiful chapter hai. 🌷
+Aaj sirf aapka birthday nahi...
+aaj woh din hai jab duniya ko
+ek aur saal ke liye <strong>Anum</strong> mili. 🌷
 </p>
 
 <div class="flowers">🌹 🌷 🌸 🌷 🌹</div>
@@ -230,15 +322,20 @@ aaj aapki zindagi ka ek aur beautiful chapter hai. 🌷
 <a class="next" href="#page2">🎂</a>
 
 <p class="small">Cake par click karein... kahani shuru karte hain. ✨</p>
-
 </div>
 </section>
 
 
 <!-- PAGE 2 -->
-<section class="page page2" id="page2">
-<div class="card">
+<section class="page" id="page2">
+<div class="decor">
+<span class="float" style="left:8%;font-size:30px;animation-duration:14s">🌸</span>
+<span class="float" style="left:32%;font-size:25px;animation-duration:17s">💗</span>
+<span class="float" style="left:58%;font-size:28px;animation-duration:13s">🎀</span>
+<span class="float" style="left:82%;font-size:25px;animation-duration:16s">🌷</span>
+</div>
 
+<div class="card">
 <div class="top">🎀 🌸 2 0 🌸 🎀</div>
 <div class="label">Aaj ka din sirf aapka hai</div>
 
@@ -247,26 +344,40 @@ aaj aapki zindagi ka ek aur beautiful chapter hai. 🌷
 <h2>20 Saal Mubarak, Anum ❤️</h2>
 
 <p>
-Aaj aapki zindagi ka ek aur khoobsurat saal
-shuru ho raha hai.
+Aaj aapki zindagi ka ek aur beautiful chapter
+start ho raha hai.
 <br><br>
-Dua hai aapka har agla saal
-pichle saal se zyada beautiful ho. 🤍
+Dua hai ke aapka har agla saal
+pichle saal se zyada khoobsurat,
+zyada peaceful aur zyada khushiyon bhara ho. 🤲🏻❤️
 <br><br>
 Aur haan...
-20 ki ho gayi hain madam. 😭😂
+<strong>20 ki ho gayi hain madam! 😭😂</strong>
+Ab thori si maturity bhi dikha dena...
+bas thori si, poori nahi. 😂
 </p>
 
-<a class="next" href="#page3">💗</a>
+<div class="quote">
+Aapki smile hamesha aisi hi rahe,
+aur life aapko itne reasons de smile karne ke
+ke sadness ko appointment hi na mile. ❤️
+</div>
 
+<a class="next" href="#page3">💗</a>
 </div>
 </section>
 
 
 <!-- PAGE 3 -->
-<section class="page page3" id="page3">
-<div class="card">
+<section class="page" id="page3">
+<div class="decor">
+<span class="float" style="left:10%;font-size:25px;animation-duration:15s">😂</span>
+<span class="float" style="left:28%;font-size:28px;animation-duration:12s">❤️</span>
+<span class="float" style="left:55%;font-size:25px;animation-duration:16s">🌸</span>
+<span class="float" style="left:78%;font-size:30px;animation-duration:14s">💗</span>
+</div>
 
+<div class="card">
 <div class="top">😂 ❤️ 🧸 ❤️ 😂</div>
 <div class="label">Aapke cute se nicknames</div>
 
@@ -285,51 +396,82 @@ Aur kabhi kabhi...
 </p>
 
 <div class="quote">
-In sab naamon ke peeche ek hi person hai...
+Naam chahe koi bhi ho,
+person sirf ek hai:
 <strong>Anum.</strong> ❤️
 <br><br>
-Aur honestly mujhe aapki ye saari cute si
-sharartein bohat pasand hain.
+Aur honestly mujhe aapke ye saare cute names
+bohat pasand hain.
+Kyun ke har naam mein thori si shararat hai,
+aur har shararat mein aap. 🥹
 </div>
 
-<a class="next" href="#page4">🌷</a>
+<p>
+Lekin officially aaj se:
+<strong>Anum = Birthday Girl 👑</strong>
+<br>
+Aur Birthday Girl ko aaj koi kuch nahi kahega...
+kal se phir sochenge. 😂
+</p>
 
+<a class="next" href="#page4">🌷</a>
 </div>
 </section>
 
 
 <!-- PAGE 4 -->
-<section class="page page4" id="page4">
-<div class="card">
+<section class="page" id="page4">
+<div class="decor">
+<span class="float" style="left:5%;font-size:27px;animation-duration:14s">🌹</span>
+<span class="float" style="left:25%;font-size:25px;animation-duration:16s">💌</span>
+<span class="float" style="left:60%;font-size:29px;animation-duration:13s">🌷</span>
+<span class="float" style="left:88%;font-size:26px;animation-duration:17s">❤️</span>
+</div>
 
+<div class="card">
 <div class="top">🕰️ 🌷 🤍 🌷 🕰️</div>
 <div class="label">Woh pehli yaad</div>
 
 <h2>Doodh Pilayi Ki Rasam ❤️</h2>
 
 <p>
-Jab aap doodh pilayi ki rasam karne aayi thi...
-tab se mere dil mein aapke liye kuch khaas sa tha. 🥹
-<br><br>
-Shayad us waqt aapko bilkul idea nahi tha
+Jab aap doodh pilayi ki rasam ke liye aayi thi...
+tab shayad aapko bilkul idea nahi tha
 ke koi aapko itni gaur se dekh raha hai. 👀❤️
 </p>
 
 <div class="quote">
-Love at first sight keh lo...
-baat kuch aisi hi thi. 🤍
+Woh moment chhota sa tha,
+lekin mere liye uski feeling bohat badi thi.
+Kabhi kabhi zindagi mein koi person
+bilkul casually saamne aata hai...
+aur dil us moment ko casually nahi leta. 🥹
 </div>
 
-<a class="next" href="#page5">🌙</a>
+<p>
+Us waqt mujhe nahi pata tha
+ke aage chal kar aap meri life ki
+itni important person ban jaengi.
+<br><br>
+Lekin shayad kahani ne wahi se
+apna first page likhna shuru kar diya tha. 🌷
+</p>
 
+<a class="next" href="#page5">🌙</a>
 </div>
 </section>
 
 
 <!-- PAGE 5 -->
-<section class="page page5 dark" id="page5">
-<div class="card">
+<section class="page dark" id="page5">
+<div class="decor">
+<span class="float" style="left:8%;font-size:28px;animation-duration:15s">🌙</span>
+<span class="float" style="left:30%;font-size:25px;animation-duration:13s">✨</span>
+<span class="float" style="left:62%;font-size:29px;animation-duration:16s">❤️</span>
+<span class="float" style="left:85%;font-size:24px;animation-duration:14s">🌹</span>
+</div>
 
+<div class="card">
 <div class="top">🌙 ✨ 🌙 ✨ 🌙</div>
 <div class="label">Woh Lahore wala din</div>
 
@@ -338,29 +480,49 @@ baat kuch aisi hi thi. 🤍
 <p>
 Main Lahore aaya aapke paas...
 <br><br>
-Wapas jaate waqt socha tha face to face bol doon.
-Himmat bhi ki...
-lekin bol nahi paya. 😭
-<br><br>
-Phir ghar wapas ja kar
-finally message kar hi diya.
+Dil mein bohat kuch tha.
+Socha tha face to face bolunga.
+Himmat bhi banayi.
+Dialogue bhi dimagh mein ready tha. 😂
 </p>
 
 <div class="quote">
-Kabhi kabhi dil ki baat saamne kehna
-message karne se zyada mushkil hota hai. ❤️
+Lekin jab actual moment aaya...
+dimagh bola:
+<strong>“Bhai rehne de.” 😭</strong>
 </div>
 
-<a class="next" href="#page6">❤️</a>
+<p>
+Aur main wapas chala gaya.
+Phir ghar ja kar finally
+message kar hi diya. ❤️
+<br><br>
+Kabhi kabhi jo baat saamne kehna
+sabse mushkil hoti hai,
+woh message mein likhna thora easy ho jata hai.
+</p>
 
+<p>
+Aur shayad woh message
+hamari kahani ka woh door tha
+jo pehli baar khula. 🤍
+</p>
+
+<a class="next" href="#page6">❤️</a>
 </div>
 </section>
 
 
 <!-- PAGE 6 -->
-<section class="page page6" id="page6">
-<div class="card">
+<section class="page" id="page6">
+<div class="decor">
+<span class="float" style="left:5%;font-size:30px;animation-duration:14s">❤️</span>
+<span class="float" style="left:25%;font-size:25px;animation-duration:16s">🌹</span>
+<span class="float" style="left:55%;font-size:28px;animation-duration:13s">💕</span>
+<span class="float" style="left:85%;font-size:25px;animation-duration:17s">🌷</span>
+</div>
 
+<div class="card">
 <div class="top">❤️ 01 • 01 ❤️</div>
 <div class="label">Hamari kahani ka naya chapter</div>
 
@@ -372,87 +534,127 @@ Aur phir woh din aaya...
 <strong>1 January.</strong>
 <br><br>
 Jo feeling pehle sirf mere dil mein thi,
-ab hamari kahani ban gayi. 🥹❤️
+ab hamari kahani ka hissa ban gayi. 🥹❤️
 </p>
 
 <div class="flowers">🌹 ❤️ 🌹 ❤️ 🌹</div>
 
-<a class="next" href="#page7">💌</a>
+<div class="quote">
+1 January mere liye sirf calendar ki date nahi.
+Ye woh date hai jahan se
+“main” aur “aap” ki jagah
+“hum” ka concept start hua. ❤️
+</div>
 
+<p>
+Aur honestly...
+agar mujhe chance mile ke main
+kisi date ko dobara live kar sakun,
+toh shayad main wohi date choose karun. 🤍
+</p>
+
+<a class="next" href="#page7">💌</a>
 </div>
 </section>
 
 
 <!-- PAGE 7 -->
-<section class="page page7" id="page7">
-<div class="card">
+<section class="page" id="page7">
+<div class="decor">
+<span class="float" style="left:7%;font-size:26px;animation-duration:15s">💗</span>
+<span class="float" style="left:27%;font-size:30px;animation-duration:13s">🌸</span>
+<span class="float" style="left:57%;font-size:25px;animation-duration:17s">💌</span>
+<span class="float" style="left:86%;font-size:28px;animation-duration:14s">❤️</span>
+</div>
 
+<div class="card">
 <div class="top">💗 🌷 💗 🌷 💗</div>
 <div class="label">Time flies...</div>
 
 <h2>9 Months Of Us ❤️</h2>
 
 <div class="timeline">
-<div><strong>Pehle:</strong> ek feeling...</div>
-<div><strong>Phir:</strong> himmat karke message...</div>
-<div><strong>1 January:</strong> naya chapter...</div>
-<div><strong>Phir:</strong> baatein, flirting aur laraiyan 😂</div>
-<div><strong>Aaj:</strong> 9 months aur bohat memories. 🥹</div>
+<div><strong>Pehle:</strong> Ek feeling... 🥹</div>
+<div><strong>Phir:</strong> Himmat karke message... 📱</div>
+<div><strong>1 January:</strong> Naya chapter... ❤️</div>
+<div><strong>Phir:</strong> Baatein, calls, flirting aur laraiyan. 😂</div>
+<div><strong>Phir:</strong> Aur bohat saari memories. 🌷</div>
+<div><strong>Aaj:</strong> 9 months aur ek birthday website. 😭❤️</div>
 </div>
 
 <p>
-Aur sach kahun...
-main ab bhi aapko dekh kar
-wahi pyaar feel karta hoon. ❤️
+9 months mein har din perfect nahi tha,
+lekin har din ne kuch na kuch sikhaya.
+<br><br>
+Aur sabse achi baat?
+<strong>Aap meri life ki kahani ka hissa hain. ❤️</strong>
 </p>
 
 <a class="next" href="#page8">🌸</a>
-
 </div>
 </section>
 
 
 <!-- PAGE 8 -->
-<section class="page page8" id="page8">
-<div class="card">
+<section class="page" id="page8">
+<div class="decor">
+<span class="float" style="left:5%;font-size:28px;animation-duration:14s">🌹</span>
+<span class="float" style="left:23%;font-size:27px;animation-duration:16s">🌷</span>
+<span class="float" style="left:47%;font-size:25px;animation-duration:13s">🍫</span>
+<span class="float" style="left:70%;font-size:30px;animation-duration:17s">🌻</span>
+<span class="float" style="left:90%;font-size:26px;animation-duration:15s">❤️</span>
+</div>
 
-<div class="top">🌹 🌷 🌻 🌷 🌹</div>
+<div class="card">
+<div class="top">🌹 🌷 🌻 🍫 🌹</div>
 <div class="label">Anum ki favourite things</div>
 
 <h2>Things You Love 🌷</h2>
 
 <div class="grid">
-<div class="item">🏎️<b>BMW M4 Competition</b>Fav car</div>
-<div class="item">🚘<b>Mark X</b>Pakistani favourite</div>
-<div class="item">🖤<b>Black</b>Favourite colour</div>
-<div class="item">🤍<b>White</b>Favourite colour</div>
-<div class="item">🍛<b>Biryani</b>Favourite food</div>
-<div class="item">🍚<b>Kheer</b>Favourite sweet</div>
-<div class="item">🌹<b>Roses</b>White roses too</div>
-<div class="item">🌷<b>Tulips</b>Pretty flowers</div>
-<div class="item">🌻<b>Sunflowers</b>Bright ones</div>
-<div class="item">🍫<b>Chocolates</b>Dark chocolate excluded 😂</div>
-<div class="item">🏔️<b>Northern Areas</b>Favourite place</div>
-<div class="item">💌<b>Handwritten Letters</b>Special ones</div>
+<div class="item">🏎️<b>BMW M4 Competition</b><span>Fav car</span></div>
+<div class="item">🚘<b>Mark X</b><span>Pakistani favourite</span></div>
+<div class="item">🖤<b>Black</b><span>Favourite colour</span></div>
+<div class="item">🤍<b>White</b><span>Favourite colour</span></div>
+<div class="item">🍛<b>Biryani</b><span>Favourite food</span></div>
+<div class="item">🍚<b>Kheer</b><span>Favourite sweet</span></div>
+<div class="item">🌹<b>Roses</b><span>White roses too</span></div>
+<div class="item">🌷<b>Tulips</b><span>Pretty flowers</span></div>
+<div class="item">🌻<b>Sunflowers</b><span>Bright & happy</span></div>
+<div class="item">🍫<b>Chocolates</b><span>Except dark chocolate 😂</span></div>
+<div class="item">🏔️<b>Northern Areas</b><span>Favourite place</span></div>
+<div class="item">💌<b>Love & Memories</b><span>Favourite category ❤️</span></div>
 </div>
 
-<a class="next" href="#page9">🌷</a>
+<p>
+Aur funny baat ye hai...
+in mein se bohat si cheezein
+<strong>mujhe bhi pasand hain. 👀❤️</strong>
+</p>
 
+<a class="next" href="#page9">🌷</a>
 </div>
 </section>
 
 
 <!-- PAGE 9 -->
-<section class="page page9" id="page9">
-<div class="card">
+<section class="page" id="page9">
+<div class="decor">
+<span class="float" style="left:7%;font-size:27px;animation-duration:15s">🫶🏻</span>
+<span class="float" style="left:30%;font-size:25px;animation-duration:13s">🌸</span>
+<span class="float" style="left:57%;font-size:30px;animation-duration:16s">❤️</span>
+<span class="float" style="left:83%;font-size:26px;animation-duration:14s">🤍</span>
+</div>
 
+<div class="card">
 <div class="top">🤍 🫶🏻 🤍 🫶🏻 🤍</div>
 <div class="label">Aapki kuch aadatein</div>
 
 <h2>Overthinking Department 😭❤️</h2>
 
 <p>
-Anum please chhoti chhoti baaton ko
+Anum...
+aap please chhoti chhoti baaton ko
 apne dil ka permanent resident na banaya karein. 😭😂
 </p>
 
@@ -463,27 +665,41 @@ kabhi koi chhoti si baat bohat der tak dimagh mein chalti rehti hai.
 <br><br>
 Lekin har baat ka matlab nikalna zaroori nahi hota.
 Har silence narazgi nahi hoti.
-Har bad day ka matlab bad life nahi hota. 🤍
+Har bad mood ka matlab bad relationship nahi hota.
+Har late reply ka matlab duniya khatam nahi hoti. 😂❤️
 </div>
 
 <p>
-Rona aaye to ro lena...
+Kabhi rona aaye to ro lena.
+Feelings ko forcefully hide karna zaroori nahi.
 <br><br>
-bas aansu pochhne ke baad yaad rakhna:
-<br><br>
-<strong>“Main is se bhi nikal jaungi.” ❤️</strong>
+Bas aansu pochhne ke baad
+khud ko yaad dilana:
+</p>
+
+<h2>“Main is se bhi nikal jaungi.” ❤️</h2>
+
+<p>
+Aur haan...
+agar overthinking phir bhi na ruke,
+toh apne <strong>2 Number Admi</strong> ko bula lena. 😂
 </p>
 
 <a class="next" href="#page10">🫶🏻</a>
-
 </div>
 </section>
 
 
 <!-- PAGE 10 -->
-<section class="page page10" id="page10">
-<div class="card">
+<section class="page" id="page10">
+<div class="decor">
+<span class="float" style="left:6%;font-size:28px;animation-duration:15s">🏔️</span>
+<span class="float" style="left:27%;font-size:25px;animation-duration:13s">✨</span>
+<span class="float" style="left:57%;font-size:30px;animation-duration:16s">🌷</span>
+<span class="float" style="left:85%;font-size:27px;animation-duration:14s">❤️</span>
+</div>
 
+<div class="card">
 <div class="top">🌙 🏔️ ✨ 🏔️ 🌙</div>
 <div class="label">Aapke dreams</div>
 
@@ -492,31 +708,42 @@ bas aansu pochhne ke baad yaad rakhna:
 <p>
 Main dil se chahta hoon ke aapki zindagi mein
 woh har khushi aaye jiski aapne kabhi dua ki ho. 🤲🏻
-<br><br>
-Apne dreams poore karein.
-Apni favourite jagahon par jayen.
-Apni favourite cheezein hasil karein.
-<br><br>
-Aur kabhi kisi dream ko chhota samajh kar
-chhorna nahi. 🌷
 </p>
 
 <div class="quote">
-Main promise karta hoon ke jahan tak mere bas mein hua,
-main aapke dreams ko poora karne mein
-aapka saath dene ki poori koshish karunga. ❤️
+Apne dreams ko kabhi chhota mat samajhna.
+Chahe dream ek BMW ho,
+Northern Areas ki trip ho,
+kisi beautiful jagah ko explore karna ho,
+ya koi aisi cheez ho jo sirf aapko khush karti ho...
+<br><br>
+<strong>Dream it. Work for it. Live it. ❤️</strong>
 </div>
 
-<a class="next" href="#page11">✨</a>
+<p>
+Aur main promise karta hoon:
+jahan tak mere bas mein hua,
+main aapke dreams ko poora karne mein
+aapka saath dunga.
+<br><br>
+Aapko sirf khush rehna hai. 🌷
+</p>
 
+<a class="next" href="#page11">✨</a>
 </div>
 </section>
 
 
 <!-- PAGE 11 -->
-<section class="page page11" id="page11">
-<div class="card">
+<section class="page" id="page11">
+<div class="decor">
+<span class="float" style="left:8%;font-size:30px;animation-duration:14s">💌</span>
+<span class="float" style="left:28%;font-size:26px;animation-duration:16s">🌸</span>
+<span class="float" style="left:58%;font-size:29px;animation-duration:13s">❤️</span>
+<span class="float" style="left:84%;font-size:25px;animation-duration:17s">🌷</span>
+</div>
 
+<div class="card">
 <div class="top">💌 🌸 💌 🌸 💌</div>
 <div class="label">A little reminder</div>
 
@@ -526,35 +753,48 @@ aapka saath dene ki poori koshish karunga. ❤️
 Please chhoti chhoti baaton par
 apna dil mat dukhaya karein.
 <br><br>
-Aapki smile bohat precious hai.
-🥹❤️
+Aapki smile bohat precious hai. 🥹❤️
 </p>
 
 <div class="quote">
-Kabhi life difficult ho,
-kabhi mood off ho,
-kabhi overthinking overtime lagaye...
+Life mein kabhi difficult days aayenge.
+Kabhi mood off hoga.
+Kabhi kisi ki baat buri lagegi.
+Kabhi overthinking overtime karegi. 😭😂
 <br><br>
-to bas yaad rakhna:
-<strong>aap akeli nahi hain.</strong>
+Lekin ek bad day ka matlab
+bad life nahi hota.
 </div>
+
+<p>
+Aap bohat special hain.
+Aapko har waqt strong banne ki zaroorat nahi.
+Kabhi weak feel karna bhi okay hai.
+<br><br>
+Bas khud ko kabhi lose mat karna. 🤍
+</p>
 
 <p>
 Aur agar phir bhi rona aa jaye...
 <br>
-apne <strong>2 Number Admi</strong> ko bula lena. 😂❤️
+<strong>2 Number Admi ko bula lena. 😂❤️</strong>
 </p>
 
 <a class="next" href="#page12">🤍</a>
-
 </div>
 </section>
 
 
 <!-- PAGE 12 -->
-<section class="page page12" id="page12">
-<div class="card">
+<section class="page" id="page12">
+<div class="decor">
+<span class="float" style="left:7%;font-size:30px;animation-duration:15s">🎁</span>
+<span class="float" style="left:27%;font-size:26px;animation-duration:13s">💗</span>
+<span class="float" style="left:57%;font-size:28px;animation-duration:16s">🌷</span>
+<span class="float" style="left:84%;font-size:25px;animation-duration:14s">🎀</span>
+</div>
 
+<div class="card">
 <div class="top">🎁 🌷 🎀 🌷 🎁</div>
 <div class="label">Acha birthday girl...</div>
 
@@ -564,9 +804,13 @@ apne <strong>2 Number Admi</strong> ko bula lena. 😂❤️
 Aapko laga kahani yahin khatam ho gayi?
 <br>
 <strong>Nahi ji. 👀😂</strong>
+</p>
+
+<p>
+Aapke liye ek chhoti si cheez
+raaste mein hai...
 <br><br>
-Aapke liye kuch raste mein hai...
-lekin main abhi nahi bataunga kya hai. 🤫❤️
+Lekin main abhi nahi bataunga kya hai. 🤫❤️
 </p>
 
 <div class="truck">🚚</div>
@@ -578,29 +822,46 @@ lekin main abhi nahi bataunga kya hai. 🤫❤️
 <p>
 <strong>98%</strong>
 <br>
-Bas 2% aur... 😭😂
+Bas thora sa wait...
+<br>
+System bhi keh raha hai:
+<strong>“Sabar karo madam.” 😭😂</strong>
 </p>
 
 <a class="next" href="#page13">🎁</a>
-
 </div>
 </section>
 
 
 <!-- PAGE 13 -->
-<section class="page page13" id="page13">
-<div class="card">
+<section class="page" id="page13">
+<div class="decor">
+<span class="float" style="left:5%;font-size:27px;animation-duration:14s">🎁</span>
+<span class="float" style="left:29%;font-size:25px;animation-duration:16s">❤️</span>
+<span class="float" style="left:59%;font-size:30px;animation-duration:13s">🚚</span>
+<span class="float" style="left:86%;font-size:26px;animation-duration:17s">✨</span>
+</div>
 
+<div class="card">
 <div class="top">🎁 🚚 🎀 🚚 🎁</div>
 <div class="label">Parcel verification</div>
 
-<h2>Kya Gift Receive Ho Gaya? 👀</h2>
+<h2>Gift Receive Ho Gaya? 👀</h2>
 
 <p>
 Ab asli test hai. 😂❤️
 <br><br>
 <strong>Gift receive hua ya nahi?</strong>
 </p>
+
+<div class="quote">
+Agar nahi hua:
+<strong>sabar karlo naww. 😭😂</strong>
+<br><br>
+Gift ko pehle aane do,
+phir guessess lagana.
+Abhi darwaza torna ka mood hai kya? 😂
+</div>
 
 <p>
 <a class="next" href="#page14">YES 🎁</a>
@@ -615,44 +876,64 @@ Ab asli test hai. 😂❤️
 
 
 <!-- PAGE 14 -->
-<section class="page page14" id="page14">
+<section class="page" id="page14">
+<div class="decor">
+<span class="float" style="left:8%;font-size:29px;animation-duration:15s">🔐</span>
+<span class="float" style="left:30%;font-size:25px;animation-duration:13s">🎁</span>
+<span class="float" style="left:60%;font-size:28px;animation-duration:16s">💗</span>
+<span class="float" style="left:86%;font-size:26px;animation-duration:14s">✨</span>
+</div>
+
 <div class="card">
-
 <div class="top">🔐 🎁 🔐</div>
-<div class="label">One tiny question</div>
+<div class="label">Secret verification</div>
 
-<h2>Secret Unlock 🔓</h2>
+<h2>One Tiny Question 👀</h2>
 
 <p>
-Gift mil gaya? Good. 👀❤️
-<br><br>
+Gift receive ho gaya?
+<br>
+Good girl. 😭❤️
+</p>
+
+<p>
 Ab ek chhoti si verification:
 <br><br>
 <strong>Parcel mein kitne paise receive hue?</strong>
 </p>
 
-<p>
-Hint nahi milega. 😭😂
-<br>
-Guessess bhi nahi!
-</p>
+<div class="quote">
+<strong>Haww madam G cheating kar rahi hain? 😂</strong>
+<br><br>
+Aapka 2 Number Admi sab dekh raha hai. 👀
+<br><br>
+Sabar karlo naww...
+jab gift mil gaya hai to answer bhi
+gift ke andar hi mil jayega. 😭😂
+</div>
 
 <p>
 <a class="next" href="#page15">🔓</a>
 </p>
 
-<div class="quote">
-Haww madam G cheating kar rahi hain? 😂
-<br><br>
-Aapka 2 number admi sab dekh raha hai. 👀
-</div>
+<p class="small">
+Abhi guessess nahi... choti duniya na. 😂❤️
+</p>
 
 </div>
 </section>
 
 
 <!-- PAGE 15 -->
-<section class="page page15" id="page15">
+<section class="page" id="page15">
+<div class="decor">
+<span class="float" style="left:5%;font-size:30px;animation-duration:14s">🌹</span>
+<span class="float" style="left:25%;font-size:26px;animation-duration:16s">❤️</span>
+<span class="float" style="left:48%;font-size:28px;animation-duration:13s">🌷</span>
+<span class="float" style="left:70%;font-size:25px;animation-duration:17s">💗</span>
+<span class="float" style="left:88%;font-size:29px;animation-duration:15s">🌹</span>
+</div>
+
 <div class="card">
 
 <div class="top">❤️ ✨ 🌷 ✨ ❤️</div>
@@ -668,12 +949,17 @@ Meri Anum... meri pyaari churail... meri golo molo... ❤️
 
 <p>
 Agar aap yahan tak aa gayi hain,
-to iska matlab hai ke aapne poori birthday journey complete kar li.
-🥹❤️
+to iska matlab hai ke aapne poori birthday journey
+complete kar li.
+<br><br>
+Aur honestly...
+mujhe bohat khushi hai ke aapne
+itna sab padha. 🥹❤️
 </p>
 
 <p>
-Main dil se chahta hoon ke aap hamesha khush rahen.
+Main dil se chahta hoon ke aap
+hamesha khush rahen.
 Aapke saare dreams poore hon.
 Aapki har achi dua qabool ho.
 🤲🏻🌷
@@ -686,6 +972,14 @@ aapka saath dunga.
 </p>
 
 <p>
+Aapko duniya ki har woh khushi mile
+jiske liye aapka dil kabhi wish kare.
+Aur jab kabhi life difficult ho,
+main chahta hoon ke aapko yaad rahe:
+<strong>aap akeli nahi hain. ❤️</strong>
+</p>
+
+<p>
 Aur please...
 <strong>chhoti chhoti baaton par roya na karein. 😭😂</strong>
 </p>
@@ -694,11 +988,15 @@ Aur please...
 Aapka dil bohat soft hai.
 Har baat ko dil par lene ki zaroorat nahi.
 Har bad day ka matlab bad life nahi hota.
+Har silence narazgi nahi hoti.
+Aur har problem permanent nahi hoti.
 </p>
 
 <p>
-Kabhi rona aaye to ro lena,
-lekin aansu pochhne ke baad khud ko yaad dilana:
+Kabhi rona aaye to ro lena...
+lekin aansu pochhne ke baad
+khud ko yaad dilana:
+<br><br>
 <strong>“Main is se bhi nikal jaungi.” ❤️</strong>
 </p>
 
@@ -712,13 +1010,20 @@ Aur agar phir bhi na niklein...
 Main chahta hoon aap hamesha smile karti rahen.
 Aapke dreams bade hon.
 Aapki duniya khoobsurat ho.
-Aur aapko woh har khushi mile jo aap deserve karti hain. 🤍
+Aapko woh har khushi mile
+jo aap deserve karti hain. 🤍
 </p>
 
 <p>
 Mujhe nahi pata future exactly kaisa hoga,
 lekin main chahta hoon ke future ki
-bohat si beautiful memories mein aap hon. ❤️
+bohat si beautiful memories mein
+aap hon.
+<br><br>
+Aur main chahta hoon ke jab aap kabhi
+peeche mud kar dekhein,
+toh aapko bohat saari reasons milen
+khush hone ki. ❤️
 </p>
 
 <p>
@@ -729,7 +1034,7 @@ Happy Birthday once again, Anum. 🎂❤️
 <strong>20 saal mubarak meri pyaari churail. 😭❤️</strong>
 </p>
 
-<p style="text-align:center;font-size:28px">
+<p style="text-align:center;font-size:30px">
 ❤️ ∞ ❤️
 </p>
 
@@ -750,3 +1055,4 @@ Happy Birthday once again, Anum. 🎂❤️
 
 </body>
   </html>
+  
