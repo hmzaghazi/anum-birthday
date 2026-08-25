@@ -3,1267 +3,1497 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Operation Jery ❤️</title>
+<title>Operation Jerry ❤️</title>
 
 <style>
-*{box-sizing:border-box}
-
-html,body{
-margin:0;
-padding:0;
-width:100%;
-height:100%;
-overflow:hidden;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-body{
-font-family:Georgia,"Times New Roman",serif;
-background:#120912;
-color:#ffeaf4;
+html {
+  scroll-behavior: smooth;
 }
 
-#app{
-width:100%;
-height:100vh;
-position:relative;
-overflow:hidden;
+body {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background: #ffd9e8;
+  color: #54233d;
+  overflow-x: hidden;
 }
 
-.screen{
-position:absolute;
-inset:0;
-display:none;
-overflow-y:auto;
-padding:78px 18px 45px;
-background:
-radial-gradient(circle at 15% 15%,rgba(255,105,170,.16),transparent 30%),
-radial-gradient(circle at 85% 80%,rgba(200,70,150,.14),transparent 32%),
-linear-gradient(135deg,#150914,#29101f 55%,#120810);
+/* ---------- BACKGROUND ---------- */
+
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.8), transparent 25%),
+    radial-gradient(circle at 80% 30%, rgba(255,182,210,.7), transparent 30%),
+    linear-gradient(135deg, #ffd8e7, #fff0f6, #ffd0e3);
 }
 
-.screen.active{
-display:flex;
-align-items:center;
-justify-content:center;
-animation:screenIn .55s ease;
+.heart,
+.flower,
+.sparkle {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  animation: floatUp linear infinite;
+  opacity: .7;
 }
 
-@keyframes screenIn{
-from{opacity:0;transform:scale(1.035)}
-to{opacity:1;transform:scale(1)}
+.heart {
+  font-size: 25px;
 }
 
-.topbar{
-position:fixed;
-top:0;
-left:0;
-right:0;
-height:58px;
-z-index:50;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 15px;
-background:rgba(14,6,13,.88);
-border-bottom:1px solid rgba(255,190,220,.14);
-backdrop-filter:blur(15px);
+.flower {
+  font-size: 28px;
 }
 
-.top-title{
-font-size:11px;
-letter-spacing:2px;
-color:#e8aec7;
+.sparkle {
+  font-size: 18px;
 }
 
-.progress{
-display:flex;
-gap:4px;
+@keyframes floatUp {
+  from {
+    transform: translateY(110vh) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: .75;
+  }
+  85% {
+    opacity: .75;
+  }
+  to {
+    transform: translateY(-15vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
-.dot{
-width:7px;
-height:7px;
-border-radius:50%;
-background:#4a2737;
-transition:.3s;
+/* ---------- TOP BAR ---------- */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 15px;
+  background: rgba(255, 245, 250, .88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 105, 160, .25);
+  box-shadow: 0 4px 20px rgba(100, 30, 70, .1);
 }
 
-.dot.done{
-background:#db6d9e;
-box-shadow:0 0 8px #db6d9e;
+.page-indicator {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.dot.current{
-background:#fff;
-box-shadow:0 0 12px #fff;
+.page-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e7a5bd;
+  transition: .3s;
 }
 
-.box{
-width:min(820px,100%);
-padding:30px 22px;
-background:rgba(35,14,29,.78);
-border:1px solid rgba(255,190,220,.18);
-border-radius:30px;
-box-shadow:0 20px 80px rgba(0,0,0,.48);
-backdrop-filter:blur(14px);
-text-align:center;
-position:relative;
-z-index:10;
+.page-dot.active {
+  width: 25px;
+  border-radius: 20px;
+  background: #d94d82;
 }
 
-.badge{
-display:inline-block;
-padding:7px 13px;
-border:1px solid rgba(255,190,220,.25);
-border-radius:30px;
-font-size:10px;
-letter-spacing:2px;
-color:#e9aec9;
+/* ---------- PAGES ---------- */
+
+#pages {
+  padding-top: 62px;
 }
 
-h1{
-font-size:clamp(42px,10vw,82px);
-line-height:1;
-margin:15px 0 20px;
-color:#fff0f7;
-text-shadow:0 0 30px rgba(255,130,190,.25);
+.page {
+  min-height: calc(100vh - 62px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 45px 18px 70px;
 }
 
-h2{
-font-size:clamp(28px,7vw,50px);
-margin:10px 0 20px;
-color:#ffd6e8;
+.page.active {
+  display: flex;
+  animation: pageIn .65s ease;
 }
 
-h3{color:#f4b5ce}
-
-p{
-font-size:17px;
-line-height:1.8;
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
-.sub{
-color:#d7a8bc;
-font-size:12px;
-letter-spacing:2px;
+.card {
+  width: min(900px, 100%);
+  max-height: calc(100vh - 135px);
+  overflow-y: auto;
+  padding: 38px 28px;
+  border-radius: 30px;
+  background: rgba(255,255,255,.78);
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(255,255,255,.85);
+  box-shadow:
+    0 25px 70px rgba(112, 34, 70, .16),
+    inset 0 1px 0 rgba(255,255,255,.8);
+  text-align: center;
 }
 
-.heart{
-font-size:58px;
-margin:12px;
-filter:drop-shadow(0 0 18px rgba(255,100,170,.35));
+.card::-webkit-scrollbar {
+  width: 6px;
 }
 
-.btn{
-border:1px solid rgba(255,210,230,.3);
-background:linear-gradient(135deg,#8e3e63,#c45d88);
-color:white;
-padding:15px 23px;
-border-radius:15px;
-font-size:15px;
-font-weight:bold;
-cursor:pointer;
-margin:8px;
-transition:.25s;
-box-shadow:0 10px 30px rgba(130,45,85,.25);
+.card::-webkit-scrollbar-thumb {
+  background: #e89ab9;
+  border-radius: 10px;
 }
 
-.btn:hover{
-transform:translateY(-3px);
-box-shadow:0 15px 35px rgba(180,70,110,.35);
+h1 {
+  font-size: clamp(42px, 8vw, 78px);
+  color: #c82e69;
+  margin-bottom: 18px;
+  line-height: 1.05;
 }
 
-.btn.secondary{
-background:rgba(255,255,255,.06);
+h2 {
+  font-size: clamp(25px, 5vw, 44px);
+  color: #c43870;
+  margin-bottom: 14px;
 }
 
-.chapter{
-font-size:11px;
-letter-spacing:3px;
-color:#b97999;
-margin-bottom:12px;
+h3 {
+  font-size: clamp(19px, 3vw, 27px);
+  margin: 18px 0;
+  color: #8f3158;
 }
 
-.card{
-background:rgba(255,255,255,.045);
-border:1px solid rgba(255,210,230,.1);
-border-radius:20px;
-padding:18px;
-margin:18px 0;
-text-align:left;
+p,
+.text {
+  font-size: clamp(16px, 2.5vw, 20px);
+  line-height: 1.8;
+  margin: 12px auto;
+  white-space: pre-line;
 }
 
-.center{text-align:center}
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
+.subtitle {
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+  color: #8e526c;
 }
 
-.item{
-padding:15px;
-background:rgba(255,255,255,.04);
-border:1px solid rgba(255,210,230,.08);
-border-radius:16px;
+.big-number {
+  font-size: 110px;
+  font-weight: bold;
+  color: #d43672;
+  text-shadow: 0 8px 25px rgba(210, 45, 105, .2);
+  margin: 15px 0;
 }
 
-.item strong{
-display:block;
-color:#f4b9d0;
-margin:6px 0 3px;
+.section-title {
+  color: #ba2c63;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 20px 0;
 }
 
-.timeline{
-text-align:left;
+.fav {
+  text-align: left;
+  max-width: 720px;
+  margin: auto;
 }
 
-.timeline div{
-padding:14px;
-margin:9px 0;
-border-left:3px solid #a65378;
-background:rgba(255,255,255,.035);
-border-radius:0 12px 12px 0;
+.fav-item {
+  padding: 14px 17px;
+  margin: 10px 0;
+  background: rgba(255, 225, 237, .7);
+  border-radius: 18px;
+  border: 1px solid rgba(211, 79, 127, .12);
 }
 
-.floatLayer{
-position:fixed;
-inset:0;
-pointer-events:none;
-overflow:hidden;
-z-index:2;
+.fav-item strong {
+  display: block;
+  color: #b72e64;
+  font-size: 18px;
+  margin-bottom: 4px;
 }
 
-.float{
-position:absolute;
-bottom:-80px;
-animation:floatUp linear infinite;
-opacity:.6;
+/* ---------- BUTTONS ---------- */
+
+button {
+  border: none;
+  cursor: pointer;
+  margin-top: 25px;
+  padding: 14px 27px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #d83c78, #ef78a6);
+  box-shadow: 0 10px 25px rgba(202, 49, 106, .25);
+  transition: .25s;
 }
 
-@keyframes floatUp{
-0%{transform:translateY(0) rotate(0);opacity:0}
-10%{opacity:.65}
-100%{transform:translateY(-110vh) rotate(300deg);opacity:0}
+button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(202, 49, 106, .3);
 }
 
-.spark{
-position:absolute;
-width:5px;
-height:5px;
-border-radius:50%;
-background:white;
-box-shadow:0 0 12px white;
-animation:twinkle 2s infinite;
+button:active {
+  transform: scale(.97);
 }
 
-@keyframes twinkle{
-0%,100%{opacity:.1;transform:scale(.5)}
-50%{opacity:1;transform:scale(1.5)}
+.choice-row {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 25px;
 }
 
-/* TRUCK */
-.delivery{
-position:relative;
-height:125px;
-margin:10px 0;
-overflow:hidden;
+.yes-btn {
+  background: linear-gradient(135deg, #42a96c, #6bcf91);
 }
 
-.road{
-position:absolute;
-left:5%;
-right:5%;
-bottom:28px;
-height:3px;
-background:rgba(255,210,230,.2);
+.no-btn {
+  background: linear-gradient(135deg, #e16b78, #ef98a0);
 }
 
-.truck{
-position:absolute;
-left:-100px;
-bottom:32px;
-font-size:65px;
-z-index:3;
+/* ---------- TRUCK ---------- */
+
+.delivery-area {
+  position: relative;
+  height: 170px;
+  margin: 25px auto;
+  max-width: 750px;
+  border-radius: 25px;
+  overflow: hidden;
+  background: linear-gradient(#dff6ff, #fff5fa);
+  border: 2px solid rgba(255,255,255,.8);
 }
 
-.truck.drive{
-animation:truckDrive 3.8s cubic-bezier(.15,.65,.3,1) forwards;
+.road {
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  height: 35px;
+  background: #6e6570;
 }
 
-@keyframes truckDrive{
-0%{left:-100px}
-90%{left:calc(98% - 70px)}
-100%{left:calc(98% - 70px)}
+.road::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 15px;
+  height: 4px;
+  background: repeating-linear-gradient(
+    to right,
+    #fff 0 45px,
+    transparent 45px 80px
+  );
 }
 
-.truck.stop{
-animation:truckStop 1.8s ease-in-out infinite alternate;
+.truck {
+  position: absolute;
+  bottom: 55px;
+  left: -150px;
+  font-size: 75px;
+  transform: scaleX(-1);
+  transition: left 3.8s cubic-bezier(.15,.8,.25,1);
 }
 
-@keyframes truckStop{
-from{transform:translateY(0)}
-to{transform:translateY(-3px)}
+.truck.go {
+  left: calc(95% - 80px);
 }
 
-.progressBox{
-width:100%;
-height:13px;
-background:#3b2331;
-border-radius:20px;
-overflow:hidden;
-margin:20px 0;
+.delivery-progress {
+  font-size: 22px;
+  font-weight: bold;
+  color: #c52f68;
 }
 
-.progressFill{
-height:100%;
-width:0%;
-background:linear-gradient(90deg,#914365,#e279a6);
-box-shadow:0 0 15px rgba(230,110,165,.5);
-transition:width 3.8s ease;
+/* ---------- QUESTION ---------- */
+
+.question-box {
+  max-width: 500px;
+  margin: 25px auto 0;
 }
 
-/* LOCK */
-.lock{
-font-size:62px;
-animation:lockPulse 2s infinite;
+.answer-input {
+  width: 100%;
+  padding: 17px 20px;
+  border: 2px solid #edabc3;
+  border-radius: 18px;
+  outline: none;
+  font-size: 22px;
+  text-align: center;
+  background: #fffafd;
+  color: #70243f;
 }
 
-@keyframes lockPulse{
-50%{transform:scale(1.08);filter:drop-shadow(0 0 15px #df76a6)}
+.answer-input:focus {
+  border-color: #d84278;
+  box-shadow: 0 0 0 4px rgba(216,66,120,.1);
 }
 
-/* GLITCH */
-.glitchScreen{
-animation:glitchBg .13s steps(2) infinite;
+.lock-status {
+  margin-top: 18px;
+  font-size: 22px;
+  font-weight: bold;
 }
 
-@keyframes glitchBg{
-0%{transform:translate(0)}
-25%{transform:translate(-3px,2px)}
-50%{transform:translate(3px,-2px)}
-75%{transform:translate(-2px,-1px)}
-100%{transform:translate(0)}
+.wrong-message {
+  display: none;
+  margin: 25px auto 0;
+  padding: 20px;
+  border-radius: 20px;
+  background: rgba(255, 213, 225, .8);
+  animation: shake .45s ease;
 }
 
-.access{
-font-family:monospace;
-letter-spacing:3px;
-color:#ffb4d3;
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-10px); }
+  40% { transform: translateX(10px); }
+  60% { transform: translateX(-7px); }
+  80% { transform: translateX(7px); }
 }
 
-.secret{
-text-align:left;
-background:rgba(255,170,210,.055);
-border:1px solid rgba(255,190,220,.2);
-border-radius:20px;
-padding:20px;
-line-height:1.9;
+/* ---------- FINAL GLITCH ---------- */
+
+.glitch-screen {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: #180814;
+  color: #ff75aa;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 25px;
 }
 
-.hidden{
-display:none!important;
+.glitch-screen.show {
+  display: flex;
 }
 
-@media(max-width:600px){
-.box{padding:25px 16px}
-p{font-size:16px}
-.grid{grid-template-columns:1fr}
-.topbar{height:52px}
-.screen{padding-top:70px}
+.glitch-text {
+  font-family: monospace;
+  font-size: clamp(24px, 6vw, 60px);
+  animation: glitch .15s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  25% { transform: translate(-3px, 2px); }
+  50% { transform: translate(3px, -2px); }
+  75% { transform: translate(-2px, -1px); }
+  100% { transform: translate(0); }
+}
+
+.final-heart {
+  font-size: 55px;
+  margin: 15px 0;
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+/* ---------- RESPONSIVE ---------- */
+
+@media (max-width: 600px) {
+  .card {
+    padding: 28px 18px;
+    border-radius: 23px;
+  }
+
+  .page {
+    padding: 35px 10px 50px;
+  }
+
+  .big-number {
+    font-size: 85px;
+  }
+
+  .topbar {
+    height: 55px;
+  }
+
+  #pages {
+    padding-top: 55px;
+  }
+
+  .page {
+    min-height: calc(100vh - 55px);
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div id="app">
+<div class="background" id="background"></div>
 
 <div class="topbar">
-<div class="top-title" id="topTitle">OPERATION: JERY</div>
-<div class="progress" id="progress"></div>
+  <div class="page-indicator" id="pageIndicator"></div>
 </div>
 
-<div class="floatLayer">
-<span class="float" style="left:5%;font-size:28px;animation-duration:13s">❤️</span>
-<span class="float" style="left:20%;font-size:24px;animation-duration:16s">🌸</span>
-<span class="float" style="left:38%;font-size:30px;animation-duration:14s">💗</span>
-<span class="float" style="left:60%;font-size:25px;animation-duration:17s">🌷</span>
-<span class="float" style="left:80%;font-size:29px;animation-duration:15s">✨</span>
-<span class="float" style="left:92%;font-size:24px;animation-duration:12s">🌹</span>
-
-<span class="spark" style="left:15%;top:20%"></span>
-<span class="spark" style="left:75%;top:25%"></span>
-<span class="spark" style="left:50%;top:70%"></span>
-</div>
-
-
-<!-- PAGE 0 -->
-<section class="screen active" id="s0">
-<div class="box">
-
-<div class="badge">CLASSIFIED • LOVE FILE</div>
-
-<div class="heart">❤️</div>
-
-<h1>OPERATION<br>JERY</h1>
-
-<p class="sub">
-A PRIVATE MISSION CREATED BY TOM
-</p>
-
-<div class="card center">
-<p>
-<strong>SUBJECT:</strong> JERY<br>
-<strong>MISSION:</strong> MAKE HER SMILE<br>
-<strong>STATUS:</strong> EXTREMELY IMPORTANT ❤️
-</p>
-</div>
-
-<p>
-Ek secret journey banayi gayi hai...
-aur warning:
-<br><br>
-<strong>
-Is mission mein memories, emotions,
-flowers aur thori si Tom wali bakwaas 😂 included hai.
-</strong>
-</p>
-
-<button class="btn" onclick="go(1)">START MISSION ❤️</button>
-
-</div>
-</section>
-
+<div id="pages">
 
 <!-- PAGE 1 -->
-<section class="screen" id="s1">
-<div class="box">
+<section class="page active">
+  <div class="card">
+    <div class="section-title">PAGE 1 — START</div>
 
-<div class="chapter">CHAPTER 01 / THE GIRL</div>
+    <h1>OPERATION JERRY ❤️</h1>
 
-<h2>THE MOST SPECIAL PERSON ❤️</h2>
+    <div class="subtitle">A PRIVATE MISSION CREATED BY 2 Number Admi</div>
 
-<div class="heart">🌷</div>
+    <p>
+SUBJECT: JERRY KA BIRTHDAY 🥳 🎂
+MISSION: MAKE HER SMILE ❤️
+STATUS: EXTREMELY IMPORTANT
+    </p>
 
-<p>
-Jery...
-aaj ka mission sirf ek website nahi.
-Ye Tom ki taraf se banaya gaya
-ek chhota sa corner hai
-jahan sirf aap hain. ❤️
-</p>
+    <p>
+Jery ke liye ek secret journey banayi gayi hai...
 
-<div class="card">
-<p>
-Kabhi kabhi koi person life mein aata hai
-aur pata hi nahi chalta ke woh
-kab itna important ban gaya.
-<br><br>
-Bas phir uski smile important lagti hai,
-uski khushi important lagti hai,
-aur uska udaas hona personally feel hone lagta hai.
-</p>
-</div>
+Warning: Is mission mein memories, emotions, flowers aur Tom ki thori si Funny 😂 included hai.
+    </p>
 
-<button class="btn" onclick="go(2)">CONTINUE →</button>
-
-</div>
+    <button onclick="nextPage()">START MISSION ❤️</button>
+  </div>
 </section>
 
 
 <!-- PAGE 2 -->
-<section class="screen" id="s2">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 2 — INTRO</div>
 
-<div class="chapter">CHAPTER 02 / AGE VERIFIED</div>
+    <h2>CHAPTER 01 — A SPECIAL GIRL 🌷</h2>
 
-<h2>20 YEARS 🎂</h2>
+    <h3>THE MOST SPECIAL PERSON ❤️</h3>
 
-<div style="font-size:130px;font-weight:bold;color:#e68bad">20</div>
+    <p>
+Jerry...
 
-<p>
-Madam officially 20 ki ho gayi hain. 😭😂
-</p>
+Aaj ka mission sirf ek choti dunyia nahi hai. Ye aik billo ki taraf se banaya gaya ek chhota sa corner hai jahan sirf jeery hai. ❤️
 
-<div class="card">
-<p>
-Dua hai aapka har agla saal
-pichle saal se zyada beautiful,
-peaceful aur khushiyon bhara ho. 🤲🏻
-</p>
-</div>
+Kabhi kabhi koi person life mein aata hai aur pata hi nahi chalta ke woh kab itna important ban jata hai.
 
-<p>
-Aur maturity?
-<br>
-<strong>
-Woh update baad mein install kar lenge. 😂
-</strong>
-</p>
+Bas phir uski smile important lagti hai, uski khushi important lagti hai, aur uska udaas hona personally feel hone lagta hai. ❤️
+    </p>
 
-<button class="btn" onclick="go(3)">NEXT CHAPTER →</button>
-
-</div>
+    <button onclick="nextPage()">CONTINUE →</button>
+  </div>
 </section>
 
 
 <!-- PAGE 3 -->
-<section class="screen" id="s3">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 3 — 20 YEARS</div>
 
-<div class="chapter">CHAPTER 03 / FIRST MEMORY</div>
+    <h2>CHAPTER 02 — AGE VERIFIED 🎂</h2>
 
-<h2>DOODH PILAYI 🌷</h2>
+    <div class="big-number">20</div>
 
-<div class="heart">🥛❤️</div>
+    <p>
+Madam officially 20 ki ho gayi hain. 😭😂
 
-<p>
-Jab aap doodh pilayi ki rasam ke liye aayi thi,
-shayad aapko bilkul idea nahi tha
-ke Tom aapko itni gaur se dekh raha tha. 👀
-</p>
+Dua hai aapka har agla saal pichle saal se zyada beautiful, peaceful aur khushiyon bhara ho. 🤲🏻❤️
 
-<div class="card">
-<p>
-Moment chhota tha...
-lekin feeling chhoti nahi thi.
-<br><br>
-Kabhi kabhi koi person casually saamne aata hai,
-aur dil us moment ko casually nahi leta. ❤️
-</p>
-</div>
+Aur Shreefness?
 
-<button class="btn" onclick="go(4)">UNLOCK NEXT →</button>
+Woh update baad mein install kar lenge. 😂
+    </p>
 
-</div>
+    <button onclick="nextPage()">NEXT CHAPTER →</button>
+  </div>
 </section>
 
 
 <!-- PAGE 4 -->
-<section class="screen" id="s4">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 4 — MERA PEHLA NAZAR KA PIYAAR</div>
 
-<div class="chapter">CHAPTER 04 / LAHORE</div>
+    <h2>CHAPTER 03 — FIRST MEMORY 🌷</h2>
 
-<h2>THE THING TOM COULDN'T SAY</h2>
+    <h3>DOODH PILAYI  KI RASAM🥛❤️</h3>
 
-<div class="heart">🌙</div>
+    <p>
+Apko yad hai Jab aap doodh pilayi ki rasam ke liye aayi thi, shayad aapko bilkul idea nahi tha ke aik billa aapko itni gaur se dekh raha tha Taaar raha hai mera to man kar raha tha main bhi wahi apky sath nikkah parwa lon but fir yad aya jeery nakroo wali abhi kahan kary gi boly gi bmw laow phely meri👀
 
-<p>
-Tom Lahore aaya...
-aapke paas.
-<br><br>
-Socha tha face to face bolunga.
-Dialogue ready tha.
-Himmat bhi thi.
-</p>
+Moment chhota tha... lekin feeling chhoti nahi thi.
 
-<div class="card">
-<p>
-Phir actual moment aaya...
-aur dimagh ne kaha:
-<br><br>
-<strong>“Bhai rehne de.” 😭😂</strong>
-</p>
-</div>
+Kabhi kabhi koi person casually saamne aata hai, aur dil us moment ko casually nahi leta ap wo moment hu mery liye jo mera dil main agaye tab mujhy bhi nhi pta tha piyaar hugia apsy hehe but hugia tha or ap khabi nikli nhi mery andar sy❤️
+    </p>
 
-<p>
-Aur phir message kar hi diya. ❤️
-</p>
-
-<button class="btn" onclick="go(5)">CONTINUE →</button>
-
-</div>
+    <button onclick="nextPage()">UNLOCK NEXT →</button>
+  </div>
 </section>
 
 
 <!-- PAGE 5 -->
-<section class="screen" id="s5">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 5 — HAMARA STORY KA START</div>
 
-<div class="chapter">CHAPTER 05 / 01 JANUARY</div>
+    <h2>CHAPTER 04 — LAHORE KA TOUR 🌙</h2>
 
-<h2>THE DAY IT CHANGED ❤️</h2>
+    <h3>THE THING BILLA COULDN'T SAY</h3>
 
-<div class="heart">01 • 01</div>
+    <p>
+BILLA jan bhooj kar Lahore aaya tha... aapke paas.
 
-<p>
-Jo feeling pehle sirf Tom ke dil mein thi,
-ab hamari kahani ban gayi.
-</p>
+Fir billa bas apko dekhta raha ky mera mazy dar jeery kita piyaara hai fir jab wapis any lagy aik din pehly billa royia ky ye fir hath sy chli jaye gi fir himmat kari Socha face to face bol deta ziyada sy ziyada chammat mardy gi jeery mera Dialogue ready tha mainy bara practice kia Himmat bhi thi.
 
-<div class="card">
-<p>
-<strong>1 January</strong>
-sirf calendar ki date nahi.
-<br><br>
-Ye woh date hai jahan
-“main” aur “aap” ki jagah
-<strong>“hum”</strong> ka concept start hua. ❤️
-</p>
-</div>
+Phir actual moment aaya or mainy apko bola...
 
-<button class="btn" onclick="go(6)">NEXT →</button>
+“chamach dena.” 😭😂
 
-</div>
+Fir apun ka wapsi ka time agia apun jaty jaty bhi apna mazy dar jeery ko tar raha tha or wapis akar billa ko sakoon nhi aya or roo dia kanpty hathon sath follow mardia
+
+Aur phir message kar hi diya. ❤️
+    </p>
+
+    <button onclick="nextPage()">CONTINUE →</button>
+  </div>
 </section>
 
 
 <!-- PAGE 6 -->
-<section class="screen" id="s6">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 6 — 1 JANUARY</div>
 
-<div class="chapter">CHAPTER 06 / 9 MONTHS</div>
+    <h2>CHAPTER 05 — STORY STARTED BY BOTH SIDES❤️</h2>
 
-<h2>OUR TIMELINE ❤️</h2>
+    <h3>THE DAY IT OUR RELATIONSHIP START</h3>
 
-<div class="timeline">
-<div><strong>FIRST:</strong> Ek feeling... 🥹</div>
-<div><strong>THEN:</strong> Ek message... 📱</div>
-<div><strong>01 JAN:</strong> Naya chapter... ❤️</div>
-<div><strong>AFTER THAT:</strong> Baatein + flirting + laraiyan 😂</div>
-<div><strong>TODAY:</strong> 9 months + countless memories.</div>
-</div>
+    <p>
+Jo feeling pehle sirf BILLA ke dil mein thi wo billa apko bta dia apny bary nakry shakry dekhyie at the end kand shand karny ky bad dono ghr pta lagny ky bad 1st ko apni bat start hu hi gayi or khani dono trafa start hoi yahan
 
-<p>
-Har din perfect nahi tha...
-lekin har din ne kuch beautiful add kiya.
-</p>
+1 January sirf calendar ki date nahi.
 
-<button class="btn" onclick="go(7)">OPEN HER FILE →</button>
+Ye woh date hai jahan “main” aur “aap” ki jagah “hum” ka concept start hua. ❤️
+    </p>
 
-</div>
+    <button onclick="nextPage()">NEXT →</button>
+  </div>
 </section>
 
 
 <!-- PAGE 7 -->
-<section class="screen" id="s7">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 7 — 9 MONTHS COMPLETED</div>
 
-<div class="chapter">CHAPTER 07 / JERY'S FILE</div>
+    <h2>CHAPTER 06 — LOVING DAYS ❤️</h2>
 
-<h2>HER FAVOURITES 🌷</h2>
+    <h3>OUR TIMELINE</h3>
 
-<div class="grid">
+    <p>
+FIRST: Ek feeling... 🥹
 
-<div class="item">🏎️<strong>BMW M4 Competition</strong>Fav car</div>
-<div class="item">🚘<strong>Mark X</strong>Pakistani favourite</div>
-<div class="item">🖤<strong>Black</strong>Favourite colour</div>
-<div class="item">🤍<strong>White</strong>Favourite colour</div>
-<div class="item">🍛<strong>Biryani</strong>Favourite food</div>
-<div class="item">🍚<strong>Kheer</strong>Favourite sweet</div>
-<div class="item">🌹<strong>Roses</strong>Especially white roses</div>
-<div class="item">🌷<strong>Tulips</strong>Pretty flowers</div>
-<div class="item">🌻<strong>Sunflowers</strong>Bright ones</div>
-<div class="item">🍫<strong>Chocolate</strong>Dark chocolate excluded 😂</div>
-<div class="item">🏔️<strong>Northern Areas</strong>Favourite place</div>
-<div class="item">💌<strong>Love & Memories</strong>Most important</div>
+THEN: Ek message... 📱
 
-</div>
+01 JAN: Naya chapter... ❤️
 
-<p>
-Funny coincidence:
-<strong>in mein se bohat si cheezein Tom ko bhi pasand hain. 👀❤️</strong>
-</p>
+AFTER THAT: Baatein + flirting + laraiyan 😂
 
-<button class="btn" onclick="go(8)">NEXT FILE →</button>
+TODAY: 9 months + countless memories.
 
-</div>
+Har din perfect nahi tha... lekin har din ne kuch beautiful add kiya.
+    </p>
+
+    <button onclick="nextPage()">OPEN HER FILE →</button>
+  </div>
 </section>
 
 
 <!-- PAGE 8 -->
-<section class="screen" id="s8">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 8 — FAVOURITES</div>
 
-<div class="chapter">CHAPTER 08 / WARNING</div>
+    <h2>CHAPTER 07 — JERRY'S FAV THINGS FILE 🌷</h2>
 
-<h2>OVERTHINKING DETECTED 😭</h2>
+    <div class="fav">
 
-<div class="heart">🧠💗</div>
+      <div class="fav-item">
+        <strong>🏎️ BMW M4 Competition</strong>
+        Aik din ye bhi aye ga ham dono hamari car main hungy inshaAllah
+      </div>
 
-<div class="card">
-<p>
-Jery please chhoti chhoti baaton ko
-apne dil ka permanent resident
-na banaya karein. 😭😂
-</p>
-</div>
+      <div class="fav-item">
+        <strong>🚘 Mark X</strong>
+        Bmw na mili to mark x main ghoomi karlein gy hehe
+      </div>
 
-<p>
-Har silence narazgi nahi.
-<br>
-Har late reply problem nahi.
-<br>
-Har bad day bad life nahi.
-<br>
-Aur har thought reality nahi hota.
-</p>
+      <div class="fav-item">
+        <strong>🖤 Black</strong>
+        Ye to main hu mtlb ap meko pasend karti ahn naughty naughty
+      </div>
 
-<h3>Rona aaye to ro lena...</h3>
+      <div class="fav-item">
+        <strong>🤍 White</strong>
+        Ary ye to meri muhtarma ka dil hai pure white aye hayee meri piyaari masoom si muhtarma jiska dil log tod dety hain
+      </div>
 
-<p>
-Lekin aansu pochhne ke baad
-khud ko yaad dilana:
-</p>
+      <div class="fav-item">
+        <strong>🍛 Biryani</strong>
+        Ye to ham bna bna kar khilyein gy aik dujy ko
+      </div>
 
-<h2>“Main is se bhi nikal jaungi.” ❤️</h2>
+      <div class="fav-item">
+        <strong>🍚 Kheer</strong>
+        Pehly sirf apko pasend thi ab billa bhi plate tak chat jata Hehe
+      </div>
 
-<p>
-Aur agar overthinking phir bhi na ruke...
-<br>
-<strong>Tom ko bula lena. 😂</strong>
-</p>
+      <div class="fav-item">
+        <strong>🌹 Roses</strong>
+        Ainki ab kia zaroorat ap mirror dekha karoow gulab ka phool dik jaye ga baee
+      </div>
 
-<button class="btn" onclick="go(9)">CONTINUE ❤️</button>
+      <div class="fav-item">
+        <strong>🌷 Tulips</strong>
+        Aik din ham apna ghr main flowers hi flowers kardein gy sary apky favorite phools bhar dalein gy
+      </div>
 
-</div>
+      <div class="fav-item">
+        <strong>🌻 Sunflowers</strong>
+        Ahm ahm sun flowers mtlb meri baby ka bat horaha jo gussa main garam hoti to sun lagti or cuteness main to flower hai to kia bna meri sun flower
+      </div>
+
+      <div class="fav-item">
+        <strong>🍫 Chocolate</strong>
+        Ary bhayyia agar Allah ny itna Dia to pura factory khol dein gy coclates ka apky liye
+      </div>
+
+      <div class="fav-item">
+        <strong>🏔️ Northern Areas</strong>
+        Yahan ham sath main ghomein gy yahan apna ghr bnayein gy inshaAllah ye to ham krein gy bhai hamara baby ka fav jagan hai ye inshaAllah Allah sy bara kuch nhi wo dy gaaa
+      </div>
+
+      <div class="fav-item">
+        <strong>💌 Love & Memories</strong>
+        Most important
+      </div>
+
+    </div>
+
+    <p>
+Funny coincidence:
+
+In mein se sab hi cheezein billa ko bhi pasand hain. 👀❤️
+    </p>
+
+    <button onclick="nextPage()">NEXT FILE →</button>
+  </div>
 </section>
 
 
 <!-- PAGE 9 -->
-<section class="screen" id="s9">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 9 — JEERY KI BIMARYIAN 🤒</div>
 
-<div class="chapter">CHAPTER 09 / DREAMS</div>
+    <h2>CHAPTER 08 — WARNING ⚠️</h2>
 
-<h2>DREAMS DATABASE 🏔️</h2>
+    <h3>OVERTHINKING DETECTED 😭</h3>
 
-<div class="heart">✨</div>
+    <p>
+Jerry please chhoti chhoti baaton ko apne dil ka permanent resident na banaya karein. 😭😂
 
-<p>
-Tom dil se chahta hai ke Jery ki zindagi mein
-woh har khushi aaye jiski usne kabhi dua ki ho. 🤲🏻
-</p>
+Har silence narazgi nahi.
 
-<div class="card">
-<p>
-BMW ho...
-Northern Areas ki trip ho...
-kisi beautiful jagah ko explore karna ho...
-ya koi aisi cheez ho jo sirf
-Jery ko khush karti ho...
-<br><br>
-<strong>Dream it. Work for it. Live it. ❤️</strong>
-</p>
-</div>
+Har late reply problem nahi.
 
-<p>
-Jahan tak Tom ke bas mein hua,
-Jery ke dreams ko poora karne mein
-saath dunga.
-</p>
+Har bad day bad life nahi.
 
-<button class="btn" onclick="go(10)">NEXT →</button>
+Aur har thought reality nahi hota.
 
-</div>
+Rona aaye to ro lena...
+
+Lekin aansu pochhne ke baad khud ko yaad dilana:
+
+“Main is se bhi nikal jaungi.” ❤️
+
+Aur agar overthinking phir bhi na ruke...
+
+Billa ko bula lena sath royien gy baeee. 😂
+    </p>
+
+    <button onclick="nextPage()">CONTINUE ❤️</button>
+  </div>
 </section>
 
 
 <!-- PAGE 10 -->
-<section class="screen" id="s10">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 10 — DREAMS</div>
 
-<div class="chapter">CHAPTER 10 / PROMISE</div>
+    <h2>CHAPTER 09 — DREAMS 🏔️</h2>
 
-<h2>ONE IMPORTANT REQUEST 🤍</h2>
+    <h3>DREAMS DATABASE ✨</h3>
 
-<div class="heart">🫶🏻</div>
+    <p>
+Billa dil se chahta hai ke Jerry ki zindagi mein woh har khushi aaye jiski usne kabhi dua ki ho. 🤲🏻
 
-<p>
-Hamesha khush rehna.
-<br><br>
-Aur please chhoti chhoti baaton par
-apna dil mat dukhaya karna.
-</p>
+BMW ho...
 
-<div class="card">
-<p>
-Jery ka dil bohat soft hai.
-Isliye har baat ko itna deeply feel karna
-kabhi kabhi hurt karta hai.
-<br><br>
-Tom chahta hai Jery apni smile ko
-har cheez se zyada protect kare. ❤️
-</p>
-</div>
+Northern Areas ki trip ho balky ghr hi hu jeery ka apna...
 
-<p>
-Aur jab life difficult ho:
-<strong>pause, breathe, smile, continue.</strong>
-</p>
+Kisi beautiful jagah ko explore karna ho...
 
-<button class="btn" onclick="go(11)">FINAL MISSION →</button>
+Ya koi aisi cheez ho jo Jerry ko genuinely khush karti ho...
 
-</div>
+Dream it. Work for it. Live it. ❤️
+
+Jahan tak billa ke bas mein hua, Jerry ke dreams ko poora karne mein saath dunga or ye nhi hai ky jeery kam kary to hi sab mily ga billa akela bhi karky sab khawab pury kary ga apka.
+    </p>
+
+    <button onclick="nextPage()">NEXT →</button>
+  </div>
 </section>
 
 
 <!-- PAGE 11 -->
-<section class="screen" id="s11">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 11 — PROMISE</div>
 
-<div class="chapter">FINAL MISSION / PACKAGE</div>
+    <h2>CHAPTER 10 — PROMISE KARYIEE BILLA SATH🤍</h2>
 
-<h2>INCOMING PACKAGE DETECTED 🎁</h2>
+    <h3>ONE IMPORTANT REQUEST</h3>
 
-<div id="initialTruck">
-<div class="heart">📦</div>
+    <p>
+Hamesha khush rehna.
 
-<p>
-Aapke naam ka ek secret package
-system mein detect hua hai.
-</p>
+Aur please chhoti chhoti baaton par apna dil mat dukhaya karna.
 
-<button class="btn" onclick="go(12)">CHECK DELIVERY →</button>
-</div>
+Jerry ka dil bohat soft hai. Isliye har baat ko itna deeply feel karna kabhi kabhi hurt karta hai.
 
-</div>
+Billa chahta hai Jery apni smile ko har cheez se zyada protect kare. ❤️
+
+Aur jab life difficult ho:
+
+Pause. Breathe. Smile. Continue.
+    </p>
+
+    <button onclick="nextPage()">FINAL MISSION →</button>
+  </div>
 </section>
 
 
 <!-- PAGE 12 -->
-<section class="screen" id="s12">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 12 — GIFT</div>
 
-<div class="chapter">PACKAGE VERIFICATION</div>
+    <h2>FINAL MISSION — PACKAGE 🎁</h2>
 
-<h2>GIFT RECEIVE HUA? 👀</h2>
+    <h3>INCOMING PACKAGE DETECTED</h3>
 
-<div class="heart">🎁</div>
+    <p>
+Aapke naam ka ek secret package system mein detect hua hai. 🎁
+    </p>
 
-<p>
-Ab asli test hai, Jery. 😂❤️
-<br><br>
-Gift receive hua ya nahi?
-</p>
-
-<button class="btn" onclick="go(13)">YES 🎁</button>
-<button class="btn secondary" onclick="startTruck()">NO 🚚</button>
-
-<div id="truckArea" class="hidden">
-
-<div class="delivery">
-
-<div class="road"></div>
-
-<div id="truck" class="truck">🚚</div>
-
-</div>
-
-<div class="progressBox">
-<div id="progressFill" class="progressFill"></div>
-</div>
-
-<p id="deliveryPercent" class="sub">DELIVERY: 0%</p>
-
-<div id="deliveryMessage" class="hidden card center">
-<p>
-<strong>Haye Jery 😭😂</strong>
-<br><br>
-Sabar karlo naww...
-pehle gift ko aa lene do.
-<br><br>
-Choti duniya na guesses lagaao.
-Kia darwaza torna ka mood hai? 😂
-<br><br>
-<strong>Achy bachy pehly gift ko aa lwny do. ❤️</strong>
-</p>
-</div>
-
-</div>
-
-</div>
+    <button onclick="nextPage()">CHECK DELIVERY →</button>
+  </div>
 </section>
 
 
 <!-- PAGE 13 -->
-<section class="screen" id="s13">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 13 — YES / NO</div>
 
-<div class="chapter">PACKAGE ACCESS / 01</div>
+    <h2>PACKAGE VERIFICATION 🔐</h2>
 
-<h2>SECRET VERIFICATION 🔐</h2>
+    <h3>GIFT RECEIVE HUA? 👀</h3>
 
-<div class="lock">🔐</div>
+    <p>
+Ab asli test hai, Jerry G. 😂❤️
 
-<p>
-Gift receive ho gaya?
-Good.
-<br><br>
-Ab ek chhota sa question.
-</p>
+Gift receive hua ya nahi?
+    </p>
 
-<div class="card center">
-<p>
-<strong>Parcel mein kitne paise receive hue?</strong>
-</p>
-</div>
+    <div class="choice-row">
+      <button class="yes-btn" onclick="yesGift()">YES 🎁</button>
+      <button class="no-btn" onclick="startTruck()">NO 🚚</button>
+    </div>
 
-<input
-id="answer"
-type="number"
-placeholder="Answer..."
-style="
-width:85%;
-padding:15px;
-border-radius:14px;
-border:1px solid rgba(255,210,230,.2);
-background:#24121e;
-color:white;
-font-size:18px;
-text-align:center;
-">
+    <div id="deliveryBox" style="display:none; margin-top:25px;">
+      <div class="delivery-area">
+        <div class="road"></div>
+        <div class="truck" id="truck">🚚</div>
+      </div>
 
-<br>
+      <div class="delivery-progress" id="deliveryText">
+        DELIVERY: 0%
+      </div>
 
-<button class="btn" onclick="checkAnswer()">UNLOCK 🔓</button>
+      <p id="truckMessage"></p>
 
-<div id="wrong"></div>
-
-</div>
+      <button id="afterTruck" style="display:none;" onclick="goToPage(14)">
+        CHECK PACKAGE →
+      </button>
+    </div>
+  </div>
 </section>
 
 
 <!-- PAGE 14 -->
-<section class="screen" id="s14">
-<div class="box">
+<section class="page">
+  <div class="card">
+    <div class="section-title">PAGE 14 — SECRET QUESTION</div>
 
-<div class="chapter access">SYSTEM ACCESS GRANTED</div>
+    <h2>PACKAGE ACCESS / SECRET VERIFICATION 🔐</h2>
 
-<div id="decrypt">
+    <p>
+Gift receive ho gaya?
 
-<h2>DECRYPTING...</h2>
+Good.
 
-<div class="lock">🔓</div>
+Ab ek chhota sa question. 👀
+    </p>
 
-<p class="sub">
-LOVE FILE RECOVERING...
-</p>
+    <h3>QUESTION:</h3>
 
-</div>
+    <p>Parcel mein kitne paise receive hue?</p>
 
-<div id="secretContent" class="hidden">
+    <div class="question-box">
+      <input
+        id="answerInput"
+        class="answer-input"
+        type="text"
+        inputmode="numeric"
+        autocomplete="off"
+        placeholder="Enter answer..."
+      >
 
-<h2>SECRET NOTE ❤️</h2>
+      <button onclick="checkAnswer()" id="lockButton">
+        LOCK 🔓
+      </button>
 
-<div class="heart">💗</div>
+      <div class="lock-status" id="lockStatus">
+        🔒 LOCKED
+      </div>
 
-<div class="secret">
-
-<p>
-<strong>Jery... ❤️</strong>
-</p>
-
-<p>
-Agar aap yahan tak aa gayi hain,
-to matlab secret file finally open ho gayi. 🥹
-</p>
-
-<p>
-Tom dil se chahta hai ke aap
-hamesha khush rahen.
-Aapke saare dreams poore hon.
-Aapki har achi dua qabool ho. 🤲🏻🌷
-</p>
-
-<p>
-Main promise karta hoon ke jahan tak
-mere bas mein hua,
-main aapke dreams ko poora karne mein
-aapka saath dunga.
-</p>
-
-<p>
-Please chhoti chhoti baaton par roya na karein. 😭😂
-Aapka dil bohat soft hai.
-Har baat ko dil par lene ki zaroorat nahi.
-</p>
-
-<p>
-Kabhi rona aaye to ro lena...
-lekin aansu pochhne ke baad
-khud ko yaad dilana:
-<br><br>
-<strong>
-“Main is se bhi nikal jaungi.” ❤️
-</strong>
-</p>
-
-<p>
-Aur agar phir bhi overthinking na ruke...
-<br><br>
-<strong>
-Tom ko bula lena. 😂❤️
-</strong>
-</p>
-
-<p>
-Tom chahta hai ke Jery ke saare dreams poore hon.
-Aapko woh har khushi mile
-jo aap deserve karti hain.
-</p>
-
-<p>
-Future exactly kaisa hoga,
-ye kisi ko nahi pata...
-lekin Tom chahta hai
-future ki bohat si beautiful memories mein
-Jery ho.
-</p>
-
-<p style="text-align:center;font-size:28px">
-❤️ ∞ ❤️
-</p>
-
-<p style="text-align:center">
-<strong>
-Happy Birthday Anum 🎂❤️
-</strong>
-</p>
-
-<p style="text-align:center">
-— Tom ❤️
-</p>
-
-</div>
-
-<button id="replay" class="btn hidden" onclick="go(0)">
-REPLAY MISSION ↻
-</button>
-
-</div>
+      <div class="wrong-message" id="wrongMessage"></div>
+    </div>
+  </div>
 </section>
 
+
+<!-- PAGE 15 -->
+<section class="page">
+  <div class="card">
+
+    <div class="section-title">PAGE 15 — SECRET NOTE</div>
+
+    <h2>SYSTEM ACCESS GRANTED 🔓</h2>
+
+    <div class="final-heart">❤️</div>
+
+    <h3>ACCESS GRANTED</h3>
+
+    <p>DECRYPTING LOVE FILE...</p>
+
+    <p><strong>FILE DECRYPTED ❤️</strong></p>
+
+    <div class="text">
+SECRET NOTE ❤️
+
+Jerry... ❤️
+
+Agar aap yahan tak aa gayi hain, to matlab secret file finally open ho gayi. 🥹
+
+Apka Moto dil se chahta hai ke aap hamesha khush rahen.
+
+Aapke saare dreams poore hon.
+
+Aapki har achi dua qabool ho. 🤲🏻🌷
+
+Main promise karta hoon ke jahan tak mere bas mein hua, main aapke dreams ko poora karne mein aapka saath dunga.
+
+Please chhoti chhoti baaton par roya na karein. 😭😂
+
+Aapka dil bohat soft hai. Har baat ko dil par lene ki zaroorat nahi.
+
+Kabhi rona aaye to ro lena...
+
+Lekin aansu pochhne ke baad khud ko yaad dilana:
+
+“Main is se bhi nikal jaungi.” ❤️
+
+Aur agar phir bhi overthinking na ruke...
+
+Meko bula lena. 😂❤️
+
+Billa chahta hai ke Jery ke saare dreams poore hon.
+
+Aapko woh har khushi mile jo aap deserve karti hain.
+
+Future exactly kaisa hoga, ye kisi ko nahi pata...
+
+Lekin billa chahta hai future ki bohat si beautiful memories mein Jery ho.
+
+❤️ ∞ ❤️
+
+Happy Birthday Anum 🎂❤️
+
+— Apka Mota billa🐈❤️
+    </div>
+
+  </div>
+</section>
+
+</div>
+
+
+<!-- FINAL GLITCH SCREEN -->
+
+<div class="glitch-screen" id="glitchScreen">
+  <div>
+    <div class="glitch-text" id="glitchText">
+      ACCESS GRANTED
+    </div>
+  </div>
 </div>
 
 
 <script>
 
-let current=0;
-const total=15;
+/* =========================
+   PAGE SYSTEM
+========================= */
 
-const titles=[
-"OPERATION: JERY",
-"CHAPTER 01",
-"CHAPTER 02",
-"CHAPTER 03",
-"CHAPTER 04",
-"CHAPTER 05",
-"CHAPTER 06",
-"CHAPTER 07",
-"CHAPTER 08",
-"CHAPTER 09",
-"CHAPTER 10",
-"FINAL MISSION",
-"PACKAGE",
-"VERIFICATION",
-"SECRET FILE"
+let currentPage = 0;
+
+const pages = document.querySelectorAll(".page");
+const indicator = document.getElementById("pageIndicator");
+
+for (let i = 0; i < pages.length; i++) {
+
+  const dot = document.createElement("div");
+
+  dot.className = "page-dot";
+
+  indicator.appendChild(dot);
+}
+
+const dots = document.querySelectorAll(".page-dot");
+
+
+function updatePage() {
+
+  pages.forEach((page, index) => {
+
+    page.classList.toggle(
+      "active",
+      index === currentPage
+    );
+
+  });
+
+
+  dots.forEach((dot, index) => {
+
+    dot.classList.toggle(
+      "active",
+      index === currentPage
+    );
+
+  });
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+
+function nextPage() {
+
+  if (currentPage < pages.length - 1) {
+
+    currentPage++;
+
+    updatePage();
+  }
+}
+
+
+function goToPage(pageNumber) {
+
+  currentPage = pageNumber - 1;
+
+  updatePage();
+}
+
+
+/* =========================
+   PAGE 13 — GIFT
+========================= */
+
+function yesGift() {
+
+  goToPage(14);
+
+}
+
+
+function startTruck() {
+
+  const deliveryBox =
+    document.getElementById("deliveryBox");
+
+  const truck =
+    document.getElementById("truck");
+
+  const deliveryText =
+    document.getElementById("deliveryText");
+
+  const message =
+    document.getElementById("truckMessage");
+
+  const afterTruck =
+    document.getElementById("afterTruck");
+
+
+  deliveryBox.style.display = "block";
+
+  afterTruck.style.display = "none";
+
+  message.innerHTML = "";
+
+  deliveryText.innerHTML =
+    "DELIVERY: 0%";
+
+
+  truck.classList.remove("go");
+
+
+  setTimeout(() => {
+
+    truck.classList.add("go");
+
+  }, 150);
+
+
+  let progress = 0;
+
+
+  const timer = setInterval(() => {
+
+    if (progress < 95) {
+
+      progress++;
+
+      deliveryText.innerHTML =
+        "DELIVERY: " + progress + "%";
+
+    }
+
+    else {
+
+      clearInterval(timer);
+
+
+      deliveryText.innerHTML =
+        "DELIVERY: 95%";
+
+
+      message.innerHTML = `
+
+        <strong>Haye Jery 😭😂</strong><br><br>
+
+        Sabar karlo naww...<br><br>
+
+        Pehle gift ko aa lene do.<br><br>
+
+        Choti duniya na guesses lagaao.<br><br>
+
+        Kia darwaza torna ka mood hai? 😂<br><br>
+
+        Achy bachy pehly gift ko aa lwny do. ❤️
+
+      `;
+
+
+      afterTruck.style.display =
+        "inline-block";
+
+    }
+
+  }, 40);
+
+}
+
+
+/* =========================
+   PAGE 14 — SECRET ANSWER
+========================= */
+
+let wrongAttempts = 0;
+
+
+function checkAnswer() {
+
+  const input =
+    document.getElementById("answerInput");
+
+  const value =
+    input.value.trim();
+
+
+  const lockButton =
+    document.getElementById("lockButton");
+
+  const lockStatus =
+    document.getElementById("lockStatus");
+
+  const wrongMessage =
+    document.getElementById("wrongMessage");
+
+
+  /*
+    ONLY 501 IS CORRECT
+  */
+
+  if (value === "501") {
+
+    lockButton.innerHTML =
+      "UNLOCK 🔓";
+
+
+    lockButton.style.background =
+      "linear-gradient(135deg, #43a66c, #72d79a)";
+
+
+    lockStatus.innerHTML =
+      "🔓 UNLOCKED";
+
+
+    wrongMessage.style.display =
+      "none";
+
+
+    setTimeout(() => {
+
+      startFinalUnlock();
+
+    }, 700);
+
+
+    return;
+  }
+
+
+  /*
+    EVERYTHING ELSE IS WRONG
+  */
+
+  wrongAttempts++;
+
+
+  lockButton.innerHTML =
+    "LOCK 🔒";
+
+
+  lockStatus.innerHTML =
+    "🔒 LOCKED";
+
+
+  wrongMessage.style.display =
+    "block";
+
+
+  if (wrongAttempts === 1) {
+
+    wrongMessage.innerHTML = `
+
+      Haww choti dunyia cheating kar rahi hain? 😭😂<br><br>
+
+      Ap kia gusess laga rahi hain hain... Deyan sy thora dekh raha hai aapka 2 Number Admi. 👀
+
+    `;
+
+  }
+
+
+  else if (wrongAttempts === 2) {
+
+    wrongMessage.innerHTML = `
+
+      Haye Jery 😭😂<br><br>
+
+      Sabar karlo naww...<br><br>
+
+      Pehle gift ko aa lene do.<br><br>
+
+      Choti duniya na guesses lagaao.<br><br>
+
+      Kia darwaza torna ka mood hai? 😂<br><br>
+
+      Achy bachy pehly gift ko aa lwny do. ❤️
+
+    `;
+
+  }
+
+
+  else {
+
+    wrongMessage.innerHTML = `
+
+      Haye hayeee 😭😂<br><br>
+
+      Sabar karlo naww!<br><br>
+
+      Jab gift mil gaya hai us mein answer hoga, tab seedha sahi likh kar khol lena.<br><br>
+
+      Abhi kya darwaza torne ka mood hai?<br><br>
+
+      Chalo achy bachy, pehly gift ko aa lwny do. ❤️
+
+    `;
+
+  }
+
+
+  /*
+    WRONG ANSWER:
+
+    Page 15 WILL NOT OPEN.
+
+    User remains on Page 14.
+  */
+
+
+  input.value = "";
+
+  input.focus();
+
+}
+
+
+/* =========================
+   FINAL UNLOCK
+========================= */
+
+function startFinalUnlock() {
+
+  const glitch =
+    document.getElementById("glitchScreen");
+
+  const glitchText =
+    document.getElementById("glitchText");
+
+
+  glitch.classList.add("show");
+
+
+  glitchText.innerHTML =
+    "ACCESS GRANTED";
+
+
+  setTimeout(() => {
+
+    glitchText.innerHTML =
+      "DECRYPTING LOVE FILE...";
+
+  }, 1200);
+
+
+  setTimeout(() => {
+
+    glitchText.innerHTML =
+      "FILE DECRYPTED ❤️";
+
+  }, 2600);
+
+
+  setTimeout(() => {
+
+    glitch.classList.remove("show");
+
+
+    /*
+      ONLY 501 OPENS PAGE 15
+    */
+
+    goToPage(15);
+
+  }, 4000);
+
+}
+
+
+/* =========================
+   BACKGROUND ANIMATION
+========================= */
+
+const background =
+  document.getElementById("background");
+
+
+const symbols = [
+
+  "❤️",
+  "💗",
+  "💕",
+  "🌸",
+  "🌷",
+  "🌹",
+  "🌻",
+  "✨",
+  "💖"
+
 ];
 
-function updateBar(){
 
-document.getElementById("topTitle").textContent=titles[current];
+for (let i = 0; i < 45; i++) {
 
-const progress=document.getElementById("progress");
-progress.innerHTML="";
-
-for(let i=0;i<total;i++){
-
-const dot=document.createElement("span");
-dot.className="dot";
-
-if(i<current)dot.classList.add("done");
-if(i===current)dot.classList.add("current");
-
-progress.appendChild(dot);
-
-}
-
-}
-
-function go(n){
-
-document.querySelectorAll(".screen").forEach(s=>{
-s.classList.remove("active");
-});
-
-const next=document.getElementById("s"+n);
-
-if(next){
-
-next.classList.add("active");
-next.scrollTop=0;
-
-current=n;
-updateBar();
-
-}
-
-}
+  const item =
+    document.createElement("div");
 
 
-/* TRUCK ANIMATION */
+  const type =
+    Math.random();
 
-function startTruck(){
 
-const area=document.getElementById("truckArea");
-const truck=document.getElementById("truck");
-const fill=document.getElementById("progressFill");
-const percent=document.getElementById("deliveryPercent");
-const message=document.getElementById("deliveryMessage");
+  if (type < 0.5) {
 
-area.classList.remove("hidden");
+    item.className = "heart";
 
-truck.classList.remove("drive","stop");
-fill.style.width="0%";
-percent.textContent="DELIVERY: 0%";
-message.classList.add("hidden");
+  }
 
-void truck.offsetWidth;
+  else if (type < 0.8) {
 
-truck.classList.add("drive");
+    item.className = "flower";
 
-setTimeout(()=>{
-fill.style.width="98%";
-},100);
+  }
 
-let start=Date.now();
+  else {
 
-const timer=setInterval(()=>{
+    item.className = "sparkle";
 
-let elapsed=Date.now()-start;
-let value=Math.min(98,Math.floor((elapsed/3800)*98));
+  }
 
-percent.textContent="DELIVERY: "+value+"%";
 
-if(value>=98){
+  item.innerHTML =
+    symbols[
+      Math.floor(
+        Math.random() * symbols.length
+      )
+    ];
 
-clearInterval(timer);
 
-percent.textContent="DELIVERY: 98%";
+  item.style.left =
+    Math.random() * 100 + "%";
 
-truck.classList.remove("drive");
-truck.classList.add("stop");
 
-setTimeout(()=>{
-message.classList.remove("hidden");
-},500);
+  item.style.animationDuration =
+    (10 + Math.random() * 16) + "s";
 
-}
 
-},40);
+  item.style.animationDelay =
+    (-Math.random() * 20) + "s";
+
+
+  item.style.fontSize =
+    (15 + Math.random() * 25) + "px";
+
+
+  background.appendChild(item);
 
 }
 
 
-/* SECRET ANSWER */
+/* =========================
+   NO SCROLL PAGE CHANGE
+========================= */
 
-function checkAnswer(){
+document.addEventListener(
+  "wheel",
+  function(e) {
 
-const value=document.getElementById("answer").value;
-const wrong=document.getElementById("wrong");
+    /*
+      Intentionally empty.
 
-if(value==="501"){
+      Scrolling DOES NOT change pages.
 
-go(14);
+      Only buttons change pages.
+    */
 
-startDecrypt();
-
-}else{
-
-wrong.innerHTML=`
-<div class="card">
-<p>
-<strong>
-Haww madam G cheating kar rahi hain? 😭😂
-</strong>
-<br><br>
-Ap kia hain hain...
-Tom dekh raha hai aapka 2 Number Admi. 👀
-<br><br>
-<strong>
-Sabar karlo naww!
-Choti duniya na guesses lagaao.
-</strong>
-<br><br>
-Jab gift mil gaya hai,
-answer bhi mil jayega. 😂❤️
-</p>
-</div>
-`;
-
-}
-
-}
+  },
+  { passive: true }
+);
 
 
-/* FINAL GLITCH / DECRYPTION */
+/* =========================
+   ENTER KEY FOR 501
+========================= */
 
-function startDecrypt(){
+document
+  .getElementById("answerInput")
+  .addEventListener(
+    "keydown",
+    function(e) {
 
-const screen=document.getElementById("s14");
-const decrypt=document.getElementById("decrypt");
-const secret=document.getElementById("secretContent");
-const replay=document.getElementById("replay");
+      if (e.key === "Enter") {
 
-secret.classList.add("hidden");
-replay.classList.add("hidden");
+        e.preventDefault();
 
-decrypt.innerHTML=`
-<h2 class="access">ACCESS GRANTED</h2>
-<div class="lock">🔓</div>
-<p class="sub">DECRYPTING LOVE FILE...</p>
-<p id="decryptText" class="access">[□□□□□□□□□□] 0%</p>
-`;
+        checkAnswer();
 
-let percent=0;
+      }
 
-const timer=setInterval(()=>{
+    }
+  );
 
-percent+=Math.floor(Math.random()*12)+5;
 
-if(percent>=100){
-percent=100;
-clearInterval(timer);
+/* =========================
+   INITIAL PAGE
+========================= */
 
-setTimeout(()=>{
-
-decrypt.innerHTML=`
-<div class="glitchScreen">
-<h2 class="access">FILE DECRYPTED</h2>
-<p class="sub">WELCOME TO THE SECRET NOTE</p>
-</div>
-`;
-
-setTimeout(()=>{
-
-decrypt.classList.add("hidden");
-secret.classList.remove("hidden");
-replay.classList.remove("hidden");
-
-},900);
-
-},500);
-
-}
-
-const text=document.getElementById("decryptText");
-
-if(text){
-text.textContent=
-"["
-+"█".repeat(Math.floor(percent/10))
-+"□".repeat(10-Math.floor(percent/10))
-+"] "+percent+"%";
-}
-
-},300);
-
-}
-
-updateBar();
+updatePage();
 
 </script>
 
