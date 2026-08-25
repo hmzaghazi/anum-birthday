@@ -3,507 +3,1032 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Operation Jerry ❤️</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-html {
-  scroll-behavior: smooth;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-  font-family: "Trebuchet MS", Arial, sans-serif;
-  background: #ffd9e8;
-  color: #54233d;
-  overflow-x: hidden;
+body{
+    font-family:"Trebuchet MS",Arial,sans-serif;
+    color:#54233d;
+    background:#ffd9e8;
+    overflow-x:hidden;
 }
 
-/* ---------- BACKGROUND ---------- */
 
-.background {
-  position: fixed;
-  inset: 0;
-  z-index: -10;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,.8), transparent 25%),
-    radial-gradient(circle at 80% 30%, rgba(255,182,210,.7), transparent 30%),
-    linear-gradient(135deg, #ffd8e7, #fff0f6, #ffd0e3);
+/* =========================
+   CUTE BACKGROUND
+========================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    overflow:hidden;
+
+    background:
+    radial-gradient(
+        circle at 20% 20%,
+        rgba(255,255,255,.9),
+        transparent 25%
+    ),
+    radial-gradient(
+        circle at 80% 30%,
+        rgba(255,182,210,.7),
+        transparent 30%
+    ),
+    linear-gradient(
+        135deg,
+        #ffd8e7,
+        #fff0f6,
+        #ffd0e3
+    );
 }
 
-.heart,
-.flower,
-.sparkle {
-  position: absolute;
-  pointer-events: none;
-  user-select: none;
-  animation: floatUp linear infinite;
-  opacity: .7;
+.floating{
+    position:absolute;
+    bottom:-60px;
+    animation:floatUp linear infinite;
+    opacity:.7;
+    pointer-events:none;
 }
 
-.heart {
-  font-size: 25px;
+@keyframes floatUp{
+
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.75;
+    }
+
+    85%{
+        opacity:.75;
+    }
+
+    100%{
+        transform:translateY(-115vh) rotate(360deg);
+        opacity:0;
+    }
+
 }
 
-.flower {
-  font-size: 28px;
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+
+    z-index:100;
+
+    height:65px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:8px 15px;
+
+    background:rgba(255,245,250,.9);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:
+    1px solid
+    rgba(255,105,160,.2);
+
+    box-shadow:
+    0 4px 20px
+    rgba(100,30,70,.1);
+
 }
 
-.sparkle {
-  font-size: 18px;
+
+.header-title{
+
+    color:#c52f68;
+
+    font-size:
+    clamp(14px,3vw,20px);
+
+    font-weight:bold;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    max-width:75%;
+
 }
 
-@keyframes floatUp {
-  from {
-    transform: translateY(110vh) rotate(0deg);
-    opacity: 0;
-  }
-  15% {
-    opacity: .75;
-  }
-  85% {
-    opacity: .75;
-  }
-  to {
-    transform: translateY(-15vh) rotate(360deg);
-    opacity: 0;
-  }
+
+.back-button{
+
+    display:none;
+
+    margin:0;
+
+    padding:
+    8px 15px;
+
+    font-size:13px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #a85b7b,
+        #d77a9d
+    );
+
 }
 
-/* ---------- TOP BAR ---------- */
 
-.topbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  height: 62px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 15px;
-  background: rgba(255, 245, 250, .88);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 105, 160, .25);
-  box-shadow: 0 4px 20px rgba(100, 30, 70, .1);
+/* =========================
+   PAGES
+========================= */
+
+#pages{
+
+    padding-top:65px;
+
 }
 
-.page-indicator {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+
+.page{
+
+    min-height:
+    calc(100vh - 65px);
+
+    display:none;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:
+    40px 15px 60px;
+
 }
 
-.page-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #e7a5bd;
-  transition: .3s;
+
+.page.active{
+
+    display:flex;
+
+    animation:
+    pageIn .55s ease;
+
 }
 
-.page-dot.active {
-  width: 25px;
-  border-radius: 20px;
-  background: #d94d82;
+
+@keyframes pageIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+        translateY(20px)
+        scale(.98);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+        translateY(0)
+        scale(1);
+
+    }
+
 }
 
-/* ---------- PAGES ---------- */
 
-#pages {
-  padding-top: 62px;
+/* =========================
+   CARD
+========================= */
+
+.card{
+
+    width:min(900px,100%);
+
+    max-height:
+    calc(100vh - 125px);
+
+    overflow-y:auto;
+
+    padding:
+    35px 27px;
+
+    border-radius:30px;
+
+    background:
+    rgba(255,255,255,.8);
+
+    backdrop-filter:blur(15px);
+
+    border:
+    2px solid
+    rgba(255,255,255,.9);
+
+    box-shadow:
+
+    0 25px 70px
+    rgba(112,34,70,.16),
+
+    inset
+    0 1px 0
+    rgba(255,255,255,.8);
+
+    text-align:center;
+
 }
 
-.page {
-  min-height: calc(100vh - 62px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 45px 18px 70px;
+
+.card::-webkit-scrollbar{
+
+    width:6px;
+
 }
 
-.page.active {
-  display: flex;
-  animation: pageIn .65s ease;
+
+.card::-webkit-scrollbar-thumb{
+
+    background:#e89ab9;
+
+    border-radius:10px;
+
 }
 
-@keyframes pageIn {
-  from {
-    opacity: 0;
-    transform: translateY(25px) scale(.98);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+
+/* =========================
+   TEXT
+========================= */
+
+h1{
+
+    font-size:
+    clamp(42px,8vw,78px);
+
+    color:#c82e69;
+
+    margin-bottom:18px;
+
+    line-height:1.05;
+
 }
 
-.card {
-  width: min(900px, 100%);
-  max-height: calc(100vh - 135px);
-  overflow-y: auto;
-  padding: 38px 28px;
-  border-radius: 30px;
-  background: rgba(255,255,255,.78);
-  backdrop-filter: blur(15px);
-  border: 2px solid rgba(255,255,255,.85);
-  box-shadow:
-    0 25px 70px rgba(112, 34, 70, .16),
-    inset 0 1px 0 rgba(255,255,255,.8);
-  text-align: center;
+
+h2{
+
+    font-size:
+    clamp(25px,5vw,44px);
+
+    color:#c43870;
+
+    margin-bottom:14px;
+
 }
 
-.card::-webkit-scrollbar {
-  width: 6px;
+
+h3{
+
+    font-size:
+    clamp(19px,3vw,27px);
+
+    margin:18px 0;
+
+    color:#8f3158;
+
 }
 
-.card::-webkit-scrollbar-thumb {
-  background: #e89ab9;
-  border-radius: 10px;
-}
-
-h1 {
-  font-size: clamp(42px, 8vw, 78px);
-  color: #c82e69;
-  margin-bottom: 18px;
-  line-height: 1.05;
-}
-
-h2 {
-  font-size: clamp(25px, 5vw, 44px);
-  color: #c43870;
-  margin-bottom: 14px;
-}
-
-h3 {
-  font-size: clamp(19px, 3vw, 27px);
-  margin: 18px 0;
-  color: #8f3158;
-}
 
 p,
-.text {
-  font-size: clamp(16px, 2.5vw, 20px);
-  line-height: 1.8;
-  margin: 12px auto;
-  white-space: pre-line;
+.text{
+
+    font-size:
+    clamp(16px,2.5vw,20px);
+
+    line-height:1.8;
+
+    margin:12px auto;
+
+    white-space:pre-line;
+
 }
 
-.subtitle {
-  font-size: 18px;
-  letter-spacing: 2px;
-  margin-bottom: 25px;
-  color: #8e526c;
+
+.subtitle{
+
+    font-size:18px;
+
+    letter-spacing:1px;
+
+    margin-bottom:25px;
+
+    color:#8e526c;
+
 }
 
-.big-number {
-  font-size: 110px;
-  font-weight: bold;
-  color: #d43672;
-  text-shadow: 0 8px 25px rgba(210, 45, 105, .2);
-  margin: 15px 0;
+
+.page-label{
+
+    color:#ba2c63;
+
+    font-weight:bold;
+
+    font-size:20px;
+
+    margin-bottom:15px;
+
 }
 
-.section-title {
-  color: #ba2c63;
-  font-weight: bold;
-  font-size: 25px;
-  margin: 20px 0;
+
+.big-number{
+
+    font-size:110px;
+
+    font-weight:bold;
+
+    color:#d43672;
+
+    text-shadow:
+    0 8px 25px
+    rgba(210,45,105,.2);
+
+    margin:15px 0;
+
 }
 
-.fav {
-  text-align: left;
-  max-width: 720px;
-  margin: auto;
+
+/* =========================
+   BUTTONS
+========================= */
+
+button{
+
+    border:none;
+
+    cursor:pointer;
+
+    margin-top:25px;
+
+    padding:
+    14px 27px;
+
+    border-radius:999px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #d83c78,
+        #ef78a6
+    );
+
+    box-shadow:
+    0 10px 25px
+    rgba(202,49,106,.25);
+
+    transition:.25s;
+
 }
 
-.fav-item {
-  padding: 14px 17px;
-  margin: 10px 0;
-  background: rgba(255, 225, 237, .7);
-  border-radius: 18px;
-  border: 1px solid rgba(211, 79, 127, .12);
+
+button:hover{
+
+    transform:
+    translateY(-3px)
+    scale(1.02);
+
 }
 
-.fav-item strong {
-  display: block;
-  color: #b72e64;
-  font-size: 18px;
-  margin-bottom: 4px;
+
+button:active{
+
+    transform:scale(.97);
+
 }
 
-/* ---------- BUTTONS ---------- */
 
-button {
-  border: none;
-  cursor: pointer;
-  margin-top: 25px;
-  padding: 14px 27px;
-  border-radius: 999px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  background: linear-gradient(135deg, #d83c78, #ef78a6);
-  box-shadow: 0 10px 25px rgba(202, 49, 106, .25);
-  transition: .25s;
+.yes-button{
+
+    background:
+    linear-gradient(
+        135deg,
+        #42a96c,
+        #6bcf91
+    );
+
 }
 
-button:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(202, 49, 106, .3);
+
+.no-button{
+
+    background:
+    linear-gradient(
+        135deg,
+        #e16b78,
+        #ef98a0
+    );
+
 }
 
-button:active {
-  transform: scale(.97);
+
+.button-row{
+
+    display:flex;
+
+    gap:15px;
+
+    justify-content:center;
+
+    flex-wrap:wrap;
+
 }
 
-.choice-row {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 25px;
+
+/* =========================
+   FAVOURITES
+========================= */
+
+.favourites{
+
+    text-align:left;
+
+    max-width:720px;
+
+    margin:auto;
+
 }
 
-.yes-btn {
-  background: linear-gradient(135deg, #42a96c, #6bcf91);
+
+.favourite{
+
+    padding:
+    14px 17px;
+
+    margin:
+    10px 0;
+
+    background:
+    rgba(255,225,237,.7);
+
+    border-radius:18px;
+
+    border:
+    1px solid
+    rgba(211,79,127,.12);
+
 }
 
-.no-btn {
-  background: linear-gradient(135deg, #e16b78, #ef98a0);
+
+.favourite strong{
+
+    display:block;
+
+    color:#b72e64;
+
+    font-size:18px;
+
+    margin-bottom:4px;
+
 }
 
-/* ---------- TRUCK ---------- */
 
-.delivery-area {
-  position: relative;
-  height: 170px;
-  margin: 25px auto;
-  max-width: 750px;
-  border-radius: 25px;
-  overflow: hidden;
-  background: linear-gradient(#dff6ff, #fff5fa);
-  border: 2px solid rgba(255,255,255,.8);
+/* =========================
+   TRUCK
+========================= */
+
+.delivery-box{
+
+    display:none;
+
+    margin-top:25px;
+
 }
 
-.road {
-  position: absolute;
-  bottom: 25px;
-  left: 0;
-  right: 0;
-  height: 35px;
-  background: #6e6570;
+
+.delivery-area{
+
+    position:relative;
+
+    height:170px;
+
+    margin:25px auto;
+
+    max-width:750px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    background:
+    linear-gradient(
+        #dff6ff,
+        #fff5fa
+    );
+
+    border:
+    2px solid
+    rgba(255,255,255,.8);
+
 }
 
-.road::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 15px;
-  height: 4px;
-  background: repeating-linear-gradient(
-    to right,
-    #fff 0 45px,
-    transparent 45px 80px
-  );
+
+.road{
+
+    position:absolute;
+
+    bottom:25px;
+
+    left:0;
+
+    right:0;
+
+    height:35px;
+
+    background:#6e6570;
+
 }
 
-.truck {
-  position: absolute;
-  bottom: 55px;
-  left: -150px;
-  font-size: 75px;
-  transform: scaleX(-1);
-  transition: left 3.8s cubic-bezier(.15,.8,.25,1);
+
+.road::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    right:0;
+
+    top:15px;
+
+    height:4px;
+
+    background:
+    repeating-linear-gradient(
+        to right,
+        #fff 0 45px,
+        transparent 45px 80px
+    );
+
 }
 
-.truck.go {
-  left: calc(95% - 80px);
+
+.truck{
+
+    position:absolute;
+
+    bottom:55px;
+
+    left:-150px;
+
+    font-size:75px;
+
+    transform:scaleX(-1);
+
+    transition:
+    left 3.8s
+    cubic-bezier(.15,.8,.25,1);
+
 }
 
-.delivery-progress {
-  font-size: 22px;
-  font-weight: bold;
-  color: #c52f68;
+
+.truck.go{
+
+    left:
+    calc(95% - 80px);
+
 }
 
-/* ---------- QUESTION ---------- */
 
-.question-box {
-  max-width: 500px;
-  margin: 25px auto 0;
+.delivery-progress{
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    color:#c52f68;
+
 }
 
-.answer-input {
-  width: 100%;
-  padding: 17px 20px;
-  border: 2px solid #edabc3;
-  border-radius: 18px;
-  outline: none;
-  font-size: 22px;
-  text-align: center;
-  background: #fffafd;
-  color: #70243f;
+
+/* =========================
+   ANSWER BOX
+========================= */
+
+.answer-box{
+
+    max-width:500px;
+
+    margin:
+    25px auto 0;
+
 }
 
-.answer-input:focus {
-  border-color: #d84278;
-  box-shadow: 0 0 0 4px rgba(216,66,120,.1);
+
+.answer-input{
+
+    width:100%;
+
+    padding:
+    17px 20px;
+
+    border:
+    2px solid
+    #edabc3;
+
+    border-radius:18px;
+
+    outline:none;
+
+    font-size:22px;
+
+    text-align:center;
+
+    background:#fffafd;
+
+    color:#70243f;
+
 }
 
-.lock-status {
-  margin-top: 18px;
-  font-size: 22px;
-  font-weight: bold;
+
+.answer-input:focus{
+
+    border-color:#d84278;
+
+    box-shadow:
+    0 0 0 4px
+    rgba(216,66,120,.1);
+
 }
 
-.wrong-message {
-  display: none;
-  margin: 25px auto 0;
-  padding: 20px;
-  border-radius: 20px;
-  background: rgba(255, 213, 225, .8);
-  animation: shake .45s ease;
+
+.lock-status{
+
+    margin-top:18px;
+
+    font-size:22px;
+
+    font-weight:bold;
+
 }
 
-@keyframes shake {
-  0%,100% { transform: translateX(0); }
-  20% { transform: translateX(-10px); }
-  40% { transform: translateX(10px); }
-  60% { transform: translateX(-7px); }
-  80% { transform: translateX(7px); }
+
+.chance-text{
+
+    margin-top:12px;
+
+    font-size:17px;
+
+    color:#9b4669;
+
 }
 
-/* ---------- FINAL GLITCH ---------- */
 
-.glitch-screen {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 999;
-  background: #180814;
-  color: #ff75aa;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 25px;
+.wrong-message{
+
+    display:none;
+
+    margin:
+    25px auto 0;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:
+    rgba(255,213,225,.8);
+
+    animation:shake .45s ease;
+
 }
 
-.glitch-screen.show {
-  display: flex;
+
+@keyframes shake{
+
+    0%,100%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-8px);
+    }
+
+    75%{
+        transform:translateX(8px);
+    }
+
 }
 
-.glitch-text {
-  font-family: monospace;
-  font-size: clamp(24px, 6vw, 60px);
-  animation: glitch .15s infinite;
+
+/* =========================
+   GLITCH
+========================= */
+
+.glitch-screen{
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:999;
+
+    background:#180814;
+
+    color:#ff75aa;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding:25px;
+
 }
 
-@keyframes glitch {
-  0% { transform: translate(0); }
-  25% { transform: translate(-3px, 2px); }
-  50% { transform: translate(3px, -2px); }
-  75% { transform: translate(-2px, -1px); }
-  100% { transform: translate(0); }
+
+.glitch-screen.show{
+
+    display:flex;
+
 }
 
-.final-heart {
-  font-size: 55px;
-  margin: 15px 0;
-  animation: heartbeat 1s infinite;
+
+.glitch-text{
+
+    font-family:monospace;
+
+    font-size:
+    clamp(24px,6vw,60px);
+
+    animation:
+    glitch .15s infinite;
+
 }
 
-@keyframes heartbeat {
-  0%,100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
+
+@keyframes glitch{
+
+    0%{
+        transform:translate(0);
+    }
+
+    25%{
+        transform:translate(-3px,2px);
+    }
+
+    50%{
+        transform:translate(3px,-2px);
+    }
+
+    75%{
+        transform:translate(-2px,-1px);
+    }
+
+    100%{
+        transform:translate(0);
+    }
+
 }
 
-/* ---------- RESPONSIVE ---------- */
 
-@media (max-width: 600px) {
-  .card {
-    padding: 28px 18px;
-    border-radius: 23px;
-  }
+.final-heart{
 
-  .page {
-    padding: 35px 10px 50px;
-  }
+    font-size:55px;
 
-  .big-number {
-    font-size: 85px;
-  }
+    margin:15px 0;
 
-  .topbar {
-    height: 55px;
-  }
+    animation:
+    heartbeat 1s infinite;
 
-  #pages {
-    padding-top: 55px;
-  }
-
-  .page {
-    min-height: calc(100vh - 55px);
-  }
 }
+
+
+@keyframes heartbeat{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.2);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .header{
+
+        height:58px;
+
+    }
+
+
+    #pages{
+
+        padding-top:58px;
+
+    }
+
+
+    .page{
+
+        min-height:
+        calc(100vh - 58px);
+
+        padding:
+        30px 10px 50px;
+
+    }
+
+
+    .card{
+
+        padding:
+        28px 18px;
+
+        border-radius:23px;
+
+    }
+
+
+    .big-number{
+
+        font-size:85px;
+
+    }
+
+
+    .header-title{
+
+        max-width:65%;
+
+    }
+
+
+    .back-button{
+
+        padding:
+        7px 11px;
+
+        font-size:12px;
+
+    }
+
+}
+
 </style>
 </head>
 
+
 <body>
+
+
+<!-- =========================
+     BACKGROUND
+========================= -->
 
 <div class="background" id="background"></div>
 
-<div class="topbar">
-  <div class="page-indicator" id="pageIndicator"></div>
-</div>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div
+        class="header-title"
+        id="headerTitle"
+    >
+        OPERATION JERRY ❤️
+    </div>
+
+
+    <button
+        class="back-button"
+        id="backButton"
+        onclick="previousPage()"
+    >
+        ← BACK
+    </button>
+
+</header>
+
+
+<!-- =========================
+     ALL PAGES
+========================= -->
 
 <div id="pages">
 
+
 <!-- PAGE 1 -->
-<section class="page active">
-  <div class="card">
-    <div class="section-title">PAGE 1 — START</div>
 
-    <h1>OPERATION JERRY ❤️</h1>
+<section
+class="page active"
+data-title="OPERATION JERRY ❤️"
+>
 
-    <div class="subtitle">A PRIVATE MISSION CREATED BY 2 Number Admi</div>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 1 — START
+</div>
+
+<h1>
+OPERATION JERRY ❤️
+</h1>
+
+<div class="subtitle">
+A PRIVATE MISSION CREATED BY 2 Number Admi
+</div>
+
+<p>
 SUBJECT: JERRY KA BIRTHDAY 🥳 🎂
 MISSION: MAKE HER SMILE ❤️
 STATUS: EXTREMELY IMPORTANT
-    </p>
+</p>
 
-    <p>
+<p>
 Jery ke liye ek secret journey banayi gayi hai...
 
 Warning: Is mission mein memories, emotions, flowers aur Tom ki thori si Funny 😂 included hai.
-    </p>
+</p>
 
-    <button onclick="nextPage()">START MISSION ❤️</button>
-  </div>
+<button onclick="nextPage()">
+START MISSION ❤️
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 2 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 2 — INTRO</div>
 
-    <h2>CHAPTER 01 — A SPECIAL GIRL 🌷</h2>
+<section
+class="page"
+data-title="CHAPTER 01 — A SPECIAL GIRL 🌷"
+>
 
-    <h3>THE MOST SPECIAL PERSON ❤️</h3>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 2 — INTRO
+</div>
+
+<h2>
+CHAPTER 01 — A SPECIAL GIRL 🌷
+</h2>
+
+<h3>
+THE MOST SPECIAL PERSON ❤️
+</h3>
+
+<p>
 Jerry...
 
 Aaj ka mission sirf ek choti dunyia nahi hai. Ye aik billo ki taraf se banaya gaya ek chhota sa corner hai jahan sirf jeery hai. ❤️
@@ -511,23 +1036,39 @@ Aaj ka mission sirf ek choti dunyia nahi hai. Ye aik billo ki taraf se banaya ga
 Kabhi kabhi koi person life mein aata hai aur pata hi nahi chalta ke woh kab itna important ban jata hai.
 
 Bas phir uski smile important lagti hai, uski khushi important lagti hai, aur uska udaas hona personally feel hone lagta hai. ❤️
-    </p>
+</p>
 
-    <button onclick="nextPage()">CONTINUE →</button>
-  </div>
+<button onclick="nextPage()">
+CONTINUE →
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 3 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 3 — 20 YEARS</div>
 
-    <h2>CHAPTER 02 — AGE VERIFIED 🎂</h2>
+<section
+class="page"
+data-title="CHAPTER 02 — AGE VERIFIED 🎂"
+>
 
-    <div class="big-number">20</div>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 3 — 20 YEARS
+</div>
+
+<h2>
+CHAPTER 02 — AGE VERIFIED 🎂
+</h2>
+
+<div class="big-number">
+20
+</div>
+
+<p>
 Madam officially 20 ki ho gayi hain. 😭😂
 
 Dua hai aapka har agla saal pichle saal se zyada beautiful, peaceful aur khushiyon bhara ho. 🤲🏻❤️
@@ -535,45 +1076,77 @@ Dua hai aapka har agla saal pichle saal se zyada beautiful, peaceful aur khushiy
 Aur Shreefness?
 
 Woh update baad mein install kar lenge. 😂
-    </p>
+</p>
 
-    <button onclick="nextPage()">NEXT CHAPTER →</button>
-  </div>
+<button onclick="nextPage()">
+NEXT CHAPTER →
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 4 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 4 — MERA PEHLA NAZAR KA PIYAAR</div>
 
-    <h2>CHAPTER 03 — FIRST MEMORY 🌷</h2>
+<section
+class="page"
+data-title="CHAPTER 03 — FIRST MEMORY 🌷"
+>
 
-    <h3>DOODH PILAYI  KI RASAM🥛❤️</h3>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 4 — MERA PEHLA NAZAR KA PIYAAR
+</div>
+
+<h2>
+CHAPTER 03 — FIRST MEMORY 🌷
+</h2>
+
+<h3>
+DOODH PILAYI  KI RASAM🥛❤️
+</h3>
+
+<p>
 Apko yad hai Jab aap doodh pilayi ki rasam ke liye aayi thi, shayad aapko bilkul idea nahi tha ke aik billa aapko itni gaur se dekh raha tha Taaar raha hai mera to man kar raha tha main bhi wahi apky sath nikkah parwa lon but fir yad aya jeery nakroo wali abhi kahan kary gi boly gi bmw laow phely meri👀
 
 Moment chhota tha... lekin feeling chhoti nahi thi.
 
 Kabhi kabhi koi person casually saamne aata hai, aur dil us moment ko casually nahi leta ap wo moment hu mery liye jo mera dil main agaye tab mujhy bhi nhi pta tha piyaar hugia apsy hehe but hugia tha or ap khabi nikli nhi mery andar sy❤️
-    </p>
+</p>
 
-    <button onclick="nextPage()">UNLOCK NEXT →</button>
-  </div>
+<button onclick="nextPage()">
+UNLOCK NEXT →
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 5 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 5 — HAMARA STORY KA START</div>
 
-    <h2>CHAPTER 04 — LAHORE KA TOUR 🌙</h2>
+<section
+class="page"
+data-title="CHAPTER 04 — LAHORE KA TOUR 🌙"
+>
 
-    <h3>THE THING BILLA COULDN'T SAY</h3>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 5 — HAMARA STORY KA START
+</div>
+
+<h2>
+CHAPTER 04 — LAHORE KA TOUR 🌙
+</h2>
+
+<h3>
+THE THING BILLA COULDN'T SAY
+</h3>
+
+<p>
 BILLA jan bhooj kar Lahore aaya tha... aapke paas.
 
 Fir billa bas apko dekhta raha ky mera mazy dar jeery kita piyaara hai fir jab wapis any lagy aik din pehly billa royia ky ye fir hath sy chli jaye gi fir himmat kari Socha face to face bol deta ziyada sy ziyada chammat mardy gi jeery mera Dialogue ready tha mainy bara practice kia Himmat bhi thi.
@@ -585,45 +1158,77 @@ Phir actual moment aaya or mainy apko bola...
 Fir apun ka wapsi ka time agia apun jaty jaty bhi apna mazy dar jeery ko tar raha tha or wapis akar billa ko sakoon nhi aya or roo dia kanpty hathon sath follow mardia
 
 Aur phir message kar hi diya. ❤️
-    </p>
+</p>
 
-    <button onclick="nextPage()">CONTINUE →</button>
-  </div>
+<button onclick="nextPage()">
+CONTINUE →
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 6 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 6 — 1 JANUARY</div>
 
-    <h2>CHAPTER 05 — STORY STARTED BY BOTH SIDES❤️</h2>
+<section
+class="page"
+data-title="CHAPTER 05 — STORY STARTED BY BOTH SIDES❤️"
+>
 
-    <h3>THE DAY IT OUR RELATIONSHIP START</h3>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 6 — 1 JANUARY
+</div>
+
+<h2>
+CHAPTER 05 — STORY STARTED BY BOTH SIDES❤️
+</h2>
+
+<h3>
+THE DAY IT OUR RELATIONSHIP START
+</h3>
+
+<p>
 Jo feeling pehle sirf BILLA ke dil mein thi wo billa apko bta dia apny bary nakry shakry dekhyie at the end kand shand karny ky bad dono ghr pta lagny ky bad 1st ko apni bat start hu hi gayi or khani dono trafa start hoi yahan
 
 1 January sirf calendar ki date nahi.
 
 Ye woh date hai jahan “main” aur “aap” ki jagah “hum” ka concept start hua. ❤️
-    </p>
+</p>
 
-    <button onclick="nextPage()">NEXT →</button>
-  </div>
+<button onclick="nextPage()">
+NEXT →
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 7 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 7 — 9 MONTHS COMPLETED</div>
 
-    <h2>CHAPTER 06 — LOVING DAYS ❤️</h2>
+<section
+class="page"
+data-title="CHAPTER 06 — LOVING DAYS ❤️"
+>
 
-    <h3>OUR TIMELINE</h3>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 7 — 9 MONTHS COMPLETED
+</div>
+
+<h2>
+CHAPTER 06 — LOVING DAYS ❤️
+</h2>
+
+<h3>
+OUR TIMELINE
+</h3>
+
+<p>
 FIRST: Ek feeling... 🥹
 
 THEN: Ek message... 📱
@@ -635,105 +1240,175 @@ AFTER THAT: Baatein + flirting + laraiyan 😂
 TODAY: 9 months + countless memories.
 
 Har din perfect nahi tha... lekin har din ne kuch beautiful add kiya.
-    </p>
+</p>
 
-    <button onclick="nextPage()">OPEN HER FILE →</button>
-  </div>
+<button onclick="nextPage()">
+OPEN HER FILE →
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 8 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 8 — FAVOURITES</div>
 
-    <h2>CHAPTER 07 — JERRY'S FAV THINGS FILE 🌷</h2>
+<section
+class="page"
+data-title="CHAPTER 07 — JERRY'S FAV THINGS FILE 🌷"
+>
 
-    <div class="fav">
+<div class="card">
 
-      <div class="fav-item">
-        <strong>🏎️ BMW M4 Competition</strong>
-        Aik din ye bhi aye ga ham dono hamari car main hungy inshaAllah
-      </div>
+<div class="page-label">
+PAGE 8 — FAVOURITES
+</div>
 
-      <div class="fav-item">
-        <strong>🚘 Mark X</strong>
-        Bmw na mili to mark x main ghoomi karlein gy hehe
-      </div>
+<h2>
+CHAPTER 07 — JERRY'S FAV THINGS FILE 🌷
+</h2>
 
-      <div class="fav-item">
-        <strong>🖤 Black</strong>
-        Ye to main hu mtlb ap meko pasend karti ahn naughty naughty
-      </div>
 
-      <div class="fav-item">
-        <strong>🤍 White</strong>
-        Ary ye to meri muhtarma ka dil hai pure white aye hayee meri piyaari masoom si muhtarma jiska dil log tod dety hain
-      </div>
+<div class="favourites">
 
-      <div class="fav-item">
-        <strong>🍛 Biryani</strong>
-        Ye to ham bna bna kar khilyein gy aik dujy ko
-      </div>
 
-      <div class="fav-item">
-        <strong>🍚 Kheer</strong>
-        Pehly sirf apko pasend thi ab billa bhi plate tak chat jata Hehe
-      </div>
+<div class="favourite">
+<strong>
+🏎️ BMW M4 Competition
+</strong>
+Aik din ye bhi aye ga ham dono hamari car main hungy inshaAllah
+</div>
 
-      <div class="fav-item">
-        <strong>🌹 Roses</strong>
-        Ainki ab kia zaroorat ap mirror dekha karoow gulab ka phool dik jaye ga baee
-      </div>
 
-      <div class="fav-item">
-        <strong>🌷 Tulips</strong>
-        Aik din ham apna ghr main flowers hi flowers kardein gy sary apky favorite phools bhar dalein gy
-      </div>
+<div class="favourite">
+<strong>
+🚘 Mark X
+</strong>
+Bmw na mili to mark x main ghoomi karlein gy hehe
+</div>
 
-      <div class="fav-item">
-        <strong>🌻 Sunflowers</strong>
-        Ahm ahm sun flowers mtlb meri baby ka bat horaha jo gussa main garam hoti to sun lagti or cuteness main to flower hai to kia bna meri sun flower
-      </div>
 
-      <div class="fav-item">
-        <strong>🍫 Chocolate</strong>
-        Ary bhayyia agar Allah ny itna Dia to pura factory khol dein gy coclates ka apky liye
-      </div>
+<div class="favourite">
+<strong>
+🖤 Black
+</strong>
+Ye to main hu mtlb ap meko pasend karti ahn naughty naughty
+</div>
 
-      <div class="fav-item">
-        <strong>🏔️ Northern Areas</strong>
-        Yahan ham sath main ghomein gy yahan apna ghr bnayein gy inshaAllah ye to ham krein gy bhai hamara baby ka fav jagan hai ye inshaAllah Allah sy bara kuch nhi wo dy gaaa
-      </div>
 
-      <div class="fav-item">
-        <strong>💌 Love & Memories</strong>
-        Most important
-      </div>
+<div class="favourite">
+<strong>
+🤍 White
+</strong>
+Ary ye to meri muhtarma ka dil hai pure white aye hayee meri piyaari masoom si muhtarma jiska dil log tod dety hain
+</div>
 
-    </div>
 
-    <p>
+<div class="favourite">
+<strong>
+🍛 Biryani
+</strong>
+Ye to ham bna bna kar khilyein gy aik dujy ko
+</div>
+
+
+<div class="favourite">
+<strong>
+🍚 Kheer
+</strong>
+Pehly sirf apko pasend thi ab billa bhi plate tak chat jata Hehe
+</div>
+
+
+<div class="favourite">
+<strong>
+🌹 Roses
+</strong>
+Ainki ab kia zaroorat ap mirror dekha karoow gulab ka phool dik jaye ga baee
+</div>
+
+
+<div class="favourite">
+<strong>
+🌷 Tulips
+</strong>
+Aik din ham apna ghr main flowers hi flowers kardein gy sary apky favorite phools bhar dalein gy
+</div>
+
+
+<div class="favourite">
+<strong>
+🌻 Sunflowers
+</strong>
+Ahm ahm sun flowers mtlb meri baby ka bat horaha jo gussa main garam hoti to sun lagti or cuteness main to flower hai to kia bna meri sun flower
+</div>
+
+
+<div class="favourite">
+<strong>
+🍫 Chocolate
+</strong>
+Ary bhayyia agar Allah ny itna Dia to pura factory khol dein gy coclates ka apky liye
+</div>
+
+
+<div class="favourite">
+<strong>
+🏔️ Northern Areas
+</strong>
+Yahan ham sath main ghomein gy yahan apna ghr bnayein gy inshaAllah ye to ham krein gy bhai hamara baby ka fav jagan hai ye inshaAllah Allah sy bara kuch nhi wo dy gaaa
+</div>
+
+
+<div class="favourite">
+<strong>
+💌 Love & Memories
+</strong>
+Most important
+</div>
+
+
+</div>
+
+
+<p>
 Funny coincidence:
 
 In mein se sab hi cheezein billa ko bhi pasand hain. 👀❤️
-    </p>
+</p>
 
-    <button onclick="nextPage()">NEXT FILE →</button>
-  </div>
+
+<button onclick="nextPage()">
+NEXT FILE →
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 9 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 9 — JEERY KI BIMARYIAN 🤒</div>
 
-    <h2>CHAPTER 08 — WARNING ⚠️</h2>
+<section
+class="page"
+data-title="CHAPTER 08 — WARNING ⚠️"
+>
 
-    <h3>OVERTHINKING DETECTED 😭</h3>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 9 — JEERY KI BIMARYIAN 🤒
+</div>
+
+<h2>
+CHAPTER 08 — WARNING ⚠️
+</h2>
+
+<h3>
+OVERTHINKING DETECTED 😭
+</h3>
+
+<p>
 Jerry please chhoti chhoti baaton ko apne dil ka permanent resident na banaya karein. 😭😂
 
 Har silence narazgi nahi.
@@ -753,23 +1428,39 @@ Lekin aansu pochhne ke baad khud ko yaad dilana:
 Aur agar overthinking phir bhi na ruke...
 
 Billa ko bula lena sath royien gy baeee. 😂
-    </p>
+</p>
 
-    <button onclick="nextPage()">CONTINUE ❤️</button>
-  </div>
+<button onclick="nextPage()">
+CONTINUE ❤️
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 10 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 10 — DREAMS</div>
 
-    <h2>CHAPTER 09 — DREAMS 🏔️</h2>
+<section
+class="page"
+data-title="CHAPTER 09 — DREAMS 🏔️"
+>
 
-    <h3>DREAMS DATABASE ✨</h3>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 10 — DREAMS
+</div>
+
+<h2>
+CHAPTER 09 — DREAMS 🏔️
+</h2>
+
+<h3>
+DREAMS DATABASE ✨
+</h3>
+
+<p>
 Billa dil se chahta hai ke Jerry ki zindagi mein woh har khushi aaye jiski usne kabhi dua ki ho. 🤲🏻
 
 BMW ho...
@@ -783,23 +1474,39 @@ Ya koi aisi cheez ho jo Jerry ko genuinely khush karti ho...
 Dream it. Work for it. Live it. ❤️
 
 Jahan tak billa ke bas mein hua, Jerry ke dreams ko poora karne mein saath dunga or ye nhi hai ky jeery kam kary to hi sab mily ga billa akela bhi karky sab khawab pury kary ga apka.
-    </p>
+</p>
 
-    <button onclick="nextPage()">NEXT →</button>
-  </div>
+<button onclick="nextPage()">
+NEXT →
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 11 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 11 — PROMISE</div>
 
-    <h2>CHAPTER 10 — PROMISE KARYIEE BILLA SATH🤍</h2>
+<section
+class="page"
+data-title="CHAPTER 10 — PROMISE KARYIEE BILLA SATH🤍"
+>
 
-    <h3>ONE IMPORTANT REQUEST</h3>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 11 — PROMISE
+</div>
+
+<h2>
+CHAPTER 10 — PROMISE KARYIEE BILLA SATH🤍
+</h2>
+
+<h3>
+ONE IMPORTANT REQUEST
+</h3>
+
+<p>
 Hamesha khush rehna.
 
 Aur please chhoti chhoti baaton par apna dil mat dukhaya karna.
@@ -811,192 +1518,345 @@ Billa chahta hai Jery apni smile ko har cheez se zyada protect kare. ❤️
 Aur jab life difficult ho:
 
 Pause. Breathe. Smile. Continue.
-    </p>
+</p>
 
-    <button onclick="nextPage()">FINAL MISSION →</button>
-  </div>
+<button onclick="nextPage()">
+FINAL MISSION →
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 12 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 12 — GIFT</div>
 
-    <h2>FINAL MISSION — PACKAGE 🎁</h2>
+<section
+class="page"
+data-title="FINAL MISSION — PACKAGE 🎁"
+>
 
-    <h3>INCOMING PACKAGE DETECTED</h3>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 12 — GIFT
+</div>
+
+<h2>
+FINAL MISSION — PACKAGE 🎁
+</h2>
+
+<h3>
+INCOMING PACKAGE DETECTED
+</h3>
+
+<p>
 Aapke naam ka ek secret package system mein detect hua hai. 🎁
-    </p>
+</p>
 
-    <button onclick="nextPage()">CHECK DELIVERY →</button>
-  </div>
+<button onclick="nextPage()">
+CHECK DELIVERY →
+</button>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 13 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 13 — YES / NO</div>
 
-    <h2>PACKAGE VERIFICATION 🔐</h2>
+<section
+class="page"
+data-title="PACKAGE VERIFICATION 🔐"
+>
 
-    <h3>GIFT RECEIVE HUA? 👀</h3>
+<div class="card">
 
-    <p>
+<div class="page-label">
+PAGE 13 — YES / NO
+</div>
+
+<h2>
+PACKAGE VERIFICATION 🔐
+</h2>
+
+<h3>
+GIFT RECEIVE HUA? 👀
+</h3>
+
+<p>
 Ab asli test hai, Jerry G. 😂❤️
 
 Gift receive hua ya nahi?
-    </p>
+</p>
 
-    <div class="choice-row">
-      <button class="yes-btn" onclick="yesGift()">YES 🎁</button>
-      <button class="no-btn" onclick="startTruck()">NO 🚚</button>
-    </div>
 
-    <div id="deliveryBox" style="display:none; margin-top:25px;">
-      <div class="delivery-area">
-        <div class="road"></div>
-        <div class="truck" id="truck">🚚</div>
-      </div>
+<div class="button-row">
 
-      <div class="delivery-progress" id="deliveryText">
-        DELIVERY: 0%
-      </div>
+<button
+class="yes-button"
+onclick="yesGift()"
+>
+YES 🎁
+</button>
 
-      <p id="truckMessage"></p>
 
-      <button id="afterTruck" style="display:none;" onclick="goToPage(14)">
-        CHECK PACKAGE →
-      </button>
-    </div>
-  </div>
+<button
+class="no-button"
+onclick="startTruck()"
+>
+NO 🚚
+</button>
+
+</div>
+
+
+<!-- YES MESSAGE -->
+
+<div
+id="yesMessage"
+style="
+display:none;
+margin-top:25px;
+padding:20px;
+border-radius:20px;
+background:rgba(255,225,237,.8);
+"
+>
+
+Agar aap guesses lagana chahein to laga sakti hain... 👀❤️
+
+<br>
+
+<button onclick="goToPage(14)">
+CHECK PACKAGE →
+</button>
+
+</div>
+
+
+<!-- TRUCK -->
+
+<div
+class="delivery-box"
+id="deliveryBox"
+>
+
+<div class="delivery-area">
+
+<div class="road"></div>
+
+<div
+class="truck"
+id="truck"
+>
+🚚
+</div>
+
+</div>
+
+
+<div
+class="delivery-progress"
+id="deliveryProgress"
+>
+DELIVERY: 0%
+</div>
+
+
+<!-- ONLY THIS TEXT AFTER TRUCK -->
+
+<p id="deliveryMessage"></p>
+
+
+<button
+id="packageButton"
+style="display:none"
+onclick="goToPage(14)"
+>
+CHECK PACKAGE →
+</button>
+
+</div>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 14 -->
-<section class="page">
-  <div class="card">
-    <div class="section-title">PAGE 14 — SECRET QUESTION</div>
 
-    <h2>PACKAGE ACCESS / SECRET VERIFICATION 🔐</h2>
+<section
+class="page"
+data-title="PACKAGE ACCESS / SECRET VERIFICATION 🔐"
+>
 
-    <p>
+<div class="card">
+
+<div class="page-label">
+PAGE 14 — SECRET QUESTION
+</div>
+
+<h2>
+PACKAGE ACCESS / SECRET VERIFICATION 🔐
+</h2>
+
+<p>
 Gift receive ho gaya?
 
 Good.
 
 Ab ek chhota sa question. 👀
-    </p>
+</p>
 
-    <h3>QUESTION:</h3>
+<h3>
+QUESTION:
+</h3>
 
-    <p>Parcel mein kitne paise receive hue?</p>
+<p>
+Parcel mein kitne paise receive hue?
+</p>
 
-    <div class="question-box">
-      <input
-        id="answerInput"
-        class="answer-input"
-        type="text"
-        inputmode="numeric"
-        autocomplete="off"
-        placeholder="Enter answer..."
-      >
 
-      <button onclick="checkAnswer()" id="lockButton">
-        LOCK 🔓
-      </button>
+<div class="answer-box">
 
-      <div class="lock-status" id="lockStatus">
-        🔒 LOCKED
-      </div>
+<input
+id="answerInput"
+class="answer-input"
+type="text"
+inputmode="numeric"
+autocomplete="off"
+placeholder="Enter answer..."
+>
 
-      <div class="wrong-message" id="wrongMessage"></div>
-    </div>
-  </div>
+
+<button
+id="lockButton"
+onclick="checkAnswer()"
+>
+LOCK 🔓
+</button>
+
+
+<div
+class="lock-status"
+id="lockStatus"
+>
+🔒 LOCKED
+</div>
+
+
+<div
+class="chance-text"
+id="chanceText"
+>
+3 CHANCES AVAILABLE
+</div>
+
+
+<div
+class="wrong-message"
+id="wrongMessage"
+>
+</div>
+
+
+</div>
+
+</div>
+
 </section>
 
 
 <!-- PAGE 15 -->
-<section class="page">
-  <div class="card">
 
-    <div class="section-title">PAGE 15 — SECRET NOTE</div>
+<section
+class="page"
+data-title="Happy Birthday meri sabse pyari Madam Ji ❤️🎂🫶🏻"
+>
 
-    <h2>SYSTEM ACCESS GRANTED 🔓</h2>
+<div class="card">
 
-    <div class="final-heart">❤️</div>
+<div class="page-label">
+PAGE 15 — SECRET NOTE
+</div>
 
-    <h3>ACCESS GRANTED</h3>
 
-    <p>DECRYPTING LOVE FILE...</p>
+<h1>
+Happy Birthday meri sabse pyari Madam Ji ❤️🎂🫶🏻
+</h1>
 
-    <p><strong>FILE DECRYPTED ❤️</strong></p>
 
-    <div class="text">
-SECRET NOTE ❤️
+<div class="final-heart">
+❤️
+</div>
 
-Jerry... ❤️
 
-Agar aap yahan tak aa gayi hain, to matlab secret file finally open ho gayi. 🥹
+<div class="text">
 
-Apka Moto dil se chahta hai ke aap hamesha khush rahen.
+Sabse pehle toh HAPPY BIRTHDAYYY meri pari 🥹❤️🧿 Aur haan, aaj koi overthinking nahi, koi rona nahi, koi khud ko kam samajhna nahi… warna birthday girl se naraz ho jaunga 😤😂❤️
 
-Aapke saare dreams poore hon.
+Aapko pata bhi hai aap mere liye kitni important ho? 🥺 Shayad main har dafa words mein explain nahi kar pata, lekin honestly… <strong>aap meri life ki un logon mein se ho jinki presence hi dil ko ajeeb sa sukoon deti hai.</strong> ❤️
 
-Aapki har achi dua qabool ho. 🤲🏻🌷
+Aur pleaseeee madam, ek baat dimaagh mein permanently save kar lo: <strong>Aap khud ko jitna ordinary samajhti ho na, meri nazar mein aap usse bohat zyada khoobsurat ho.</strong> 😭❤️
 
-Main promise karta hoon ke jahan tak mere bas mein hua, main aapke dreams ko poora karne mein aapka saath dunga.
+Aap literally <em>pari</em> ho 🧚🏻‍♀️❤️ Haan haan, thori si nakhre wali pari 😂 Thori si pagal pari 🤏🏻😭 Thori si overthinker pari 🥲 Aur kabhi kabhi itni masoom banti ho ke banda confuse ho jaye ke ye waqai masoom hai ya acting Oscar level ki hai 😂😂
 
-Please chhoti chhoti baaton par roya na karein. 😭😂
+Lekin meri nazar mein aap bohat khoobsurat ho — sirf face se nahi, <strong>dil se bhi.</strong> ❤️ Aur mujhe sabse zyada bura tab lagta hai jab aap khud ko kisi aur ki nazar se judge karke apni value kam kar deti ho.
 
-Aapka dil bohat soft hai. Har baat ko dil par lene ki zaroorat nahi.
+Madam ji, aapko apni value samajhne ke liye kisi aur ki permission ki zaroorat nahi. <strong>Aap jaisi ho, bohat pyari ho. Bohat.</strong> 🥺❤️ Aur meri taraf se toh full marks hain… examiner bhi main, result bhi mera, aur favourite student bhi aap. 😌😂❤️
 
-Kabhi rona aaye to ro lena...
+Aaj main bas chahta hoon ke aap dil khol ke smile karo. 🥹 Jo kuch guzra, jo log hurt karke gaye, jo baatein aapko rulaati hain — <strong>aaj un sab ko side pe rakho.</strong> Aaj sirf ye socho ke ek banda hai jo genuinely aapki khushi chahta hai, aapki smile ko bohat value karta hai, aur dil se chahta hai ke aap hamesha khush raho. ❤️
 
-Lekin aansu pochhne ke baad khud ko yaad dilana:
+Aur woh banda… unfortunately main hoon. 😭😂❤️ Unfortunately isliye kyun ke ab aapko meri bakwaas bhi lifetime tolerate karni padegi. 😌😂
 
-“Main is se bhi nikal jaungi.” ❤️
+I love the way you are. ❤️ Aapki smile, aapki baatein, aapke nakhre, aapka gussa, aapki cute si pagalpan wali harkatein… sab. 🥹❤️
 
-Aur agar phir bhi overthinking na ruke...
+Bas ek request hai birthday girl se: <strong>Khud ko kabhi bhi kam mat samajhna.</strong> Kyun ke meri nazar mein aap koi “kam” cheez ho hi nahi. Aap meri <strong>beautiful si pari</strong> ho. 🧿❤️
 
-Meko bula lena. 😂❤️
+Allah kare ye saal aapki life ka sabse khoobsurat saal ho. Aapko itni khushiyan milen ke purani udaasiyan choti lagne lagen. 🤍
 
-Billa chahta hai ke Jery ke saare dreams poore hon.
+Aur haan… <strong>Cake kaat lena, candles bujha dena, wish maang lena… lekin mere liye ek smile zaroor rakhna.</strong> 🥹❤️
 
-Aapko woh har khushi mile jo aap deserve karti hain.
+Happy Birthday, Madam Ji. 🎂❤️ <strong>Aap bohat special ho. Mere liye bohat zyada.</strong> 🫶🏻❤️
 
-Future exactly kaisa hoga, ye kisi ko nahi pata...
+Ab zyada emotional mat hona warna birthday pe bhi “rona allowed hai” wali permission cancel kar dunga. 😭😂❤️
 
-Lekin billa chahta hai future ki bohat si beautiful memories mein Jery ho.
+</div>
 
-❤️ ∞ ❤️
+</div>
 
-Happy Birthday Anum 🎂❤️
-
-— Apka Mota billa🐈❤️
-    </div>
-
-  </div>
 </section>
+
 
 </div>
 
 
-<!-- FINAL GLITCH SCREEN -->
+<!-- =========================
+     GLITCH SCREEN
+========================= -->
 
-<div class="glitch-screen" id="glitchScreen">
-  <div>
-    <div class="glitch-text" id="glitchText">
-      ACCESS GRANTED
-    </div>
-  </div>
+<div
+class="glitch-screen"
+id="glitchScreen"
+>
+
+<div>
+
+<div
+class="glitch-text"
+id="glitchText"
+>
+ACCESS GRANTED
+</div>
+
+</div>
+
 </div>
 
 
 <script>
+
 
 /* =========================
    PAGE SYSTEM
@@ -1004,311 +1864,428 @@ Happy Birthday Anum 🎂❤️
 
 let currentPage = 0;
 
-const pages = document.querySelectorAll(".page");
-const indicator = document.getElementById("pageIndicator");
+const pages =
+document.querySelectorAll(".page");
 
-for (let i = 0; i < pages.length; i++) {
+const headerTitle =
+document.getElementById("headerTitle");
 
-  const dot = document.createElement("div");
-
-  dot.className = "page-dot";
-
-  indicator.appendChild(dot);
-}
-
-const dots = document.querySelectorAll(".page-dot");
+const backButton =
+document.getElementById("backButton");
 
 
-function updatePage() {
+function updatePage(){
 
-  pages.forEach((page, index) => {
+    pages.forEach(
+        (page,index)=>{
 
-    page.classList.toggle(
-      "active",
-      index === currentPage
+            page.classList.toggle(
+                "active",
+                index === currentPage
+            );
+
+        }
     );
 
-  });
+
+    headerTitle.textContent =
+    pages[currentPage]
+    .dataset.title;
 
 
-  dots.forEach((dot, index) => {
+    if(currentPage === 0){
 
-    dot.classList.toggle(
-      "active",
-      index === currentPage
-    );
+        backButton.style.display =
+        "none";
 
-  });
+    }
 
+    else{
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-}
+        backButton.style.display =
+        "block";
+
+    }
 
 
-function nextPage() {
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
-  if (currentPage < pages.length - 1) {
-
-    currentPage++;
-
-    updatePage();
-  }
-}
-
-
-function goToPage(pageNumber) {
-
-  currentPage = pageNumber - 1;
-
-  updatePage();
 }
 
 
 /* =========================
-   PAGE 13 — GIFT
+   NEXT
 ========================= */
 
-function yesGift() {
+function nextPage(){
 
-  goToPage(14);
+    if(
+        currentPage <
+        pages.length - 1
+    ){
+
+        currentPage++;
+
+        updatePage();
+
+    }
 
 }
 
 
-function startTruck() {
+/* =========================
+   BACK
+========================= */
 
-  const deliveryBox =
-    document.getElementById("deliveryBox");
+function previousPage(){
 
-  const truck =
-    document.getElementById("truck");
+    if(currentPage > 0){
 
-  const deliveryText =
-    document.getElementById("deliveryText");
+        currentPage--;
 
-  const message =
-    document.getElementById("truckMessage");
+        updatePage();
 
-  const afterTruck =
-    document.getElementById("afterTruck");
+    }
+
+}
 
 
-  deliveryBox.style.display = "block";
+/* =========================
+   GO TO SPECIFIC PAGE
+========================= */
 
-  afterTruck.style.display = "none";
+function goToPage(pageNumber){
 
-  message.innerHTML = "";
+    currentPage =
+    pageNumber - 1;
 
-  deliveryText.innerHTML =
+    updatePage();
+
+}
+
+
+/* =========================
+   YES BUTTON
+========================= */
+
+function yesGift(){
+
+    const yesMessage =
+    document.getElementById(
+        "yesMessage"
+    );
+
+    yesMessage.style.display =
+    "block";
+
+}
+
+
+/* =========================
+   TRUCK
+========================= */
+
+function startTruck(){
+
+    const deliveryBox =
+    document.getElementById(
+        "deliveryBox"
+    );
+
+    const truck =
+    document.getElementById(
+        "truck"
+    );
+
+    const progressText =
+    document.getElementById(
+        "deliveryProgress"
+    );
+
+    const deliveryMessage =
+    document.getElementById(
+        "deliveryMessage"
+    );
+
+    const packageButton =
+    document.getElementById(
+        "packageButton"
+    );
+
+
+    deliveryBox.style.display =
+    "block";
+
+
+    packageButton.style.display =
+    "none";
+
+
+    deliveryMessage.innerHTML =
+    "";
+
+
+    progressText.innerHTML =
     "DELIVERY: 0%";
 
 
-  truck.classList.remove("go");
+    truck.classList.remove(
+        "go"
+    );
 
 
-  setTimeout(() => {
+    setTimeout(()=>{
 
-    truck.classList.add("go");
+        truck.classList.add(
+            "go"
+        );
 
-  }, 150);
-
-
-  let progress = 0;
-
-
-  const timer = setInterval(() => {
-
-    if (progress < 95) {
-
-      progress++;
-
-      deliveryText.innerHTML =
-        "DELIVERY: " + progress + "%";
-
-    }
-
-    else {
-
-      clearInterval(timer);
+    },100);
 
 
-      deliveryText.innerHTML =
-        "DELIVERY: 95%";
+    let progress = 0;
 
 
-      message.innerHTML = `
+    const timer =
+    setInterval(()=>{
 
-        <strong>Haye Jery 😭😂</strong><br><br>
+        if(progress < 95){
 
-        Sabar karlo naww...<br><br>
+            progress++;
 
-        Pehle gift ko aa lene do.<br><br>
+            progressText.innerHTML =
+            "DELIVERY: "
+            + progress
+            + "%";
 
-        Choti duniya na guesses lagaao.<br><br>
+        }
 
-        Kia darwaza torna ka mood hai? 😂<br><br>
+        else{
 
-        Achy bachy pehly gift ko aa lwny do. ❤️
-
-      `;
+            clearInterval(timer);
 
 
-      afterTruck.style.display =
-        "inline-block";
+            progressText.innerHTML =
+            "DELIVERY: 95%";
 
-    }
 
-  }, 40);
+            deliveryMessage.innerHTML = `
+
+                <strong>
+                95% tak aa gaya...
+                </strong>
+
+                <br><br>
+
+                Ab 5% tumhari sabr ki test hai. 😂❤️
+
+            `;
+
+
+            packageButton.style.display =
+            "inline-block";
+
+        }
+
+    },40);
 
 }
 
 
 /* =========================
-   PAGE 14 — SECRET ANSWER
+   SECRET ANSWER
 ========================= */
 
 let wrongAttempts = 0;
 
+const maxAttempts = 3;
 
-function checkAnswer() {
 
-  const input =
-    document.getElementById("answerInput");
+function checkAnswer(){
 
-  const value =
+    const input =
+    document.getElementById(
+        "answerInput"
+    );
+
+
+    const value =
     input.value.trim();
 
 
-  const lockButton =
-    document.getElementById("lockButton");
-
-  const lockStatus =
-    document.getElementById("lockStatus");
-
-  const wrongMessage =
-    document.getElementById("wrongMessage");
+    const lockButton =
+    document.getElementById(
+        "lockButton"
+    );
 
 
-  /*
-    ONLY 501 IS CORRECT
-  */
-
-  if (value === "501") {
-
-    lockButton.innerHTML =
-      "UNLOCK 🔓";
+    const lockStatus =
+    document.getElementById(
+        "lockStatus"
+    );
 
 
-    lockButton.style.background =
-      "linear-gradient(135deg, #43a66c, #72d79a)";
+    const chanceText =
+    document.getElementById(
+        "chanceText"
+    );
+
+
+    const wrongMessage =
+    document.getElementById(
+        "wrongMessage"
+    );
+
+
+    /* =====================
+       CORRECT ANSWER
+       ONLY 501
+    ===================== */
+
+    if(value === "501"){
+
+        lockButton.innerHTML =
+        "UNLOCK 🔓";
+
+
+        lockButton.style.background =
+        "linear-gradient(135deg,#43a66c,#72d79a)";
+
+
+        lockStatus.innerHTML =
+        "🔓 UNLOCKED";
+
+
+        chanceText.innerHTML =
+        "ACCESS GRANTED ❤️";
+
+
+        wrongMessage.style.display =
+        "none";
+
+
+        setTimeout(
+            startFinalUnlock,
+            700
+        );
+
+
+        return;
+
+    }
+
+
+    /* =====================
+       WRONG ANSWER
+    ===================== */
+
+    wrongAttempts++;
+
+
+    const remaining =
+    maxAttempts - wrongAttempts;
 
 
     lockStatus.innerHTML =
-      "🔓 UNLOCKED";
-
-
-    wrongMessage.style.display =
-      "none";
-
-
-    setTimeout(() => {
-
-      startFinalUnlock();
-
-    }, 700);
-
-
-    return;
-  }
-
-
-  /*
-    EVERYTHING ELSE IS WRONG
-  */
-
-  wrongAttempts++;
-
-
-  lockButton.innerHTML =
-    "LOCK 🔒";
-
-
-  lockStatus.innerHTML =
     "🔒 LOCKED";
 
 
-  wrongMessage.style.display =
+    lockButton.innerHTML =
+    "LOCK 🔒";
+
+
+    wrongMessage.style.display =
     "block";
 
 
-  if (wrongAttempts === 1) {
+    if(wrongAttempts === 1){
 
-    wrongMessage.innerHTML = `
+        wrongMessage.innerHTML = `
 
-      Haww choti dunyia cheating kar rahi hain? 😭😂<br><br>
+            Haww choti dunyia cheating kar rahi hain? 😭😂
 
-      Ap kia gusess laga rahi hain hain... Deyan sy thora dekh raha hai aapka 2 Number Admi. 👀
+            <br><br>
 
-    `;
+            Ap kia gusess laga rahi hain hain... Deyan sy thora dekh raha hai aapka 2 Number Admi. 👀
 
-  }
+        `;
 
-
-  else if (wrongAttempts === 2) {
-
-    wrongMessage.innerHTML = `
-
-      Haye Jery 😭😂<br><br>
-
-      Sabar karlo naww...<br><br>
-
-      Pehle gift ko aa lene do.<br><br>
-
-      Choti duniya na guesses lagaao.<br><br>
-
-      Kia darwaza torna ka mood hai? 😂<br><br>
-
-      Achy bachy pehly gift ko aa lwny do. ❤️
-
-    `;
-
-  }
+    }
 
 
-  else {
+    else if(wrongAttempts === 2){
 
-    wrongMessage.innerHTML = `
+        wrongMessage.innerHTML = `
 
-      Haye hayeee 😭😂<br><br>
+            Haye Jery 😭😂
 
-      Sabar karlo naww!<br><br>
+            <br><br>
 
-      Jab gift mil gaya hai us mein answer hoga, tab seedha sahi likh kar khol lena.<br><br>
+            Sabar karlo naww...
 
-      Abhi kya darwaza torne ka mood hai?<br><br>
+            <br><br>
 
-      Chalo achy bachy, pehly gift ko aa lwny do. ❤️
+            Abhi bhi guess laga rahi ho? 😂❤️
 
-    `;
+        `;
 
-  }
-
-
-  /*
-    WRONG ANSWER:
-
-    Page 15 WILL NOT OPEN.
-
-    User remains on Page 14.
-  */
+    }
 
 
-  input.value = "";
+    else{
 
-  input.focus();
+        wrongMessage.innerHTML = `
+
+            Haye hayeee 😭😂
+
+            <br><br>
+
+            3 chances bhi khatam kar diye!
+
+            <br><br>
+
+            Ab sahi answer 501 ke baghair darwaza nahi khulega. 🔐😂❤️
+
+        `;
+
+    }
+
+
+    if(remaining > 0){
+
+        chanceText.innerHTML =
+        remaining +
+        " CHANCES REMAINING";
+
+    }
+
+    else{
+
+        chanceText.innerHTML =
+        "0 CHANCES — 501 KE BAGHAIR UNLOCK NAHI HOGA 🔒";
+
+    }
+
+
+    /*
+       IMPORTANT:
+
+       WRONG ANSWER NEVER CHANGES PAGE.
+
+       User stays on PAGE 14.
+
+       Even after 3 wrong attempts,
+       PAGE 15 remains locked.
+
+    */
+
+
+    input.value = "";
+
+    input.focus();
 
 }
 
@@ -1317,176 +2294,177 @@ function checkAnswer() {
    FINAL UNLOCK
 ========================= */
 
-function startFinalUnlock() {
+function startFinalUnlock(){
 
-  const glitch =
-    document.getElementById("glitchScreen");
-
-  const glitchText =
-    document.getElementById("glitchText");
-
-
-  glitch.classList.add("show");
+    const glitch =
+    document.getElementById(
+        "glitchScreen"
+    );
 
 
-  glitchText.innerHTML =
+    const glitchText =
+    document.getElementById(
+        "glitchText"
+    );
+
+
+    glitch.classList.add(
+        "show"
+    );
+
+
+    glitchText.innerHTML =
     "ACCESS GRANTED";
 
 
-  setTimeout(() => {
+    setTimeout(()=>{
 
-    glitchText.innerHTML =
-      "DECRYPTING LOVE FILE...";
+        glitchText.innerHTML =
+        "DECRYPTING LOVE FILE...";
 
-  }, 1200);
-
-
-  setTimeout(() => {
-
-    glitchText.innerHTML =
-      "FILE DECRYPTED ❤️";
-
-  }, 2600);
+    },1200);
 
 
-  setTimeout(() => {
+    setTimeout(()=>{
 
-    glitch.classList.remove("show");
+        glitchText.innerHTML =
+        "FILE DECRYPTED ❤️";
 
-
-    /*
-      ONLY 501 OPENS PAGE 15
-    */
-
-    goToPage(15);
-
-  }, 4000);
-
-}
+    },2600);
 
 
-/* =========================
-   BACKGROUND ANIMATION
-========================= */
+    setTimeout(()=>{
 
-const background =
-  document.getElementById("background");
-
-
-const symbols = [
-
-  "❤️",
-  "💗",
-  "💕",
-  "🌸",
-  "🌷",
-  "🌹",
-  "🌻",
-  "✨",
-  "💖"
-
-];
+        glitch.classList.remove(
+            "show"
+        );
 
 
-for (let i = 0; i < 45; i++) {
+        /*
+           ONLY 501 REACHES PAGE 15
+        */
 
-  const item =
-    document.createElement("div");
+        goToPage(15);
 
-
-  const type =
-    Math.random();
-
-
-  if (type < 0.5) {
-
-    item.className = "heart";
-
-  }
-
-  else if (type < 0.8) {
-
-    item.className = "flower";
-
-  }
-
-  else {
-
-    item.className = "sparkle";
-
-  }
-
-
-  item.innerHTML =
-    symbols[
-      Math.floor(
-        Math.random() * symbols.length
-      )
-    ];
-
-
-  item.style.left =
-    Math.random() * 100 + "%";
-
-
-  item.style.animationDuration =
-    (10 + Math.random() * 16) + "s";
-
-
-  item.style.animationDelay =
-    (-Math.random() * 20) + "s";
-
-
-  item.style.fontSize =
-    (15 + Math.random() * 25) + "px";
-
-
-  background.appendChild(item);
+    },4000);
 
 }
 
 
 /* =========================
-   NO SCROLL PAGE CHANGE
+   ENTER KEY
 ========================= */
 
-document.addEventListener(
-  "wheel",
-  function(e) {
+document
+.getElementById("answerInput")
+.addEventListener(
+    "keydown",
+    function(event){
 
-    /*
-      Intentionally empty.
+        if(event.key === "Enter"){
 
-      Scrolling DOES NOT change pages.
+            event.preventDefault();
 
-      Only buttons change pages.
-    */
+            checkAnswer();
 
-  },
-  { passive: true }
+        }
+
+    }
 );
 
 
 /* =========================
-   ENTER KEY FOR 501
+   CUTE FLOATING BACKGROUND
 ========================= */
 
-document
-  .getElementById("answerInput")
-  .addEventListener(
-    "keydown",
-    function(e) {
+const background =
+document.getElementById(
+    "background"
+);
 
-      if (e.key === "Enter") {
 
-        e.preventDefault();
+const symbols = [
 
-        checkAnswer();
+    "❤️",
+    "💗",
+    "💕",
+    "💖",
+    "🌸",
+    "🌷",
+    "🌹",
+    "🌻",
+    "✨"
 
-      }
+];
 
-    }
-  );
+
+for(
+    let i = 0;
+    i < 45;
+    i++
+){
+
+    const item =
+    document.createElement(
+        "div"
+    );
+
+
+    item.className =
+    "floating";
+
+
+    item.innerHTML =
+    symbols[
+        Math.floor(
+            Math.random()
+            *
+            symbols.length
+        )
+    ];
+
+
+    item.style.left =
+    Math.random()
+    *
+    100
+    +
+    "%";
+
+
+    item.style.fontSize =
+    15
+    +
+    Math.random()
+    *
+    25
+    +
+    "px";
+
+
+    item.style.animationDuration =
+    10
+    +
+    Math.random()
+    *
+    16
+    +
+    "s";
+
+
+    item.style.animationDelay =
+    -Math.random()
+    *
+    20
+    +
+    "s";
+
+
+    background.appendChild(
+        item
+    );
+
+}
 
 
 /* =========================
