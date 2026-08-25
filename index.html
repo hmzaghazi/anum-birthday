@@ -203,11 +203,64 @@
 
     </div>
   </section>
+<!-- PAGE 2 -->
+<section class="page" id="page2">
 
+  <div class="hearts">
+    <span class="heart">♡</span>
+    <span class="heart">♥</span>
+    <span class="heart">♡</span>
+    <span class="heart">♥</span>
+  </div>
+
+  <div class="card">
+
+    <div class="small">Aaj ka din sirf aapka hai</div>
+
+    <h1>20 ✨</h1>
+
+    <p class="subtitle">
+      <strong>20 saal mubarak, Anum. ❤️</strong>
+      <br><br>
+
+      Aaj aapki zindagi ka ek aur khoobsurat saal
+      shuru ho raha hai...
+      <br><br>
+
+      Aur pata hai?
+      <br>
+      Mujhe sabse zyada khushi is baat ki hai
+      ke main is khaas din par aapko
+      <strong>apni taraf se wish kar raha hoon. 🥹</strong>
+      <br><br>
+
+      Dua hai aapki zindagi ka har agla saal
+      pichle saal se zyada khoobsurat ho. 🌷
+    </p>
+
+    <button class="cake-button" onclick="showPage(3)">
+      🎂
+    </button>
+
+    <div class="hint">
+      Cake dabayein... kahani abhi baqi hai. ✨
+    </div>
+
+  </div>
+
+</section>
   <script>
     function nextPage() {
-      alert("Page 2 abhi banani baqi hai ❤️");
-    }
+  showPage(2);
+}
+
+function showPage(number) {
+  document.querySelectorAll(".page").forEach(page => {
+    page.classList.remove("active");
+  });
+
+  document.getElementById("page" + number).classList.add("active");
+}
   </script>
 
 </body>
