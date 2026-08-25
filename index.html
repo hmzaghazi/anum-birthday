@@ -1177,4 +1177,95 @@ wrong.innerHTML=`
 <div class="card">
 <p>
 <strong>
-Haww mad
+Haww madam G cheating kar rahi hain? 😭😂
+</strong>
+<br><br>
+Ap kia hain hain...
+Tom dekh raha hai aapka 2 Number Admi. 👀
+<br><br>
+<strong>
+Sabar karlo naww!
+Choti duniya na guesses lagaao.
+</strong>
+<br><br>
+Jab gift mil gaya hai,
+answer bhi mil jayega. 😂❤️
+</p>
+</div>
+`;
+
+}
+
+}
+
+
+/* FINAL GLITCH / DECRYPTION */
+
+function startDecrypt(){
+
+const screen=document.getElementById("s14");
+const decrypt=document.getElementById("decrypt");
+const secret=document.getElementById("secretContent");
+const replay=document.getElementById("replay");
+
+secret.classList.add("hidden");
+replay.classList.add("hidden");
+
+decrypt.innerHTML=`
+<h2 class="access">ACCESS GRANTED</h2>
+<div class="lock">🔓</div>
+<p class="sub">DECRYPTING LOVE FILE...</p>
+<p id="decryptText" class="access">[□□□□□□□□□□] 0%</p>
+`;
+
+let percent=0;
+
+const timer=setInterval(()=>{
+
+percent+=Math.floor(Math.random()*12)+5;
+
+if(percent>=100){
+percent=100;
+clearInterval(timer);
+
+setTimeout(()=>{
+
+decrypt.innerHTML=`
+<div class="glitchScreen">
+<h2 class="access">FILE DECRYPTED</h2>
+<p class="sub">WELCOME TO THE SECRET NOTE</p>
+</div>
+`;
+
+setTimeout(()=>{
+
+decrypt.classList.add("hidden");
+secret.classList.remove("hidden");
+replay.classList.remove("hidden");
+
+},900);
+
+},500);
+
+}
+
+const text=document.getElementById("decryptText");
+
+if(text){
+text.textContent=
+"["
++"█".repeat(Math.floor(percent/10))
++"□".repeat(10-Math.floor(percent/10))
++"] "+percent+"%";
+}
+
+},300);
+
+}
+
+updateBar();
+
+</script>
+
+</body>
+</html>
