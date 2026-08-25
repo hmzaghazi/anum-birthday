@@ -3,11 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Operation Jerry ❤️</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
 
 body{
     font-family:"Trebuchet MS",Arial,sans-serif;
@@ -16,11 +25,17 @@ body{
     overflow-x:hidden;
 }
 
+
+/* =========================
+   BACKGROUND
+========================= */
+
 .background{
     position:fixed;
     inset:0;
     z-index:-10;
     overflow:hidden;
+
     background:
     radial-gradient(circle at 20% 20%,rgba(255,255,255,.9),transparent 25%),
     radial-gradient(circle at 80% 30%,rgba(255,182,210,.7),transparent 30%),
@@ -36,24 +51,50 @@ body{
 }
 
 @keyframes floatUp{
-    0%{transform:translateY(0) rotate(0deg);opacity:0}
-    15%{opacity:.75}
-    85%{opacity:.75}
-    100%{transform:translateY(-115vh) rotate(360deg);opacity:0}
+    0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.75;
+    }
+
+    85%{
+        opacity:.75;
+    }
+
+    100%{
+        transform:translateY(-115vh) rotate(360deg);
+        opacity:0;
+    }
 }
+
+
+/* =========================
+   HEADER
+========================= */
 
 .header{
     position:fixed;
-    top:0;left:0;right:0;
+    top:0;
+    left:0;
+    right:0;
     z-index:100;
+
     height:65px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:8px 15px;
+
     background:rgba(255,245,250,.88);
     backdrop-filter:blur(16px);
+
     border-bottom:1px solid rgba(255,105,160,.2);
+
     box-shadow:0 4px 20px rgba(100,30,70,.1);
 }
 
@@ -61,9 +102,11 @@ body{
     color:#c52f68;
     font-size:clamp(14px,3vw,20px);
     font-weight:bold;
+
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
+
     max-width:75%;
 }
 
@@ -71,35 +114,63 @@ body{
     display:none;
     margin:0;
     padding:8px 15px;
+
     font-size:13px;
+
     background:linear-gradient(135deg,#a85b7b,#d77a9d);
 }
+
+
+/* =========================
+   MUSIC BUTTON
+========================= */
 
 .music-button{
     position:fixed;
     right:15px;
     bottom:15px;
     z-index:150;
-    width:52px;height:52px;
+
+    width:52px;
+    height:52px;
+
     border-radius:50%;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    padding:0;margin:0;
+
+    padding:0;
+    margin:0;
+
     font-size:22px;
+
     background:rgba(255,255,255,.9);
+
     color:#c52f68;
+
     border:2px solid rgba(255,255,255,.9);
+
     box-shadow:0 8px 25px rgba(120,30,70,.2);
 }
 
-#pages{padding-top:65px}
+
+/* =========================
+   PAGES
+========================= */
+
+#pages{
+    padding-top:65px;
+}
 
 .page{
     min-height:calc(100vh - 65px);
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     padding:40px 15px 60px;
 }
 
@@ -109,27 +180,59 @@ body{
 }
 
 @keyframes pageIn{
-    from{opacity:0;transform:translateY(20px) scale(.98)}
-    to{opacity:1;transform:translateY(0) scale(1)}
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.98);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
 }
+
+
+/* =========================
+   CARD
+========================= */
 
 .card{
     width:min(900px,100%);
+
     max-height:calc(100vh - 125px);
+
     overflow-y:auto;
+
     padding:35px 27px;
+
     border-radius:30px;
+
     background:rgba(255,255,255,.82);
+
     backdrop-filter:blur(15px);
+
     border:2px solid rgba(255,255,255,.9);
+
     box-shadow:
     0 25px 70px rgba(112,34,70,.16),
     inset 0 1px 0 rgba(255,255,255,.8);
+
     text-align:center;
 }
 
-.card::-webkit-scrollbar{width:6px}
-.card::-webkit-scrollbar-thumb{background:#e89ab9;border-radius:10px}
+.card::-webkit-scrollbar{
+    width:6px;
+}
+
+.card::-webkit-scrollbar-thumb{
+    background:#e89ab9;
+    border-radius:10px;
+}
+
+
+/* =========================
+   TEXT
+========================= */
 
 h1{
     font-size:clamp(42px,8vw,78px);
@@ -150,7 +253,8 @@ h3{
     color:#8f3158;
 }
 
-p,.text{
+p,
+.text{
     font-size:clamp(16px,2.5vw,20px);
     line-height:1.8;
     margin:12px auto;
@@ -175,29 +279,53 @@ p,.text{
     font-size:110px;
     font-weight:bold;
     color:#d43672;
+
     text-shadow:0 8px 25px rgba(210,45,105,.2);
+
     margin:15px 0;
 }
+
+
+/* =========================
+   BUTTONS
+========================= */
 
 button{
     border:none;
     cursor:pointer;
+
     margin-top:25px;
     padding:14px 27px;
+
     border-radius:999px;
+
     font-size:16px;
     font-weight:bold;
+
     color:white;
+
     background:linear-gradient(135deg,#d83c78,#ef78a6);
+
     box-shadow:0 10px 25px rgba(202,49,106,.25);
+
     transition:.25s;
 }
 
-button:hover{transform:translateY(-3px) scale(1.02)}
-button:active{transform:scale(.97)}
+button:hover{
+    transform:translateY(-3px) scale(1.02);
+}
 
-.yes-button{background:linear-gradient(135deg,#42a96c,#6bcf91)}
-.no-button{background:linear-gradient(135deg,#e16b78,#ef98a0)}
+button:active{
+    transform:scale(.97);
+}
+
+.yes-button{
+    background:linear-gradient(135deg,#42a96c,#6bcf91);
+}
+
+.no-button{
+    background:linear-gradient(135deg,#e16b78,#ef98a0);
+}
 
 .button-row{
     display:flex;
@@ -206,16 +334,27 @@ button:active{transform:scale(.97)}
     flex-wrap:wrap;
 }
 
+
+/* =========================
+   CINEMATIC INTRO
+========================= */
+
 .intro-overlay{
     position:fixed;
     inset:0;
     z-index:1000;
-    background:radial-gradient(circle at center,#4b1630,#180814 75%);
+
+    background:
+    radial-gradient(circle at center,#4b1630,#180814 75%);
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     text-align:center;
+
     color:white;
+
     transition:opacity .8s ease,visibility .8s ease;
 }
 
@@ -231,8 +370,15 @@ button:active{transform:scale(.97)}
 }
 
 @keyframes introZoom{
-    from{opacity:0;transform:scale(.6)}
-    to{opacity:1;transform:scale(1)}
+    from{
+        opacity:0;
+        transform:scale(.6);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 }
 
 .intro-small{
@@ -261,6 +407,11 @@ button:active{transform:scale(.97)}
     font-size:14px;
 }
 
+
+/* =========================
+   FAVOURITES
+========================= */
+
 .favourites{
     text-align:left;
     max-width:720px;
@@ -270,9 +421,13 @@ button:active{transform:scale(.97)}
 .favourite{
     padding:14px 17px;
     margin:10px 0;
+
     background:rgba(255,225,237,.7);
+
     border-radius:18px;
+
     border:1px solid rgba(211,79,127,.12);
+
     transition:.3s;
 }
 
@@ -288,6 +443,11 @@ button:active{transform:scale(.97)}
     margin-bottom:4px;
 }
 
+
+/* =========================
+   LOVE REASONS
+========================= */
+
 .reason-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -299,18 +459,32 @@ button:active{transform:scale(.97)}
 .reason-card{
     min-height:130px;
     padding:20px;
+
     border-radius:22px;
-    background:linear-gradient(145deg,rgba(255,235,243,.95),rgba(255,213,229,.75));
+
+    background:linear-gradient(
+        145deg,
+        rgba(255,235,243,.95),
+        rgba(255,213,229,.75)
+    );
+
     border:1px solid rgba(213,70,120,.15);
+
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
+
     cursor:pointer;
+
     transition:.5s;
+
+    perspective:1000px;
 }
 
-.reason-card:hover{transform:translateY(-7px) rotate(-1deg)}
+.reason-card:hover{
+    transform:translateY(-7px) rotate(-1deg);
+}
 
 .reason-front{
     font-size:25px;
@@ -325,8 +499,18 @@ button:active{transform:scale(.97)}
     line-height:1.5;
 }
 
-.reason-card.open .reason-hidden{display:block}
-.reason-card.open .reason-front{font-size:19px}
+.reason-card.open .reason-hidden{
+    display:block;
+}
+
+.reason-card.open .reason-front{
+    font-size:19px;
+}
+
+
+/* =========================
+   MEMORY TIMELINE
+========================= */
 
 .timeline{
     position:relative;
@@ -355,9 +539,14 @@ button:active{transform:scale(.97)}
     position:absolute;
     left:11px;
     top:4px;
-    width:25px;height:25px;
+
+    width:25px;
+    height:25px;
+
     border-radius:50%;
+
     background:#df4e83;
+
     box-shadow:
     0 0 0 7px rgba(223,78,131,.12),
     0 0 20px rgba(223,78,131,.3);
@@ -369,21 +558,40 @@ button:active{transform:scale(.97)}
     margin-bottom:6px;
 }
 
-.timeline-item p{font-size:16px;margin:0}
+.timeline-item p{
+    font-size:16px;
+    margin:0;
+}
+
+
+/* =========================
+   FLOWER GARDEN
+========================= */
 
 .garden{
     min-height:260px;
     position:relative;
+
     margin:25px auto;
+
     border-radius:28px;
+
     overflow:hidden;
-    background:linear-gradient(#dff6ff 0 55%,#bce99d 55% 100%);
+
+    background:
+    linear-gradient(
+        #dff6ff 0 55%,
+        #bce99d 55% 100%
+    );
+
     border:3px solid rgba(255,255,255,.8);
 }
 
 .garden-ground{
     position:absolute;
-    bottom:0;left:0;right:0;
+    bottom:0;
+    left:0;
+    right:0;
     height:45%;
     background:
     radial-gradient(circle,#86c86d 0 5%,transparent 6%) 0 0/40px 35px,
@@ -393,19 +601,41 @@ button:active{transform:scale(.97)}
 .flower{
     position:absolute;
     bottom:55px;
+
     font-size:0;
+
     animation:flowerGrow .7s ease forwards;
 }
 
-.flower::after{content:"🌷";font-size:42px}
-.flower:nth-child(2)::after{content:"🌹"}
-.flower:nth-child(3)::after{content:"🌻"}
-.flower:nth-child(4)::after{content:"🌸"}
-.flower:nth-child(5)::after{content:"🌷"}
+.flower::after{
+    content:"🌷";
+    font-size:42px;
+}
+
+.flower:nth-child(2)::after{
+    content:"🌹";
+}
+
+.flower:nth-child(3)::after{
+    content:"🌻";
+}
+
+.flower:nth-child(4)::after{
+    content:"🌸";
+}
+
+.flower:nth-child(5)::after{
+    content:"🌷";
+}
 
 @keyframes flowerGrow{
-    from{transform:scale(0) translateY(40px)}
-    to{transform:scale(1) translateY(0)}
+    from{
+        transform:scale(0) translateY(40px);
+    }
+
+    to{
+        transform:scale(1) translateY(0);
+    }
 }
 
 .garden-message{
@@ -414,20 +644,38 @@ button:active{transform:scale(.97)}
     font-weight:bold;
 }
 
+
+/* =========================
+   BILLA JERRY GAME
+========================= */
+
 .game-area{
     position:relative;
+
     height:300px;
+
     max-width:750px;
+
     margin:25px auto;
+
     overflow:hidden;
+
     border-radius:25px;
-    background:linear-gradient(#dff5ff,#fff2f8);
+
+    background:
+    linear-gradient(
+        #dff5ff,
+        #fff2f8
+    );
+
     border:2px solid white;
 }
 
 .game-ground{
     position:absolute;
-    bottom:0;left:0;right:0;
+    bottom:0;
+    left:0;
+    right:0;
     height:55px;
     background:#9bd77d;
 }
@@ -436,7 +684,9 @@ button:active{transform:scale(.97)}
     position:absolute;
     bottom:45px;
     left:30px;
+
     font-size:52px;
+
     transition:.15s;
 }
 
@@ -444,12 +694,18 @@ button:active{transform:scale(.97)}
     position:absolute;
     font-size:30px;
     cursor:pointer;
+
     animation:heartBounce 1s infinite alternate;
 }
 
 @keyframes heartBounce{
-    from{transform:translateY(0)}
-    to{transform:translateY(-12px)}
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-12px);
+    }
 }
 
 .game-result{
@@ -459,377 +715,313 @@ button:active{transform:scale(.97)}
     margin-top:15px;
 }
 
+
 /* =========================
-   SECRET CODE
+   GIFT BOX
 ========================= */
 
-.code-box{
-    max-width:520px;
-    margin:25px auto;
+.gift-wrap{
+    margin:30px auto;
+    width:180px;
+    height:180px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
 }
 
-.code-input{
+.gift{
+    position:relative;
+
+    width:130px;
+    height:105px;
+
+    background:linear-gradient(135deg,#e74d83,#f486ac);
+
+    border-radius:10px;
+
+    box-shadow:0 20px 35px rgba(160,30,80,.25);
+
+    transition:.5s;
+}
+
+.gift::before{
+    content:"";
+
+    position:absolute;
+
+    left:52px;
+    top:-18px;
+
+    width:27px;
+    height:123px;
+
+    background:#ffd75e;
+
+    border-radius:5px;
+}
+
+.gift::after{
+    content:"";
+
+    position:absolute;
+
+    left:-8px;
+    top:22px;
+
+    width:146px;
+    height:25px;
+
+    background:#ffd75e;
+
+    border-radius:5px;
+}
+
+.gift.open{
+    transform:translateY(25px) scale(.9) rotate(5deg);
+}
+
+.gift-open-message{
+    display:none;
+    font-size:20px;
+    color:#c42e69;
+    font-weight:bold;
+}
+
+.gift-open-message.show{
+    display:block;
+    animation:pageIn .6s ease;
+}
+
+
+/* =========================
+   TRUCK
+========================= */
+
+.delivery-box{
+    display:none;
+    margin-top:25px;
+}
+
+.delivery-area{
+    position:relative;
+
+    height:170px;
+
+    margin:25px auto;
+
+    max-width:750px;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    background:linear-gradient(#dff6ff,#fff5fa);
+
+    border:2px solid rgba(255,255,255,.8);
+}
+
+.road{
+    position:absolute;
+
+    bottom:25px;
+    left:0;
+    right:0;
+
+    height:35px;
+
+    background:#6e6570;
+}
+
+.road::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    top:15px;
+
+    height:4px;
+
+    background:
+    repeating-linear-gradient(
+        to right,
+        #fff 0 45px,
+        transparent 45px 80px
+    );
+}
+
+.truck{
+    position:absolute;
+
+    bottom:55px;
+    left:-150px;
+
+    font-size:75px;
+
+    transform:scaleX(-1);
+
+    transition:
+    left 3.8s cubic-bezier(.15,.8,.25,1);
+}
+
+.truck.go{
+    left:calc(95% - 80px);
+}
+
+.delivery-progress{
+    font-size:22px;
+    font-weight:bold;
+    color:#c52f68;
+}
+
+
+/* =========================
+   ANSWER BOX
+========================= */
+
+.answer-box{
+    max-width:500px;
+    margin:25px auto 0;
+}
+
+.answer-input{
     width:100%;
-    padding:18px 20px;
+
+    padding:17px 20px;
+
     border:2px solid #edabc3;
+
     border-radius:18px;
+
     outline:none;
-    font-size:24px;
+
+    font-size:22px;
+
     text-align:center;
-    letter-spacing:7px;
+
     background:#fffafd;
+
     color:#70243f;
 }
 
-.code-input:focus{
+.answer-input:focus{
     border-color:#d84278;
-    box-shadow:0 0 0 4px rgba(216,66,120,.1);
+
+    box-shadow:
+    0 0 0 4px
+    rgba(216,66,120,.1);
 }
 
-.code-status{
-    min-height:35px;
+.lock-status{
     margin-top:18px;
-    font-weight:bold;
-    color:#b72e64;
-}
-
-.code-hint{
-    margin-top:12px;
-    color:#9b4669;
-    font-size:15px;
-}
-
-/* =========================
-   FUN PAGES
-========================= */
-
-.challenge-box{
-    max-width:650px;
-    margin:25px auto;
-    padding:25px;
-    border-radius:25px;
-    background:linear-gradient(145deg,#fff0f6,#ffe0ec);
-}
-
-.reaction{
-    font-size:75px;
-    margin:20px 0;
-    transition:.25s;
-}
-
-.reaction.pop{
-    animation:pop .5s ease;
-}
-
-@keyframes pop{
-    50%{transform:scale(1.35) rotate(8deg)}
-}
-
-.tap-button{
-    font-size:20px;
-    padding:18px 32px;
-}
-
-.score{
     font-size:22px;
     font-weight:bold;
-    color:#bd3169;
-    margin-top:15px;
 }
 
-.heart-rain{
-    position:relative;
-    height:260px;
-    overflow:hidden;
-    margin:20px auto;
-    border-radius:25px;
-    background:linear-gradient(#fff2f8,#ffe1ed);
+.chance-text{
+    margin-top:12px;
+    font-size:17px;
+    color:#9b4669;
 }
 
-.rain-heart{
-    position:absolute;
-    top:-50px;
-    font-size:30px;
-    animation:rainFall 2.5s linear forwards;
+.wrong-message{
+    display:none;
+
+    margin:25px auto 0;
+
+    padding:20px;
+
+    border-radius:20px;
+
+    background:rgba(255,213,225,.8);
+
+    animation:shake .45s ease;
 }
 
-@keyframes rainFall{
-    to{
-        transform:translateY(330px) rotate(360deg);
-        opacity:0;
+@keyframes shake{
+    0%,100%{
+        transform:translateX(0);
+    }
+
+    25%{
+        transform:translateX(-8px);
+    }
+
+    75%{
+        transform:translateX(8px);
     }
 }
 
-/* =========================
-   FINAL CAKE
-========================= */
-
-.cake-stage{
-    position:relative;
-    width:min(420px,100%);
-    height:330px;
-    margin:25px auto 10px;
-    display:flex;
-    justify-content:center;
-    align-items:flex-end;
-}
-
-.cake{
-    position:relative;
-    width:280px;
-    height:210px;
-    cursor:default;
-    transform-origin:center bottom;
-}
-
-.cake-shadow{
-    position:absolute;
-    bottom:0;
-    left:10px;
-    width:260px;
-    height:22px;
-    border-radius:50%;
-    background:rgba(120,35,70,.18);
-    filter:blur(6px);
-}
-
-.cake-bottom{
-    position:absolute;
-    bottom:20px;
-    left:20px;
-    width:240px;
-    height:82px;
-    border-radius:14px 14px 28px 28px;
-    background:linear-gradient(#d94d7f,#b92f62);
-    box-shadow:0 15px 25px rgba(150,30,80,.2);
-}
-
-.cake-middle{
-    position:absolute;
-    bottom:78px;
-    left:32px;
-    width:216px;
-    height:65px;
-    border-radius:13px 13px 22px 22px;
-    background:linear-gradient(#ff8fb5,#e45a8b);
-}
-
-.cake-top{
-    position:absolute;
-    bottom:126px;
-    left:25px;
-    width:230px;
-    height:58px;
-    border-radius:50%;
-    background:#fff8fb;
-    box-shadow:inset 0 -9px 0 #ffd5e4;
-}
-
-.cake-cream-drip{
-    position:absolute;
-    bottom:104px;
-    left:45px;
-    width:190px;
-    height:42px;
-    background:#fff;
-    border-radius:0 0 22px 22px;
-    z-index:4;
-}
-
-.cake-cream-drip span{
-    position:absolute;
-    bottom:-14px;
-    width:24px;
-    height:30px;
-    border-radius:0 0 15px 15px;
-    background:#fff;
-}
-
-.cake-cream-drip span:nth-child(1){left:20px}
-.cake-cream-drip span:nth-child(2){left:75px;height:40px}
-.cake-cream-drip span:nth-child(3){left:135px;height:25px}
-
-.candle{
-    position:absolute;
-    bottom:160px;
-    width:16px;
-    height:55px;
-    border-radius:5px;
-    background:repeating-linear-gradient(
-        135deg,
-        #ffd75e 0 8px,
-        #fff 8px 15px
-    );
-    z-index:8;
-}
-
-.candle:nth-of-type(1){left:65px}
-.candle:nth-of-type(2){left:105px}
-.candle:nth-of-type(3){left:145px}
-.candle:nth-of-type(4){left:185px}
-
-.flame{
-    position:absolute;
-    left:50%;
-    top:-30px;
-    transform:translateX(-50%);
-    width:17px;
-    height:27px;
-    border-radius:50% 50% 50% 10%;
-    background:linear-gradient(#fff58b,#ff9d31);
-    box-shadow:0 0 18px #ff9d31;
-    transform-origin:center bottom;
-    animation:flame  .45s infinite alternate;
-}
-
-@keyframes flame{
-    from{transform:translateX(-50%) scale(1) rotate(-3deg)}
-    to{transform:translateX(-50%) scale(1.12,.9) rotate(4deg)}
-}
-
-.candle.off .flame{
-    display:none;
-}
-
-.cake-cut-line{
-    position:absolute;
-    top:88px;
-    left:140px;
-    width:5px;
-    height:105px;
-    border-radius:5px;
-    background:rgba(120,35,70,.25);
-    opacity:0;
-    z-index:20;
-}
-
-.cake.cut .cake-cut-line{
-    opacity:1;
-    animation:cutLine .7s ease;
-}
-
-@keyframes cutLine{
-    from{height:0}
-    to{height:105px}
-}
-
-.cake.cut .cake-bottom{
-    animation:cakeSplitLeft .9s ease forwards;
-}
-
-.cake.cut .cake-middle,
-.cake.cut .cake-top,
-.cake.cut .cake-cream-drip{
-    animation:cakeSplitRight .9s ease forwards;
-}
-
-@keyframes cakeSplitLeft{
-    to{transform:translateX(-24px) rotate(-2deg)}
-}
-
-@keyframes cakeSplitRight{
-    to{transform:translateX(24px) rotate(2deg)}
-}
-
-.knife{
-    position:absolute;
-    right:18px;
-    bottom:55px;
-    width:110px;
-    height:55px;
-    cursor:pointer;
-    z-index:40;
-    transform:rotate(-28deg);
-    transition:.3s;
-    filter:drop-shadow(0 8px 8px rgba(90,20,50,.18));
-}
-
-.knife:hover{
-    transform:rotate(-28deg) translateY(-7px) scale(1.04);
-}
-
-.knife-blade{
-    position:absolute;
-    left:0;
-    top:10px;
-    width:72px;
-    height:25px;
-    background:linear-gradient(145deg,#fff,#bfc4cb);
-    clip-path:polygon(0 0,100% 0,82% 100%,0 100%);
-    border-radius:5px 2px 2px 5px;
-}
-
-.knife-handle{
-    position:absolute;
-    right:0;
-    top:6px;
-    width:45px;
-    height:34px;
-    border-radius:7px 12px 12px 7px;
-    background:linear-gradient(#54233d,#321525);
-}
-
-.knife-label{
-    font-size:15px;
-    color:#9b4669;
-    margin-top:8px;
-}
-
-.cake-message{
-    display:none;
-    margin:20px auto;
-    max-width:650px;
-    padding:22px;
-    border-radius:22px;
-    background:linear-gradient(145deg,#fff0f6,#ffe0ec);
-    color:#c42e69;
-    font-weight:bold;
-    font-size:20px;
-    line-height:1.7;
-}
-
-.cake-message.show{
-    display:block;
-    animation:pageIn .7s ease;
-}
-
-.cut-instruction{
-    color:#9b4669;
-    font-weight:bold;
-}
 
 /* =========================
-   GLITCH / FINAL
+   GLITCH
 ========================= */
 
 .glitch-screen{
     display:none;
+
     position:fixed;
+
     inset:0;
+
     z-index:999;
+
     background:#180814;
+
     color:#ff75aa;
+
     align-items:center;
+
     justify-content:center;
+
     text-align:center;
+
     padding:25px;
 }
 
-.glitch-screen.show{display:flex}
+.glitch-screen.show{
+    display:flex;
+}
 
 .glitch-text{
     font-family:monospace;
+
     font-size:clamp(24px,6vw,60px);
+
     animation:glitch .15s infinite;
 }
 
 @keyframes glitch{
-    0%{transform:translate(0)}
-    25%{transform:translate(-3px,2px)}
-    50%{transform:translate(3px,-2px)}
-    75%{transform:translate(-2px,-1px)}
-    100%{transform:translate(0)}
+    0%{
+        transform:translate(0);
+    }
+
+    25%{
+        transform:translate(-3px,2px);
+    }
+
+    50%{
+        transform:translate(3px,-2px);
+    }
+
+    75%{
+        transform:translate(-2px,-1px);
+    }
+
+    100%{
+        transform:translate(0);
+    }
 }
+
+
+/* =========================
+   FINAL EFFECTS
+========================= */
 
 .final-heart{
     font-size:55px;
@@ -838,83 +1030,302 @@ button:active{transform:scale(.97)}
 }
 
 @keyframes heartbeat{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.2)}
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.2);
+    }
 }
 
 .confetti{
     position:fixed;
     top:-20px;
     z-index:2000;
+
     pointer-events:none;
+
     animation:confettiFall 3s linear forwards;
 }
 
 @keyframes confettiFall{
     to{
-        transform:translateY(110vh) rotate(720deg);
+        transform:
+        translateY(110vh)
+        rotate(720deg);
+
         opacity:0;
     }
 }
 
-@keyframes shake{
-    0%,100%{transform:translateX(0)}
-    25%{transform:translateX(-8px)}
-    75%{transform:translateX(8px)}
+
+/* =========================
+   CAKE
+========================= */
+
+.cake-area{
+    margin:30px auto;
 }
 
+.cake{
+    position:relative;
+
+    width:210px;
+    height:120px;
+
+    margin:auto;
+
+    cursor:pointer;
+}
+
+.cake-base{
+    position:absolute;
+
+    bottom:0;
+    left:10px;
+
+    width:190px;
+    height:75px;
+
+    background:linear-gradient(#ef6f9d,#d94178);
+
+    border-radius:
+    15px 15px 25px 25px;
+
+    box-shadow:
+    0 15px 25px rgba(150,30,80,.2);
+}
+
+.cake-cream{
+    position:absolute;
+
+    bottom:60px;
+    left:20px;
+
+    width:170px;
+    height:35px;
+
+    background:#fff;
+
+    border-radius:50%;
+}
+
+.candle{
+    position:absolute;
+
+    bottom:90px;
+
+    width:12px;
+    height:40px;
+
+    background:#ffd75e;
+
+    border-radius:4px;
+}
+
+.candle::before{
+    content:"🔥";
+
+    position:absolute;
+
+    top:-30px;
+    left:-5px;
+
+    font-size:20px;
+}
+
+.candle:nth-child(1){
+    left:45px;
+}
+
+.candle:nth-child(2){
+    left:75px;
+}
+
+.candle:nth-child(3){
+    left:105px;
+}
+
+.candle:nth-child(4){
+    left:135px;
+}
+
+.candle:nth-child(5){
+    left:165px;
+}
+
+.cake.blown .candle::before{
+    content:"";
+}
+
+.cake-message{
+    display:none;
+
+    margin-top:20px;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:#c42e69;
+}
+
+.cake-message.show{
+    display:block;
+    animation:pageIn .7s ease;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:600px){
-    .header{height:58px}
-    #pages{padding-top:58px}
+
+    .header{
+        height:58px;
+    }
+
+    #pages{
+        padding-top:58px;
+    }
+
     .page{
         min-height:calc(100vh - 58px);
         padding:30px 10px 50px;
     }
+
     .card{
         padding:28px 18px;
         border-radius:23px;
     }
-    .big-number{font-size:85px}
-    .header-title{max-width:65%}
-    .back-button{padding:7px 11px;font-size:12px}
-    .reason-grid{grid-template-columns:1fr}
-    .game-area{height:250px}
-    .cake-stage{transform:scale(.88);transform-origin:center}
-    .knife{right:0}
+
+    .big-number{
+        font-size:85px;
+    }
+
+    .header-title{
+        max-width:65%;
+    }
+
+    .back-button{
+        padding:7px 11px;
+        font-size:12px;
+    }
+
+    .reason-grid{
+        grid-template-columns:1fr;
+    }
+
+    .game-area{
+        height:250px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
+
+<!-- =========================
+     CINEMATIC INTRO
+========================= -->
+
 <div class="intro-overlay" id="introOverlay">
+
     <div class="intro-content">
-        <div class="intro-small">CLASSIFIED PERSONAL MISSION</div>
-        <div class="intro-title">OPERATION JERRY ❤️</div>
-        <div class="intro-heart">🥹❤️</div>
-        <div class="intro-loading">INITIALIZING LOVE FILE...</div>
+
+        <div class="intro-small">
+            CLASSIFIED PERSONAL MISSION
+        </div>
+
+        <div class="intro-title">
+            OPERATION JERRY ❤️
+        </div>
+
+        <div class="intro-heart">
+            🥹❤️
+        </div>
+
+        <div class="intro-loading">
+            INITIALIZING LOVE FILE...
+        </div>
+
     </div>
+
 </div>
+
+
+<!-- =========================
+     BACKGROUND
+========================= -->
 
 <div class="background" id="background"></div>
 
-<header class="header">
-    <div class="header-title" id="headerTitle">OPERATION JERRY ❤️</div>
 
-    <button class="back-button" id="backButton" onclick="previousPage()">
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div
+        class="header-title"
+        id="headerTitle"
+    >
+        OPERATION JERRY ❤️
+    </div>
+
+
+    <button
+        class="back-button"
+        id="backButton"
+        onclick="previousPage()"
+    >
         ← BACK
     </button>
+
 </header>
 
-<button class="music-button" onclick="toggleMusic()" id="musicButton">🎵</button>
+
+<!-- MUSIC CONTROL -->
+
+<button
+    class="music-button"
+    onclick="toggleMusic()"
+    id="musicButton"
+>
+    🎵
+</button>
+
+
+<!-- =========================
+     ALL PAGES
+========================= -->
 
 <div id="pages">
 
+
 <!-- PAGE 1 -->
-<section class="page active" data-title="OPERATION JERRY ❤️">
+
+<section
+class="page active"
+data-title="OPERATION JERRY ❤️"
+>
+
 <div class="card">
-<div class="page-label">PAGE 1 — START</div>
-<h1>OPERATION JERRY ❤️</h1>
+
+<div class="page-label">
+PAGE 1 — START
+</div>
+
+<h1>
+OPERATION JERRY ❤️
+</h1>
 
 <div class="subtitle">
 A PRIVATE MISSION CREATED BY 2 Number Admi
@@ -932,17 +1343,35 @@ Jery ke liye ek secret journey banayi gayi hai...
 Warning: Is mission mein memories, emotions, flowers aur Tom ki thori si Funny 😂 included hai.
 </p>
 
-<button onclick="nextPage()">START MISSION ❤️</button>
+<button onclick="nextPage()">
+START MISSION ❤️
+</button>
+
 </div>
+
 </section>
 
-<!-- PAGE 2 -->
-<section class="page" data-title="CHAPTER 01 — A SPECIAL GIRL 🌷">
-<div class="card">
-<div class="page-label">PAGE 2 — INTRO</div>
-<h2>CHAPTER 01 — A SPECIAL GIRL 🌷</h2>
 
-<h3>THE MOST SPECIAL PERSON ❤️</h3>
+<!-- PAGE 2 -->
+
+<section
+class="page"
+data-title="CHAPTER 01 — A SPECIAL GIRL 🌷"
+>
+
+<div class="card">
+
+<div class="page-label">
+PAGE 2 — INTRO
+</div>
+
+<h2>
+CHAPTER 01 — A SPECIAL GIRL 🌷
+</h2>
+
+<h3>
+THE MOST SPECIAL PERSON ❤️
+</h3>
 
 <p>
 Jerry...
@@ -954,17 +1383,35 @@ Kabhi kabhi koi person life mein aata hai aur pata hi nahi chalta ke woh kab itn
 Bas phir uski smile important lagti hai, uski khushi important lagti hai, aur uska udaas hona personally feel hone lagta hai. ❤️
 </p>
 
-<button onclick="nextPage()">CONTINUE →</button>
+<button onclick="nextPage()">
+CONTINUE →
+</button>
+
 </div>
+
 </section>
 
-<!-- PAGE 3 -->
-<section class="page" data-title="CHAPTER 02 — AGE VERIFIED 🎂">
-<div class="card">
-<div class="page-label">PAGE 3 — 20 YEARS</div>
-<h2>CHAPTER 02 — AGE VERIFIED 🎂</h2>
 
-<div class="big-number">20</div>
+<!-- PAGE 3 -->
+
+<section
+class="page"
+data-title="CHAPTER 02 — AGE VERIFIED 🎂"
+>
+
+<div class="card">
+
+<div class="page-label">
+PAGE 3 — 20 YEARS
+</div>
+
+<h2>
+CHAPTER 02 — AGE VERIFIED 🎂
+</h2>
+
+<div class="big-number">
+20
+</div>
 
 <p>
 Madam officially 20 ki ho gayi hain. 😭😂
@@ -976,37 +1423,73 @@ Aur Shreefness?
 Woh update baad mein install kar lenge. 😂
 </p>
 
-<button onclick="nextPage()">NEXT CHAPTER →</button>
+<button onclick="nextPage()">
+NEXT CHAPTER →
+</button>
+
 </div>
+
 </section>
 
-<!-- PAGE 4 -->
-<section class="page" data-title="CHAPTER 03 — FIRST MEMORY 🌷">
-<div class="card">
-<div class="page-label">PAGE 4 — MERA PEHLA NAZAR KA PIYAAR</div>
-<h2>CHAPTER 03 — FIRST MEMORY 🌷</h2>
 
-<h3>DOODH PILAYI KI RASAM 🥛❤️</h3>
+<!-- PAGE 4 -->
+
+<section
+class="page"
+data-title="CHAPTER 03 — FIRST MEMORY 🌷"
+>
+
+<div class="card">
+
+<div class="page-label">
+PAGE 4 — MERA PEHLA NAZAR KA PIYAAR
+</div>
+
+<h2>
+CHAPTER 03 — FIRST MEMORY 🌷
+</h2>
+
+<h3>
+DOODH PILAYI  KI RASAM🥛❤️
+</h3>
 
 <p>
-Apko yad hai Jab aap doodh pilayi ki rasam ke liye aayi thi, shayad aapko bilkul idea nahi tha ke aik billa aapko itni gaur se dekh raha tha Taaar raha hai mera to man kar raha tha main bhi wahi apky sath nikkah parwa lon but fir yad aya jeery nakroo wali abhi kahan kary gi boly gi bmw laow phely meri 👀
+Apko yad hai Jab aap doodh pilayi ki rasam ke liye aayi thi, shayad aapko bilkul idea nahi tha ke aik billa aapko itni gaur se dekh raha tha Taaar raha hai mera to man kar raha tha main bhi wahi apky sath nikkah parwa lon but fir yad aya jeery nakroo wali abhi kahan kary gi boly gi bmw laow phely meri👀
 
 Moment chhota tha... lekin feeling chhoti nahi thi.
 
 Kabhi kabhi koi person casually saamne aata hai, aur dil us moment ko casually nahi leta ap wo moment hu mery liye jo mera dil main agaye tab mujhy bhi nhi pta tha piyaar hugia apsy hehe but hugia tha or ap khabi nikli nhi mery andar sy❤️
 </p>
 
-<button onclick="nextPage()">UNLOCK NEXT →</button>
+<button onclick="nextPage()">
+UNLOCK NEXT →
+</button>
+
 </div>
+
 </section>
 
-<!-- PAGE 5 -->
-<section class="page" data-title="CHAPTER 04 — LAHORE KA TOUR 🌙">
-<div class="card">
-<div class="page-label">PAGE 5 — HAMARA STORY KA START</div>
-<h2>CHAPTER 04 — LAHORE KA TOUR 🌙</h2>
 
-<h3>THE THING BILLA COULDN'T SAY</h3>
+<!-- PAGE 5 -->
+
+<section
+class="page"
+data-title="CHAPTER 04 — LAHORE KA TOUR 🌙"
+>
+
+<div class="card">
+
+<div class="page-label">
+PAGE 5 — HAMARA STORY KA START
+</div>
+
+<h2>
+CHAPTER 04 — LAHORE KA TOUR 🌙
+</h2>
+
+<h3>
+THE THING BILLA COULDN'T SAY
+</h3>
 
 <p>
 BILLA jan bhooj kar Lahore aaya tha... aapke paas.
@@ -1022,17 +1505,35 @@ Fir apun ka wapsi ka time agia apun jaty jaty bhi apna mazy dar jeery ko tar rah
 Aur phir message kar hi diya. ❤️
 </p>
 
-<button onclick="nextPage()">CONTINUE →</button>
+<button onclick="nextPage()">
+CONTINUE →
+</button>
+
 </div>
+
 </section>
 
-<!-- PAGE 6 -->
-<section class="page" data-title="CHAPTER 05 — STORY STARTED BY BOTH SIDES ❤️">
-<div class="card">
-<div class="page-label">PAGE 6 — 1 JANUARY</div>
-<h2>CHAPTER 05 — STORY STARTED BY BOTH SIDES ❤️</h2>
 
-<h3>THE DAY IT OUR RELATIONSHIP START</h3>
+<!-- PAGE 6 -->
+
+<section
+class="page"
+data-title="CHAPTER 05 — STORY STARTED BY BOTH SIDES❤️"
+>
+
+<div class="card">
+
+<div class="page-label">
+PAGE 6 — 1 JANUARY
+</div>
+
+<h2>
+CHAPTER 05 — STORY STARTED BY BOTH SIDES❤️
+</h2>
+
+<h3>
+THE DAY IT OUR RELATIONSHIP START
+</h3>
 
 <p>
 Jo feeling pehle sirf BILLA ke dil mein thi wo billa apko bta dia apny bary nakry shakry dekhyie at the end kand shand karny ky bad dono ghr pta lagny ky bad 1st ko apni bat start hu hi gayi or khani dono trafa start hoi yahan
@@ -1042,17 +1543,35 @@ Jo feeling pehle sirf BILLA ke dil mein thi wo billa apko bta dia apny bary nakr
 Ye woh date hai jahan “main” aur “aap” ki jagah “hum” ka concept start hua. ❤️
 </p>
 
-<button onclick="nextPage()">NEXT →</button>
+<button onclick="nextPage()">
+NEXT →
+</button>
+
 </div>
+
 </section>
 
-<!-- PAGE 7 -->
-<section class="page" data-title="CHAPTER 06 — LOVING DAYS ❤️">
-<div class="card">
-<div class="page-label">PAGE 7 — 9 MONTHS COMPLETED</div>
-<h2>CHAPTER 06 — LOVING DAYS ❤️</h2>
 
-<h3>OUR TIMELINE</h3>
+<!-- PAGE 7 -->
+
+<section
+class="page"
+data-title="CHAPTER 06 — LOVING DAYS ❤️"
+>
+
+<div class="card">
+
+<div class="page-label">
+PAGE 7 — 9 MONTHS COMPLETED
+</div>
+
+<h2>
+CHAPTER 06 — LOVING DAYS ❤️
+</h2>
+
+<h3>
+OUR TIMELINE
+</h3>
 
 <p>
 FIRST: Ek feeling... 🥹
@@ -1068,75 +1587,115 @@ TODAY: 9 months + countless memories.
 Har din perfect nahi tha... lekin har din ne kuch beautiful add kiya.
 </p>
 
-<button onclick="nextPage()">OPEN HER FILE →</button>
+<button onclick="nextPage()">
+OPEN HER FILE →
+</button>
+
 </div>
+
 </section>
 
+
 <!-- PAGE 8 -->
-<section class="page" data-title="CHAPTER 07 — JERRY'S FAV THINGS FILE 🌷">
+
+<section
+class="page"
+data-title="CHAPTER 07 — JERRY'S FAV THINGS FILE 🌷"
+>
+
 <div class="card">
-<div class="page-label">PAGE 8 — FAVOURITES</div>
-<h2>CHAPTER 07 — JERRY'S FAV THINGS FILE 🌷</h2>
+
+<div class="page-label">
+PAGE 8 — FAVOURITES
+</div>
+
+<h2>
+CHAPTER 07 — JERRY'S FAV THINGS FILE 🌷
+</h2>
 
 <div class="favourites">
 
 <div class="favourite">
-<strong>🏎️ BMW M4 Competition</strong>
+<strong>
+🏎️ BMW M4 Competition
+</strong>
 Aik din ye bhi aye ga ham dono hamari car main hungy inshaAllah
 </div>
 
 <div class="favourite">
-<strong>🚘 Mark X</strong>
+<strong>
+🚘 Mark X
+</strong>
 Bmw na mili to mark x main ghoomi karlein gy hehe
 </div>
 
 <div class="favourite">
-<strong>🖤 Black</strong>
+<strong>
+🖤 Black
+</strong>
 Ye to main hu mtlb ap meko pasend karti ahn naughty naughty
 </div>
 
 <div class="favourite">
-<strong>🤍 White</strong>
+<strong>
+🤍 White
+</strong>
 Ary ye to meri muhtarma ka dil hai pure white aye hayee meri piyaari masoom si muhtarma jiska dil log tod dety hain
 </div>
 
 <div class="favourite">
-<strong>🍛 Biryani</strong>
+<strong>
+🍛 Biryani
+</strong>
 Ye to ham bna bna kar khilyein gy aik dujy ko
 </div>
 
 <div class="favourite">
-<strong>🍚 Kheer</strong>
+<strong>
+🍚 Kheer
+</strong>
 Pehly sirf apko pasend thi ab billa bhi plate tak chat jata Hehe
 </div>
 
 <div class="favourite">
-<strong>🌹 Roses</strong>
+<strong>
+🌹 Roses
+</strong>
 Ainki ab kia zaroorat ap mirror dekha karoow gulab ka phool dik jaye ga baee
 </div>
 
 <div class="favourite">
-<strong>🌷 Tulips</strong>
+<strong>
+🌷 Tulips
+</strong>
 Aik din ham apna ghr main flowers hi flowers kardein gy sary apky favorite phools bhar dalein gy
 </div>
 
 <div class="favourite">
-<strong>🌻 Sunflowers</strong>
+<strong>
+🌻 Sunflowers
+</strong>
 Ahm ahm sun flowers mtlb meri baby ka bat horaha jo gussa main garam hoti to sun lagti or cuteness main to flower hai to kia bna meri sun flower
 </div>
 
 <div class="favourite">
-<strong>🍫 Chocolate</strong>
+<strong>
+🍫 Chocolate
+</strong>
 Ary bhayyia agar Allah ny itna Dia to pura factory khol dein gy coclates ka apky liye
 </div>
 
 <div class="favourite">
-<strong>🏔️ Northern Areas</strong>
+<strong>
+🏔️ Northern Areas
+</strong>
 Yahan ham sath main ghomein gy yahan apna ghr bnayein gy inshaAllah ye to ham krein gy bhai hamara baby ka fav jagan hai ye inshaAllah Allah sy bara kuch nhi wo dy gaaa
 </div>
 
 <div class="favourite">
-<strong>💌 Love & Memories</strong>
+<strong>
+💌 Love & Memories
+</strong>
 Most important
 </div>
 
@@ -1148,17 +1707,35 @@ Funny coincidence:
 In mein se sab hi cheezein billa ko bhi pasand hain. 👀❤️
 </p>
 
-<button onclick="nextPage()">NEXT FILE →</button>
+<button onclick="nextPage()">
+NEXT FILE →
+</button>
+
 </div>
+
 </section>
 
-<!-- PAGE 9 -->
-<section class="page" data-title="CHAPTER 08 — WARNING ⚠️">
-<div class="card">
-<div class="page-label">PAGE 9 — JEERY KI BIMARYIAN 🤒</div>
-<h2>CHAPTER 08 — WARNING ⚠️</h2>
 
-<h3>OVERTHINKING DETECTED 😭</h3>
+<!-- PAGE 9 -->
+
+<section
+class="page"
+data-title="CHAPTER 08 — WARNING ⚠️"
+>
+
+<div class="card">
+
+<div class="page-label">
+PAGE 9 — JEERY KI BIMARYIAN 🤒
+</div>
+
+<h2>
+CHAPTER 08 — WARNING ⚠️
+</h2>
+
+<h3>
+OVERTHINKING DETECTED 😭
+</h3>
 
 <p>
 Jerry please chhoti chhoti baaton ko apne dil ka permanent resident na banaya karein. 😭😂
@@ -1182,17 +1759,35 @@ Aur agar overthinking phir bhi na ruke...
 Billa ko bula lena sath royien gy baeee. 😂
 </p>
 
-<button onclick="nextPage()">CONTINUE ❤️</button>
+<button onclick="nextPage()">
+CONTINUE ❤️
+</button>
+
 </div>
+
 </section>
 
-<!-- PAGE 10 -->
-<section class="page" data-title="CHAPTER 09 — DREAMS 🏔️">
-<div class="card">
-<div class="page-label">PAGE 10 — DREAMS</div>
-<h2>CHAPTER 09 — DREAMS 🏔️</h2>
 
-<h3>DREAMS DATABASE ✨</h3>
+<!-- PAGE 10 -->
+
+<section
+class="page"
+data-title="CHAPTER 09 — DREAMS 🏔️"
+>
+
+<div class="card">
+
+<div class="page-label">
+PAGE 10 — DREAMS
+</div>
+
+<h2>
+CHAPTER 09 — DREAMS 🏔️
+</h2>
+
+<h3>
+DREAMS DATABASE ✨
+</h3>
 
 <p>
 Billa dil se chahta hai ke Jerry ki zindagi mein woh har khushi aaye jiski usne kabhi dua ki ho. 🤲🏻
@@ -1210,17 +1805,35 @@ Dream it. Work for it. Live it. ❤️
 Jahan tak billa ke bas mein hua, Jerry ke dreams ko poora karne mein saath dunga or ye nhi hai ky jeery kam kary to hi sab mily ga billa akela bhi karky sab khawab pury kary ga apka.
 </p>
 
-<button onclick="nextPage()">NEXT →</button>
+<button onclick="nextPage()">
+NEXT →
+</button>
+
 </div>
+
 </section>
 
-<!-- PAGE 11 -->
-<section class="page" data-title="CHAPTER 10 — PROMISE KARYIEE BILLA SATH 🤍">
-<div class="card">
-<div class="page-label">PAGE 11 — PROMISE</div>
-<h2>CHAPTER 10 — PROMISE KARYIEE BILLA SATH 🤍</h2>
 
-<h3>ONE IMPORTANT REQUEST</h3>
+<!-- PAGE 11 -->
+
+<section
+class="page"
+data-title="CHAPTER 10 — PROMISE KARYIEE BILLA SATH🤍"
+>
+
+<div class="card">
+
+<div class="page-label">
+PAGE 11 — PROMISE
+</div>
+
+<h2>
+CHAPTER 10 — PROMISE KARYIEE BILLA SATH🤍
+</h2>
+
+<h3>
+ONE IMPORTANT REQUEST
+</h3>
 
 <p>
 Hamesha khush rehna.
@@ -1236,114 +1849,318 @@ Aur jab life difficult ho:
 Pause. Breathe. Smile. Continue.
 </p>
 
-<button onclick="nextPage()">FINAL MISSION →</button>
+<button onclick="nextPage()">
+FINAL MISSION →
+</button>
+
 </div>
+
 </section>
+
 
 <!-- PAGE 12 -->
-<section class="page" data-title="FINAL MISSION — SECRET GIFT 🎁">
-<div class="card">
-<div class="page-label">PAGE 12 — GIFT</div>
-<h2>FINAL MISSION — SECRET GIFT 🎁</h2>
 
-<h3>SECRET FILE DETECTED</h3>
-
-<div class="challenge-box">
-<div class="reaction" id="giftReaction">🎁</div>
-
-<p>
-Jerry... package wala drama cancel. 😂
-
-Ab seedha asli security gate par jana hai.
-</p>
-
-<button onclick="nextPage()">OPEN SECURITY GATE 🔐</button>
-</div>
-</div>
-</section>
-
-<!-- PAGE 13 DIRECT CODE -->
-<section class="page" data-title="CHAPTER 11 — SECRET CODE 🔐">
-<div class="card">
-
-<div class="page-label">PAGE 13 — SECURITY GATE</div>
-
-<h2>CHAPTER 11 — SECRET CODE 🔐</h2>
-
-<h3>ENTER THE SECRET CODE 👀</h3>
-
-<p>
-Ab guesses nahi. 😂❤️
-
-Seedha woh secret number enter karo jo Billa ne gift ke saath hide kiya hai.
-</p>
-
-<div class="code-box">
-
-<input
-id="codeInput"
-class="code-input"
-type="text"
-inputmode="numeric"
-maxlength="3"
-autocomplete="off"
-placeholder="•••"
+<section
+class="page"
+data-title="FINAL MISSION — PACKAGE 🎁"
 >
 
-<button onclick="checkCode()">UNLOCK ❤️</button>
-
-<div class="code-status" id="codeStatus"></div>
-
-<div class="code-hint">
-3 digit code hai... 👀
-</div>
-
-</div>
-
-</div>
-</section>
-
-<!-- PAGE 14 -->
-<section class="page" data-title="CHAPTER 12 — WHY I LOVE JERRY ❤️">
 <div class="card">
 
-<div class="page-label">SECRET FILE</div>
-<h2>CHAPTER 12 — WHY I LOVE JERRY ❤️</h2>
+<div class="page-label">
+PAGE 12 — GIFT
+</div>
 
-<p>Har card ko touch karo... 👀❤️</p>
+<h2>
+FINAL MISSION — PACKAGE 🎁
+</h2>
+
+<h3>
+INCOMING PACKAGE DETECTED
+</h3>
+
+<div
+class="gift-wrap"
+onclick="openGift()"
+>
+
+<div
+class="gift"
+id="gift"
+>
+</div>
+
+</div>
+
+<p>
+Aapke naam ka ek secret package system mein detect hua hai. 🎁
+</p>
+
+<div
+class="gift-open-message"
+id="giftOpenMessage"
+>
+PACKAGE READY ❤️
+</div>
+
+<button
+id="giftContinue"
+style="display:none"
+onclick="nextPage()"
+>
+CHECK DELIVERY →
+</button>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 13 -->
+
+<section
+class="page"
+data-title="PACKAGE VERIFICATION 🔐"
+>
+
+<div class="card">
+
+<div class="page-label">
+PAGE 13 — YES / NO
+</div>
+
+<h2>
+PACKAGE VERIFICATION 🔐
+</h2>
+
+<h3>
+GIFT RECEIVE HUA? 👀
+</h3>
+
+<p>
+Ab asli test hai, Jerry G. 😂❤️
+
+Gift receive hua ya nahi?
+</p>
+
+<div class="button-row">
+
+<button
+class="yes-button"
+onclick="yesGift()"
+>
+YES 🎁
+</button>
+
+<button
+class="no-button"
+onclick="startTruck()"
+>
+NO 🚚
+</button>
+
+</div>
+
+
+<div
+id="yesMessage"
+style="
+display:none;
+margin-top:25px;
+padding:20px;
+border-radius:20px;
+background:rgba(255,225,237,.8);
+"
+>
+
+Agar aap guesses lagana chahein to laga sakti hain... 👀❤️
+
+</div>
+
+
+<div
+class="delivery-box"
+id="deliveryBox"
+>
+
+<div class="delivery-area">
+
+<div class="road"></div>
+
+<div
+class="truck"
+id="truck"
+>
+🚚
+</div>
+
+</div>
+
+<div
+class="delivery-progress"
+id="deliveryProgress"
+>
+DELIVERY: 0%
+</div>
+
+<p id="deliveryMessage"></p>
+
+<button
+id="packageButton"
+style="display:none"
+onclick="goToPage(14)"
+>
+OPEN PACKAGE 🔐
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PAGE 14 -->
+
+<section
+class="page"
+data-title="PACKAGE ACCESS / SECRET VERIFICATION 🔐"
+>
+
+<div class="card">
+
+<div class="page-label">
+PAGE 14 — SECRET QUESTION
+</div>
+
+<h2>
+PACKAGE ACCESS / SECRET VERIFICATION 🔐
+</h2>
+
+<p>
+Gift receive ho gaya?
+
+Good.
+
+Ab ek chhota sa question. 👀
+</p>
+
+<h3>
+QUESTION:
+</h3>
+
+<p>
+Parcel mein kitne paise receive hue?
+</p>
+
+<div class="answer-box">
+
+<input
+id="answerInput"
+class="answer-input"
+type="text"
+inputmode="numeric"
+autocomplete="off"
+placeholder="Enter answer..."
+>
+
+<button
+id="lockButton"
+onclick="checkAnswer()"
+>
+LOCK 🔓
+</button>
+
+<div
+class="lock-status"
+id="lockStatus"
+>
+🔒 LOCKED
+</div>
+
+<div
+class="chance-text"
+id="chanceText"
+>
+3 CHANCES AVAILABLE
+</div>
+
+<div
+class="wrong-message"
+id="wrongMessage"
+>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- EXTRA PAGE 15 -->
+
+<section
+class="page"
+data-title="CHAPTER 11 — WHY I LOVE JERRY ❤️"
+>
+
+<div class="card">
+
+<div class="page-label">
+SECRET FILE
+</div>
+
+<h2>
+CHAPTER 11 — WHY I LOVE JERRY ❤️
+</h2>
+
+<p>
+Har card ko touch karo... 👀❤️
+</p>
 
 <div class="reason-grid">
 
 <div class="reason-card" onclick="this.classList.toggle('open')">
-<div class="reason-front">❤️ REASON #01</div>
+<div class="reason-front">
+❤️ REASON #01
+</div>
 <div class="reason-hidden">
 Tumhari smile. Bas itni si baat hai... lekin billa ka mood theek kar deti hai. 🥹❤️
 </div>
 </div>
 
 <div class="reason-card" onclick="this.classList.toggle('open')">
-<div class="reason-front">🌷 REASON #02</div>
+<div class="reason-front">
+🌷 REASON #02
+</div>
 <div class="reason-hidden">
 Tumhare nakhre... jo kabhi kabhi billa ki jaan kha jate hain 😂❤️
 </div>
 </div>
 
 <div class="reason-card" onclick="this.classList.toggle('open')">
-<div class="reason-front">🥹 REASON #03</div>
+<div class="reason-front">
+🥹 REASON #03
+</div>
 <div class="reason-hidden">
 Tumhara soft heart. ❤️
 </div>
 </div>
 
 <div class="reason-card" onclick="this.classList.toggle('open')">
-<div class="reason-front">😂 REASON #04</div>
+<div class="reason-front">
+😂 REASON #04
+</div>
 <div class="reason-hidden">
 Tumhara cute sa pagalpan. Iska koi ilaaj nahi. 😭❤️
 </div>
 </div>
 
 <div class="reason-card" onclick="this.classList.toggle('open')">
-<div class="reason-front">🫶🏻 REASON #05</div>
+<div class="reason-front">
+🫶🏻 REASON #05
+</div>
 <div class="reason-hidden">
 Bas tum. Koi explanation nahi chahiye. ❤️
 </div>
@@ -1351,179 +2168,258 @@ Bas tum. Koi explanation nahi chahiye. ❤️
 
 </div>
 
-<button onclick="nextPage()">NEXT SECRET FILE →</button>
+<button onclick="nextPage()">
+NEXT SECRET FILE →
+</button>
+
 </div>
+
 </section>
 
-<!-- PAGE 15 -->
-<section class="page" data-title="CHAPTER 13 — OUR MEMORY TIMELINE ❤️">
+
+<!-- EXTRA PAGE 16 -->
+
+<section
+class="page"
+data-title="CHAPTER 12 — OUR MEMORY TIMELINE ❤️"
+>
+
 <div class="card">
 
-<div class="page-label">MEMORY DATABASE</div>
-<h2>CHAPTER 13 — OUR MEMORY TIMELINE ❤️</h2>
+<div class="page-label">
+MEMORY DATABASE
+</div>
+
+<h2>
+CHAPTER 12 — OUR MEMORY TIMELINE ❤️
+</h2>
 
 <div class="timeline">
 
 <div class="timeline-item">
 <div class="timeline-dot"></div>
 <h4>🥛 DOODH PILAYI</h4>
-<p>Ek billa ne pehli dafa Jerry ko properly notice kiya. ❤️</p>
+<p>
+Ek billa ne pehli dafa Jerry ko properly notice kiya. ❤️
+</p>
 </div>
 
 <div class="timeline-item">
 <div class="timeline-dot"></div>
 <h4>🌙 LAHORE</h4>
-<p>Billa Lahore aaya... aur phir chamach wali legendary story ho gayi. 😂</p>
+<p>
+Billa Lahore aaya... aur phir chamach wali legendary story ho gayi. 😂
+</p>
 </div>
 
 <div class="timeline-item">
 <div class="timeline-dot"></div>
 <h4>📱 FIRST MESSAGE</h4>
-<p>Himmat kar ke message kar hi diya. ❤️</p>
+<p>
+Himmat kar ke message kar hi diya. ❤️
+</p>
 </div>
 
 <div class="timeline-item">
 <div class="timeline-dot"></div>
 <h4>❤️ 1 JANUARY</h4>
-<p>“Main” aur “aap” se “hum” ka safar start hua.</p>
+<p>
+“Main” aur “aap” se “hum” ka safar start hua.
+</p>
 </div>
 
 <div class="timeline-item">
 <div class="timeline-dot"></div>
 <h4>🥹 9 MONTHS</h4>
-<p>Baatein, flirting, laraiyan aur countless memories.</p>
+<p>
+Baatein, flirting, laraiyan aur countless memories.
+</p>
 </div>
 
 <div class="timeline-item">
 <div class="timeline-dot"></div>
 <h4>❤️ TODAY</h4>
-<p>Aur ab ye birthday mission.</p>
+<p>
+Aur ab ye birthday mission.
+</p>
 </div>
 
 </div>
 
-<button onclick="nextPage()">NEXT MEMORY →</button>
+<button onclick="nextPage()">
+NEXT MEMORY →
+</button>
+
 </div>
+
 </section>
 
-<!-- PAGE 16 -->
-<section class="page" data-title="CHAPTER 14 — JERRY'S GARDEN 🌷">
+
+<!-- EXTRA PAGE 17 -->
+
+<section
+class="page"
+data-title="CHAPTER 13 — JERRY'S GARDEN 🌷"
+>
+
 <div class="card">
 
-<div class="page-label">FLOWER DATABASE</div>
-<h2>CHAPTER 14 — JERRY'S GARDEN 🌷</h2>
+<div class="page-label">
+FLOWER DATABASE
+</div>
 
-<p>Garden abhi khaali hai... 🌱</p>
+<h2>
+CHAPTER 13 — JERRY'S GARDEN 🌷
+</h2>
 
-<div class="garden" id="garden">
+<p>
+Garden abhi khaali hai... 🌱
+</p>
+
+<div
+class="garden"
+id="garden"
+>
+
 <div class="garden-ground"></div>
+
 </div>
 
-<div class="garden-message" id="gardenMessage"></div>
-
-<button onclick="growGarden()">GROW JERRY'S GARDEN 🌷</button>
-
-<button onclick="nextPage()">NEXT →</button>
+<div
+class="garden-message"
+id="gardenMessage"
+>
 </div>
+
+<button onclick="growGarden()">
+GROW JERRY'S GARDEN 🌷
+</button>
+
+<button
+onclick="nextPage()"
+style="display:block;margin-left:auto;margin-right:auto;"
+>
+NEXT →
+</button>
+
+</div>
+
 </section>
 
-<!-- PAGE 17 -->
-<section class="page" data-title="CHAPTER 15 — BILLA & JERRY 🐈❤️">
+
+<!-- EXTRA PAGE 18 -->
+
+<section
+class="page"
+data-title="CHAPTER 14 — BILLA & JERRY 🐈❤️"
+>
+
 <div class="card">
 
-<div class="page-label">MINI GAME</div>
-<h2>CHAPTER 15 — BILLA & JERRY 🐈❤️</h2>
+<div class="page-label">
+MINI GAME
+</div>
 
-<p>Billa ko Jerry tak pohanchao aur hearts collect karo. ❤️</p>
+<h2>
+CHAPTER 14 — BILLA & JERRY 🐈❤️
+</h2>
 
-<div class="game-area">
+<p>
+Billa ko Jerry tak pohanchao aur hearts collect karo. ❤️
+</p>
+
+<div
+class="game-area"
+id="gameArea"
+>
 
 <div class="game-ground"></div>
 
-<div class="game-character" id="gameCharacter">🐈</div>
+<div
+class="game-character"
+id="gameCharacter"
+>
+🐈
+</div>
 
-<div class="game-heart" style="left:35%;top:30%;" onclick="collectHeart(this)">❤️</div>
-<div class="game-heart" style="left:60%;top:55%;" onclick="collectHeart(this)">❤️</div>
-<div class="game-heart" style="left:80%;top:25%;" onclick="collectHeart(this)">❤️</div>
-<div class="game-heart" style="left:48%;top:72%;" onclick="collectHeart(this)">❤️</div>
+<div
+class="game-heart"
+style="left:35%;top:30%;"
+onclick="collectHeart(this)"
+>
+❤️
+</div>
+
+<div
+class="game-heart"
+style="left:60%;top:55%;"
+onclick="collectHeart(this)"
+>
+❤️
+</div>
+
+<div
+class="game-heart"
+style="left:80%;top:25%;"
+onclick="collectHeart(this)"
+>
+❤️
+</div>
+
+<div
+class="game-heart"
+style="left:48%;top:72%;"
+onclick="collectHeart(this)"
+>
+❤️
+</div>
 
 </div>
 
-<div class="game-result" id="gameResult">
+<div
+class="game-result"
+id="gameResult"
+>
 Hearts collected: 0 / 4
 </div>
 
-<button onclick="moveBilla()">BILLA KO AAGE BHAJO 🐈</button>
-<button onclick="nextPage()">NEXT →</button>
-
-</div>
-</section>
-
-<!-- PAGE 18 FUN TAP -->
-<section class="page" data-title="CHAPTER 16 — JERRY KO HANSANA HAI 😂">
-<div class="card">
-
-<div class="page-label">FUN CHALLENGE</div>
-<h2>CHAPTER 16 — JERRY KO HANSANA HAI 😂</h2>
-
-<div class="challenge-box">
-
-<div class="reaction" id="reactionFace">🥺</div>
-
-<p>
-Billa ke paas sirf ek mission hai:
-
-<strong>Jerry ko smile karwana. ❤️</strong>
-</p>
-
-<button class="tap-button" onclick="makeJerrySmile()">
-JERRY KO TICKLE KARO 😂
+<button onclick="moveBilla()">
+BILLA KO AAGE BHAJO 🐈
 </button>
 
-<div class="score" id="smileScore">
-Smile Level: 0%
-</div>
-
-</div>
-
-<button id="smileNext" style="display:none" onclick="nextPage()">
-MISSION COMPLETE → ❤️
+<button
+onclick="nextPage()"
+style="display:block;margin-left:auto;margin-right:auto;"
+>
+NEXT →
 </button>
 
 </div>
+
 </section>
 
-<!-- PAGE 19 -->
-<section class="page" data-title="CHAPTER 17 — HEART RAIN ❤️">
-<div class="card">
-
-<div class="page-label">SPECIAL EFFECT</div>
-<h2>CHAPTER 17 — JERRY KE LIYE HEART RAIN ❤️</h2>
-
-<p>
-Screen par tap karo aur dekho kitna pyaar girta hai. 🥹❤️
-</p>
-
-<div class="heart-rain" id="heartRain" onclick="heartRainBurst(event)"></div>
-
-<button onclick="heartRainBurst()">MAKE IT RAIN ❤️</button>
-
-<button onclick="nextPage()">ONE LAST THING... →</button>
-
-</div>
-</section>
 
 <!-- FINAL PAGE -->
-<section class="page" data-title="Happy Birthday meri sabse pyari Madam Ji ❤️🎂🫶🏻">
+
+<section
+class="page"
+data-title="Happy Birthday meri sabse pyari Madam Ji ❤️🎂🫶🏻"
+>
+
 <div class="card">
 
-<div class="page-label">FINAL SECRET NOTE</div>
+<div class="page-label">
+FINAL SECRET NOTE
+</div>
 
 <h1>
 Happy Birthday meri sabse pyari Madam Ji ❤️🎂🫶🏻
 </h1>
 
-<div class="final-heart">❤️</div>
+<div class="final-heart">
+❤️
+</div>
+
 
 <div class="text">
 
@@ -1557,265 +2453,628 @@ Ab zyada emotional mat hona warna birthday pe bhi “rona allowed hai” wali pe
 
 </div>
 
+
+<!-- CAKE -->
+
 <div class="cake-area">
 
-<h2>ONE LAST THING... 🎂</h2>
+<h2>
+ONE LAST THING... 🎂
+</h2>
 
-<p class="cut-instruction" id="cutInstruction">
-Pehle wish maango... phir paas wali knife par click karke cake kaato. 🔪🎂
+<div
+class="cake"
+id="cake"
+onclick="blowCake()"
+>
+
+<div class="cake-base"></div>
+
+<div class="cake-cream"></div>
+
+<div class="candle"></div>
+<div class="candle"></div>
+<div class="candle"></div>
+<div class="candle"></div>
+<div class="candle"></div>
+
+</div>
+
+<p>
+Cake kaatne se pehle wish maang lena. ✨
 </p>
 
-<div class="cake-stage">
-
-<div class="cake" id="cake">
-
-<div class="cake-shadow"></div>
-<div class="cake-bottom"></div>
-<div class="cake-middle"></div>
-<div class="cake-top"></div>
-
-<div class="cake-cream-drip">
-<span></span>
-<span></span>
-<span></span>
-</div>
-
-<div class="candle">
-<div class="flame"></div>
-</div>
-
-<div class="candle">
-<div class="flame"></div>
-</div>
-
-<div class="candle">
-<div class="flame"></div>
-</div>
-
-<div class="candle">
-<div class="flame"></div>
-</div>
-
-<div class="cake-cut-line"></div>
-
-</div>
-
-<div class="knife" onclick="cutCake()" title="Click to cut the cake">
-<div class="knife-blade"></div>
-<div class="knife-handle"></div>
+<div
+class="cake-message"
+id="cakeMessage"
+>
+Wish maang li? 🥹❤️
+Ab meri wish hai ke tum hamesha khush raho. ❤️
 </div>
 
 </div>
 
-<div class="knife-label">
-🔪 Knife par click karo — cake kaato!
 </div>
 
-<div class="cake-message" id="cakeMessage">
-🎂❤️ Cake cut ho gaya!
-
-<br><br>
-
-Wish maang li? 🥹✨
-
-<br><br>
-
-Ab meri wish hai ke tum hamesha khush raho,
-tumhari smile kabhi kam na ho,
-aur tumhari life mein itni khushiyan aayein
-ke tum purani saari udaasiyan bhool jao. ❤️
-
-<br><br>
-
-<strong>Happy Birthday meri pari. 🧿❤️</strong>
-</div>
-
-</div>
-</div>
 </section>
 
+
 </div>
 
-<div class="glitch-screen" id="glitchScreen">
+
+<!-- =========================
+     GLITCH SCREEN
+========================= -->
+
+<div
+class="glitch-screen"
+id="glitchScreen"
+>
+
 <div>
-<div class="glitch-text" id="glitchText">ACCESS GRANTED</div>
+
+<div
+class="glitch-text"
+id="glitchText"
+>
+ACCESS GRANTED
 </div>
+
 </div>
+
+</div>
+
 
 <script>
 
-let currentPage=0;
 
-const pages=document.querySelectorAll(".page");
-const headerTitle=document.getElementById("headerTitle");
-const backButton=document.getElementById("backButton");
+/* =========================
+   PAGE SYSTEM
+========================= */
+
+let currentPage = 0;
+
+const pages =
+document.querySelectorAll(".page");
+
+const headerTitle =
+document.getElementById("headerTitle");
+
+const backButton =
+document.getElementById("backButton");
+
 
 function updatePage(){
 
-    pages.forEach((page,index)=>{
-        page.classList.toggle("active",index===currentPage);
-    });
+    pages.forEach(
+        (page,index)=>{
 
-    headerTitle.textContent=pages[currentPage].dataset.title;
+            page.classList.toggle(
+                "active",
+                index === currentPage
+            );
 
-    backButton.style.display=currentPage===0?"none":"block";
+        }
+    );
 
-    const activeCard=pages[currentPage].querySelector(".card");
+
+    headerTitle.textContent =
+    pages[currentPage]
+    .dataset.title;
+
+
+    if(currentPage === 0){
+
+        backButton.style.display =
+        "none";
+
+    }
+
+    else{
+
+        backButton.style.display =
+        "block";
+
+    }
+
+
+    const activeCard =
+    pages[currentPage].querySelector(".card");
 
     if(activeCard){
-        activeCard.scrollTop=0;
+
+        activeCard.scrollTop = 0;
+
     }
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
+
 }
+
+
+/* =========================
+   NEXT
+========================= */
 
 function nextPage(){
 
-    if(currentPage<pages.length-1){
+    if(
+        currentPage <
+        pages.length - 1
+    ){
+
         currentPage++;
+
         updatePage();
+
     }
 
 }
+
+
+/* =========================
+   BACK
+========================= */
 
 function previousPage(){
 
-    if(currentPage>0){
+    if(currentPage > 0){
+
         currentPage--;
+
         updatePage();
+
     }
 
 }
 
+
+/* =========================
+   SPECIFIC PAGE
+========================= */
+
 function goToPage(pageNumber){
 
-    if(pageNumber<1 || pageNumber>pages.length)return;
+    currentPage =
+    pageNumber - 1;
 
-    currentPage=pageNumber-1;
     updatePage();
 
 }
 
 
-/* INTRO */
+/* =========================
+   INTRO
+========================= */
 
 setTimeout(()=>{
-    document.getElementById("introOverlay").classList.add("hide");
+
+    document
+    .getElementById("introOverlay")
+    .classList.add("hide");
+
 },3000);
 
 
-/* SECRET CODE */
+/* =========================
+   YES GIFT
+========================= */
 
-function checkCode(){
+function yesGift(){
 
-    const input=document.getElementById("codeInput");
-    const status=document.getElementById("codeStatus");
-    const value=input.value.trim();
+    const yesMessage =
+    document.getElementById("yesMessage");
 
-    if(value==="501"){
-
-        status.innerHTML="🔓 ACCESS GRANTED ❤️";
-
-        input.disabled=true;
-
-        createConfetti(45);
-
-        setTimeout(startFinalUnlock,800);
-
-    }else{
-
-        status.innerHTML="🔒 WRONG CODE... Dobara socho madam ji 😂❤️";
-
-        input.classList.remove("shake");
-
-        void input.offsetWidth;
-
-        input.classList.add("shake");
-
-        input.value="";
-
-    }
+    yesMessage.style.display =
+    "block";
 
 }
 
-document.getElementById("codeInput").addEventListener("keydown",function(event){
 
-    if(event.key==="Enter"){
-        event.preventDefault();
-        checkCode();
+/* =========================
+   GIFT BOX
+========================= */
+
+function openGift(){
+
+    const gift =
+    document.getElementById("gift");
+
+    const message =
+    document.getElementById("giftOpenMessage");
+
+    const button =
+    document.getElementById("giftContinue");
+
+    gift.classList.add("open");
+
+    message.classList.add("show");
+
+    button.style.display =
+    "inline-block";
+
+    createConfetti(35);
+
+}
+
+
+/* =========================
+   TRUCK
+========================= */
+
+function startTruck(){
+
+    const deliveryBox =
+    document.getElementById("deliveryBox");
+
+    const truck =
+    document.getElementById("truck");
+
+    const progressText =
+    document.getElementById("deliveryProgress");
+
+    const deliveryMessage =
+    document.getElementById("deliveryMessage");
+
+    const packageButton =
+    document.getElementById("packageButton");
+
+
+    deliveryBox.style.display =
+    "block";
+
+    packageButton.style.display =
+    "none";
+
+    deliveryMessage.innerHTML =
+    "";
+
+    progressText.innerHTML =
+    "DELIVERY: 0%";
+
+    truck.classList.remove("go");
+
+
+    setTimeout(()=>{
+
+        truck.classList.add("go");
+
+    },100);
+
+
+    let progress = 0;
+
+
+    const timer =
+    setInterval(()=>{
+
+        if(progress < 95){
+
+            progress++;
+
+            progressText.innerHTML =
+            "DELIVERY: "
+            + progress
+            + "%";
+
+        }
+
+        else{
+
+            clearInterval(timer);
+
+            progressText.innerHTML =
+            "DELIVERY: 95%";
+
+
+            deliveryMessage.innerHTML = `
+
+                <strong>
+                Madam Ji... darwaza torna hai kia? 😂❤️
+                </strong>
+
+            `;
+
+
+            packageButton.style.display =
+            "inline-block";
+
+        }
+
+    },40);
+
+}
+
+
+/* =========================
+   SECRET ANSWER
+========================= */
+
+let wrongAttempts = 0;
+
+const maxAttempts = 3;
+
+
+function checkAnswer(){
+
+    const input =
+    document.getElementById("answerInput");
+
+    const value =
+    input.value.trim();
+
+    const lockButton =
+    document.getElementById("lockButton");
+
+    const lockStatus =
+    document.getElementById("lockStatus");
+
+    const chanceText =
+    document.getElementById("chanceText");
+
+    const wrongMessage =
+    document.getElementById("wrongMessage");
+
+
+    /* ONLY 501 */
+
+    if(value === "501"){
+
+        lockButton.innerHTML =
+        "UNLOCK 🔓";
+
+        lockButton.style.background =
+        "linear-gradient(135deg,#43a66c,#72d79a)";
+
+        lockStatus.innerHTML =
+        "🔓 UNLOCKED";
+
+        chanceText.innerHTML =
+        "ACCESS GRANTED ❤️";
+
+        wrongMessage.style.display =
+        "none";
+
+        createConfetti(50);
+
+        setTimeout(
+            startFinalUnlock,
+            700
+        );
+
+        return;
+
     }
 
-});
+
+    /* WRONG ANSWER */
+
+    wrongAttempts++;
+
+    const remaining =
+    maxAttempts - wrongAttempts;
 
 
-/* FINAL UNLOCK */
+    lockStatus.innerHTML =
+    "🔒 LOCKED";
+
+    lockButton.innerHTML =
+    "LOCK 🔒";
+
+    wrongMessage.style.display =
+    "block";
+
+
+    if(wrongAttempts === 1){
+
+        wrongMessage.innerHTML = `
+
+            Haww choti dunyia cheating kar rahi hain? 😭😂
+
+            <br><br>
+
+            Ap kia gusess laga rahi hain hain... Deyan sy thora dekh raha hai aapka 2 Number Admi. 👀
+
+        `;
+
+    }
+
+    else if(wrongAttempts === 2){
+
+        wrongMessage.innerHTML = `
+
+            Haye Jery 😭😂
+
+            <br><br>
+
+            Sabar karlo naww...
+
+            <br><br>
+
+            Pehle gift ko aa lene do.
+
+            <br><br>
+
+            Choti duniya na guesses lagaao. ❤️
+
+        `;
+
+    }
+
+    else{
+
+        wrongMessage.innerHTML = `
+
+            Haye hayeee 😭😂
+
+            <br><br>
+
+            Sabar karlo naww!
+
+            <br><br>
+
+            Jab gift mil gaya hai us mein answer hoga, tab seedha sahi likh kar khol lena.
+
+            <br><br>
+
+            Abhi kya darwaza torne ka mood hai?
+
+            <br><br>
+
+            Chalo achy bachy, pehly gift ko aa lwny do. ❤️
+
+        `;
+
+    }
+
+
+    if(remaining > 0){
+
+        chanceText.innerHTML =
+        remaining +
+        " CHANCES REMAINING";
+
+    }
+
+    else{
+
+        chanceText.innerHTML =
+        "0 CHANCES — 501 KE BAGHAIR UNLOCK NAHI HOGA 🔒";
+
+    }
+
+
+    input.value = "";
+
+    input.focus();
+
+}
+
+
+/* =========================
+   FINAL UNLOCK
+========================= */
 
 function startFinalUnlock(){
 
-    const glitch=document.getElementById("glitchScreen");
-    const glitchText=document.getElementById("glitchText");
+    const glitch =
+    document.getElementById("glitchScreen");
+
+    const glitchText =
+    document.getElementById("glitchText");
+
 
     glitch.classList.add("show");
 
-    glitchText.innerHTML="ACCESS GRANTED";
+    glitchText.innerHTML =
+    "ACCESS GRANTED";
+
 
     setTimeout(()=>{
-        glitchText.innerHTML="DECRYPTING LOVE FILE...";
+
+        glitchText.innerHTML =
+        "DECRYPTING LOVE FILE...";
+
     },1200);
 
-    setTimeout(()=>{
-        glitchText.innerHTML="FILE DECRYPTED ❤️";
-    },2600);
 
     setTimeout(()=>{
+
+        glitchText.innerHTML =
+        "FILE DECRYPTED ❤️";
+
+    },2600);
+
+
+    setTimeout(()=>{
+
         glitch.classList.remove("show");
+
         createConfetti(100);
-        goToPage(14);
+
+        goToPage(15);
+
     },4000);
 
 }
 
 
-/* GARDEN */
+/* =========================
+   ENTER KEY
+========================= */
 
-let flowersGrown=0;
+document
+.getElementById("answerInput")
+.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            event.preventDefault();
+
+            checkAnswer();
+
+        }
+
+    }
+);
+
+
+/* =========================
+   FLOWER GARDEN
+========================= */
+
+let flowersGrown = 0;
 
 function growGarden(){
 
-    const garden=document.getElementById("garden");
-    const message=document.getElementById("gardenMessage");
+    const garden =
+    document.getElementById("garden");
 
-    if(flowersGrown>=5){
+    const message =
+    document.getElementById("gardenMessage");
 
-        message.innerHTML=
+    if(flowersGrown >= 5){
+
+        message.innerHTML =
         "Garden full... bilkul Jerry ke favourite flowers ki tarah. 🌷❤️";
 
         return;
+
     }
 
-    const flower=document.createElement("div");
 
-    flower.className="flower";
+    const flower =
+    document.createElement("div");
 
-    flower.style.left=(10+flowersGrown*19)+"%";
+    flower.className =
+    "flower";
+
+    flower.style.left =
+    (10 + flowersGrown * 19) +
+    "%";
 
     garden.appendChild(flower);
 
     flowersGrown++;
 
-    if(flowersGrown===5){
 
-        message.innerHTML=
+    if(flowersGrown === 5){
+
+        message.innerHTML =
         "Garden complete... ab yahan sirf Jerry ki kami hai. 🥹🌷❤️";
 
         createConfetti(25);
 
-    }else{
+    }
 
-        message.innerHTML=
+    else{
+
+        message.innerHTML =
         "Ek aur flower Jerry ke liye. 🌷❤️";
 
     }
@@ -1823,37 +3082,51 @@ function growGarden(){
 }
 
 
-/* BILLA GAME */
+/* =========================
+   BILLA GAME
+========================= */
 
-let heartsCollected=0;
-let billaPosition=30;
+let heartsCollected = 0;
+let billaPosition = 30;
+
 
 function moveBilla(){
 
-    const character=document.getElementById("gameCharacter");
+    const character =
+    document.getElementById("gameCharacter");
 
-    billaPosition+=8;
+    billaPosition += 8;
 
-    if(billaPosition>85){
-        billaPosition=30;
+    if(billaPosition > 85){
+
+        billaPosition = 30;
+
     }
 
-    character.style.left=billaPosition+"%";
+    character.style.left =
+    billaPosition + "%";
 
 }
 
+
 function collectHeart(element){
 
-    element.style.display="none";
+    element.style.display =
+    "none";
 
     heartsCollected++;
 
-    document.getElementById("gameResult").innerHTML=
-    "Hearts collected: "+heartsCollected+" / 4";
+    document.getElementById("gameResult")
+    .innerHTML =
+    "Hearts collected: "
+    + heartsCollected
+    + " / 4";
 
-    if(heartsCollected===4){
 
-        document.getElementById("gameResult").innerHTML=
+    if(heartsCollected === 4){
+
+        document.getElementById("gameResult")
+        .innerHTML =
         "MISSION COMPLETE! Billa found all the love. 🐈❤️🥹";
 
         createConfetti(35);
@@ -1863,161 +3136,79 @@ function collectHeart(element){
 }
 
 
-/* SMILE GAME */
+/* =========================
+   CAKE
+========================= */
 
-let smileLevel=0;
+function blowCake(){
 
-function makeJerrySmile(){
+    const cake =
+    document.getElementById("cake");
 
-    const face=document.getElementById("reactionFace");
-    const score=document.getElementById("smileScore");
-    const next=document.getElementById("smileNext");
+    const message =
+    document.getElementById("cakeMessage");
 
-    smileLevel+=20;
+    cake.classList.add("blown");
 
-    const faces=["🥺","😳","🙂","😊","🥰","😂","🤣"];
+    message.classList.add("show");
 
-    const index=Math.min(
-        Math.floor(smileLevel/20),
-        faces.length-1
-    );
-
-    face.innerHTML=faces[index];
-
-    face.classList.remove("pop");
-
-    void face.offsetWidth;
-
-    face.classList.add("pop");
-
-    score.innerHTML=
-    "Smile Level: "+Math.min(smileLevel,100)+"%";
-
-    if(smileLevel>=100){
-
-        score.innerHTML=
-        "MISSION COMPLETE: JERRY IS SMILING 😂❤️";
-
-        next.style.display="inline-block";
-
-        createConfetti(30);
-
-    }
+    createConfetti(50);
 
 }
 
 
-/* HEART RAIN */
-
-function heartRainBurst(event){
-
-    const area=document.getElementById("heartRain");
-
-    for(let i=0;i<25;i++){
-
-        const heart=document.createElement("div");
-
-        heart.className="rain-heart";
-        heart.innerHTML=
-        ["❤️","💗","💕","💖","💘","🌷"][
-            Math.floor(Math.random()*6)
-        ];
-
-        heart.style.left=
-        Math.random()*95+"%";
-
-        heart.style.animationDelay=
-        Math.random()*.5+"s";
-
-        area.appendChild(heart);
-
-        setTimeout(()=>{
-            heart.remove();
-        },3500);
-
-    }
-
-}
-
-
-/* CAKE CUT */
-
-let cakeCut=false;
-
-function cutCake(){
-
-    if(cakeCut)return;
-
-    cakeCut=true;
-
-    const cake=document.getElementById("cake");
-    const message=document.getElementById("cakeMessage");
-    const instruction=document.getElementById("cutInstruction");
-
-    cake.classList.add("cut");
-
-    document.querySelectorAll(".candle").forEach(candle=>{
-        candle.classList.add("off");
-    });
-
-    instruction.innerHTML=
-    "🎂 Cake successfully cut! ❤️";
-
-    setTimeout(()=>{
-
-        message.classList.add("show");
-
-        createConfetti(80);
-
-    },1000);
-
-}
-
-
-/* CONFETTI */
+/* =========================
+   CONFETTI
+========================= */
 
 function createConfetti(amount){
 
-    const pieces=[
+    const pieces = [
         "❤️",
         "💗",
         "💕",
-        "💖",
         "✨",
         "🌷",
         "🎉",
         "🥹"
     ];
 
+
     for(let i=0;i<amount;i++){
 
-        const item=document.createElement("div");
+        const item =
+        document.createElement("div");
 
-        item.className="confetti";
+        item.className =
+        "confetti";
 
-        item.innerHTML=
+        item.innerHTML =
         pieces[
             Math.floor(
-                Math.random()*pieces.length
+                Math.random()
+                * pieces.length
             )
         ];
 
-        item.style.left=
-        Math.random()*100+"%";
+        item.style.left =
+        Math.random()*100 + "%";
 
-        item.style.fontSize=
-        (15+Math.random()*20)+"px";
+        item.style.fontSize =
+        (15 + Math.random()*20) + "px";
 
-        item.style.animationDuration=
-        (2+Math.random()*2)+"s";
+        item.style.animationDuration =
+        (2 + Math.random()*2) + "s";
 
-        item.style.animationDelay=
-        (Math.random()*.7)+"s";
+        item.style.animationDelay =
+        (Math.random()*.7) + "s";
 
         document.body.appendChild(item);
 
+
         setTimeout(()=>{
+
             item.remove();
+
         },4500);
 
     }
@@ -2025,38 +3216,51 @@ function createConfetti(amount){
 }
 
 
-/* MUSIC */
+/* =========================
+   MUSIC
+========================= */
 
-let musicPlaying=false;
-let audioContext=null;
-let oscillator=null;
-let gainNode=null;
+let musicPlaying = false;
+
+let audioContext = null;
+let oscillator = null;
+let gainNode = null;
+
 
 function toggleMusic(){
 
+    /*
+       Browser-safe soft generated tone.
+       No external music file required.
+    */
+
     if(!audioContext){
 
-        audioContext=
-        new(
-            window.AudioContext||
+        audioContext =
+        new (
+            window.AudioContext ||
             window.webkitAudioContext
         )();
 
     }
 
+
     if(!musicPlaying){
 
-        oscillator=
+        oscillator =
         audioContext.createOscillator();
 
-        gainNode=
+        gainNode =
         audioContext.createGain();
 
-        oscillator.type="sine";
+        oscillator.type =
+        "sine";
 
-        oscillator.frequency.value=261.63;
+        oscillator.frequency.value =
+        261.63;
 
-        gainNode.gain.value=.025;
+        gainNode.gain.value =
+        0.025;
 
         oscillator.connect(gainNode);
 
@@ -2066,30 +3270,43 @@ function toggleMusic(){
 
         oscillator.start();
 
-        musicPlaying=true;
+        musicPlaying = true;
 
-        document.getElementById("musicButton").innerHTML="🔊";
+        document.getElementById(
+            "musicButton"
+        ).innerHTML =
+        "🔊";
 
-    }else{
+    }
+
+    else{
 
         oscillator.stop();
 
-        oscillator=null;
+        oscillator = null;
 
-        musicPlaying=false;
+        musicPlaying = false;
 
-        document.getElementById("musicButton").innerHTML="🎵";
+        document.getElementById(
+            "musicButton"
+        ).innerHTML =
+        "🎵";
 
     }
 
 }
 
 
-/* BACKGROUND FLOATERS */
+/* =========================
+   BACKGROUND FLOATERS
+========================= */
 
-const background=document.getElementById("background");
+const background =
+document.getElementById("background");
 
-const symbols=[
+
+const symbols = [
+
     "❤️",
     "💗",
     "💕",
@@ -2099,39 +3316,55 @@ const symbols=[
     "🌹",
     "🌻",
     "✨"
+
 ];
 
-for(let i=0;i<45;i++){
 
-    const item=document.createElement("div");
+for(
+    let i=0;
+    i<45;
+    i++
+){
 
-    item.className="floating";
+    const item =
+    document.createElement("div");
 
-    item.innerHTML=
+    item.className =
+    "floating";
+
+    item.innerHTML =
     symbols[
         Math.floor(
-            Math.random()*symbols.length
+            Math.random()
+            * symbols.length
         )
     ];
 
-    item.style.left=
-    Math.random()*100+"%";
+    item.style.left =
+    Math.random()*100 + "%";
 
-    item.style.fontSize=
-    15+Math.random()*25+"px";
+    item.style.fontSize =
+    15 +
+    Math.random()*25 +
+    "px";
 
-    item.style.animationDuration=
-    10+Math.random()*16+"s";
+    item.style.animationDuration =
+    10 +
+    Math.random()*16 +
+    "s";
 
-    item.style.animationDelay=
-    -Math.random()*20+"s";
+    item.style.animationDelay =
+    -Math.random()*20 +
+    "s";
 
     background.appendChild(item);
 
 }
 
 
-/* INITIAL */
+/* =========================
+   INITIAL PAGE
+========================= */
 
 updatePage();
 
