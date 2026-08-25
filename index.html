@@ -1,267 +1,804 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Anum ❤️</title>
 
-  <title>For Anum ❤️</title>
+<style>
+*{box-sizing:border-box}
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  min-height:100%;
+}
 
-    html, body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
-    }
+body{
+  font-family:Georgia,"Times New Roman",serif;
+  color:#351d29;
+  overflow-x:hidden;
+  background:#f9dce7;
+}
 
-    body {
-      font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(255,255,255,.8) 0 3px, transparent 4px),
-        radial-gradient(circle at 80% 15%, rgba(255,255,255,.65) 0 2px, transparent 3px),
-        linear-gradient(145deg, #fff1f6, #f9d8e5 45%, #ead0dc);
-      color: #321f28;
-      overflow-x: hidden;
-    }
+.page{
+  display:none;
+  min-height:100vh;
+  padding:25px 18px 35px;
+  position:relative;
+  overflow:hidden;
+  align-items:center;
+  justify-content:center;
+}
 
-    .page {
-      min-height: 100vh;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 28px 20px;
-      position: relative;
-      overflow: hidden;
-    }
+.page.active{
+  display:flex;
+  animation:pageIn .7s ease;
+}
 
-    .page.active {
-      display: flex;
-    }
+@keyframes pageIn{
+  from{opacity:0;transform:translateX(25px)}
+  to{opacity:1;transform:translateX(0)}
+}
 
-    .hearts {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
+.page::before{
+  content:"";
+  position:absolute;
+  width:330px;
+  height:330px;
+  border-radius:50%;
+  background:rgba(255,255,255,.28);
+  top:-150px;
+  right:-100px;
+}
 
-    .heart {
-      position: absolute;
-      opacity: .45;
-      animation: float 7s infinite ease-in-out;
-    }
+.page::after{
+  content:"";
+  position:absolute;
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  background:rgba(255,255,255,.2);
+  bottom:-150px;
+  left:-100px;
+}
 
-    .heart:nth-child(1) {
-      left: 8%;
-      top: 15%;
-      font-size: 24px;
-    }
+.page1{background:linear-gradient(145deg,#fff0f6,#f6cadb,#ead1dc)}
+.page2{background:linear-gradient(145deg,#fff4f8,#f5cfdf,#edd4df)}
+.page3{background:linear-gradient(145deg,#ffeaf3,#f4c8db,#f9e7ed)}
+.page4{background:linear-gradient(145deg,#f8e8e1,#eed0d9,#dfc3cc)}
+.page5{background:linear-gradient(145deg,#241b2c,#493044,#7c5268)}
+.page6{background:linear-gradient(145deg,#fff0f3,#edc0ce,#8c405d)}
+.page7{background:linear-gradient(145deg,#fff1f6,#f2cada,#d9b5c5)}
+.page8{background:linear-gradient(145deg,#fff7fa,#f7d8e3,#efc6d5)}
+.page9{background:linear-gradient(145deg,#fff0f5,#e9c4d4,#dcb5c7)}
+.page10{background:linear-gradient(145deg,#f9f7f7,#eadce1,#bdaab3)}
+.page11{background:linear-gradient(145deg,#fff8f2,#f5dfd0,#e7c6cb)}
+.page12{background:linear-gradient(145deg,#eee9f7,#d8cde5,#c6b5d2)}
+.page13{background:linear-gradient(145deg,#fff1e8,#f7d1c4,#eac0c9)}
+.page14{background:linear-gradient(145deg,#f7e5ed,#d8b7c6,#b78d9e)}
+.page15{background:linear-gradient(145deg,#fff0f7,#e8c5d6,#c99db3)}
+.secret{background:linear-gradient(145deg,#251a27,#513044,#8d506e);color:#fff}
 
-    .heart:nth-child(2) {
-      right: 10%;
-      top: 25%;
-      font-size: 18px;
-      animation-delay: 1s;
-    }
+.card{
+  width:min(760px,100%);
+  padding:30px 22px 38px;
+  text-align:center;
+  position:relative;
+  z-index:5;
+  background:rgba(255,255,255,.67);
+  border:1px solid rgba(255,255,255,.8);
+  border-radius:32px;
+  box-shadow:0 20px 70px rgba(72,30,50,.16);
+  backdrop-filter:blur(12px);
+}
 
-    .heart:nth-child(3) {
-      left: 18%;
-      bottom: 18%;
-      font-size: 17px;
-      animation-delay: 2s;
-    }
+.top-decoration{
+  font-size:26px;
+  letter-spacing:7px;
+  margin-bottom:10px;
+}
 
-    .heart:nth-child(4) {
-      right: 20%;
-      bottom: 12%;
-      font-size: 28px;
-      animation-delay: 3s;
-    }
+.eyebrow{
+  font-size:12px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#88546c;
+  margin-bottom:10px;
+}
 
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotate(-5deg);
-      }
-      50% {
-        transform: translateY(-18px) rotate(8deg);
-      }
-    }
+h1{
+  margin:0 0 18px;
+  font-size:clamp(40px,10vw,78px);
+  line-height:1;
+  color:#722d4d;
+}
 
-    .card {
-      width: min(700px, 100%);
-      text-align: center;
-      padding: 42px 28px;
-      background: rgba(255,255,255,.62);
-      border: 1px solid rgba(255,255,255,.8);
-      border-radius: 30px;
-      box-shadow: 0 20px 60px rgba(91, 40, 60, .13);
-      backdrop-filter: blur(10px);
-      position: relative;
-      z-index: 2;
-    }
+h2{
+  margin:0 0 20px;
+  font-size:clamp(28px,7vw,48px);
+  color:#722d4d;
+}
 
-    .small {
-      font-size: 14px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #8c536c;
-      margin-bottom: 18px;
-    }
+.subtitle{
+  font-size:clamp(17px,4.3vw,22px);
+  line-height:1.75;
+  margin:0 auto 24px;
+  max-width:650px;
+}
 
-    h1 {
-      font-size: clamp(38px, 9vw, 72px);
-      margin: 0 0 18px;
-      color: #6d2948;
-      line-height: 1.05;
-    }
+.small-note{
+  font-size:14px;
+  color:#80546a;
+  line-height:1.6;
+}
 
-    .subtitle {
-      font-size: clamp(18px, 4vw, 23px);
-      line-height: 1.7;
-      margin: 0 auto 28px;
-      max-width: 580px;
-    }
+.big-number{
+  font-size:clamp(90px,25vw,180px);
+  font-weight:bold;
+  line-height:.9;
+  color:#7c3153;
+  margin:10px 0 18px;
+  text-shadow:3px 5px 0 rgba(255,255,255,.6);
+}
 
-    .name {
-      color: #7b3152;
-      font-weight: bold;
-    }
+.btn{
+  border:0;
+  border-radius:50px;
+  padding:14px 23px;
+  background:#7a3152;
+  color:#fff;
+  font-family:inherit;
+  font-size:16px;
+  cursor:pointer;
+  box-shadow:0 9px 22px rgba(122,49,82,.25);
+  transition:.25s;
+}
 
-    .cake-button {
-      width: 72px;
-      height: 72px;
-      border: none;
-      border-radius: 50%;
-      background: #7b3152;
-      color: white;
-      font-size: 31px;
-      cursor: pointer;
-      box-shadow: 0 10px 25px rgba(123,49,82,.3);
-      transition: .25s ease;
-    }
+.btn:hover{transform:translateY(-3px) scale(1.02)}
 
-    .cake-button:hover {
-      transform: scale(1.08);
-    }
+.icon-btn{
+  width:72px;
+  height:72px;
+  padding:0;
+  border-radius:50%;
+  font-size:30px;
+}
 
-    .hint {
-      margin-top: 16px;
-      font-size: 13px;
-      color: #795266;
-    }
+.flowers{
+  font-size:28px;
+  margin:12px 0;
+  letter-spacing:5px;
+}
 
-    @media (max-width: 600px) {
-      .card {
-        padding: 34px 20px;
-        border-radius: 25px;
-      }
+.quote{
+  padding:18px;
+  margin:20px 0;
+  border-left:3px solid #9b5272;
+  background:rgba(255,255,255,.35);
+  border-radius:12px;
+  text-align:left;
+  line-height:1.7;
+}
 
-      .subtitle {
-        line-height: 1.6;
-      }
-    }
-  </style>
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin:22px 0;
+}
+
+.item{
+  padding:15px 10px;
+  background:rgba(255,255,255,.5);
+  border-radius:18px;
+  font-size:15px;
+}
+
+.item b{
+  display:block;
+  margin-top:4px;
+  color:#71314f;
+}
+
+.heart{
+  position:absolute;
+  pointer-events:none;
+  opacity:.45;
+  animation:float 6s ease-in-out infinite;
+  z-index:1;
+}
+
+.h1{left:7%;top:14%;font-size:25px}
+.h2{right:8%;top:24%;font-size:18px;animation-delay:1s}
+.h3{left:15%;bottom:17%;font-size:20px;animation-delay:2s}
+.h4{right:16%;bottom:11%;font-size:27px;animation-delay:3s}
+
+@keyframes float{
+  0%,100%{transform:translateY(0) rotate(-5deg)}
+  50%{transform:translateY(-18px) rotate(8deg)}
+}
+
+.timeline{
+  text-align:left;
+  margin:20px auto;
+  max-width:600px;
+}
+
+.timeline div{
+  margin:12px 0;
+  padding:13px 16px;
+  background:rgba(255,255,255,.45);
+  border-radius:16px;
+}
+
+.answer{
+  width:min(300px,100%);
+  padding:14px;
+  border:2px solid #d3a5b7;
+  border-radius:16px;
+  text-align:center;
+  font-size:20px;
+  font-family:inherit;
+  background:#fff8fb;
+  outline:none;
+}
+
+.feedback{
+  min-height:55px;
+  margin:15px auto;
+  max-width:580px;
+  font-size:16px;
+  line-height:1.6;
+}
+
+.truck{
+  font-size:50px;
+  margin:20px 0 8px;
+  animation:truck 1.4s infinite alternate ease-in-out;
+}
+
+@keyframes truck{
+  from{transform:translateX(-7px)}
+  to{transform:translateX(7px)}
+}
+
+.progress{
+  width:100%;
+  height:15px;
+  background:rgba(255,255,255,.65);
+  border-radius:30px;
+  overflow:hidden;
+  margin:15px 0 10px;
+}
+
+.progress span{
+  display:block;
+  width:98%;
+  height:100%;
+  background:#7a3152;
+  border-radius:30px;
+}
+
+.secret-lock{
+  font-size:55px;
+  margin-bottom:12px;
+}
+
+.note{
+  text-align:left;
+  font-size:17px;
+  line-height:1.9;
+  max-height:55vh;
+  overflow-y:auto;
+  padding:5px 8px;
+}
+
+.final-line{
+  font-size:clamp(25px,6vw,42px);
+  color:#722d4d;
+  line-height:1.35;
+  margin:25px 0;
+}
+
+.dark-text{
+  color:#fff;
+}
+
+.dark-text h1,
+.dark-text h2{
+  color:#fff0f6;
+}
+
+.dark-text .eyebrow,
+.dark-text .small-note{
+  color:#eac5d5;
+}
+
+.dark-text .subtitle{
+  color:#fff5f8;
+}
+
+@media(max-width:600px){
+  .card{
+    padding:25px 17px 32px;
+    border-radius:26px;
+  }
+  .grid{gap:8px}
+  .item{font-size:14px;padding:13px 7px}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- PAGE 1 -->
-  <section class="page active" id="page1">
+<!-- ================= PAGE 1 ================= -->
+<section class="page page1 active" id="page1">
+<span class="heart h1">♡</span><span class="heart h2">♥</span>
+<span class="heart h3">♡</span><span class="heart h4">♥</span>
 
-    <div class="hearts">
-      <span class="heart">♡</span>
-      <span class="heart">♥</span>
-      <span class="heart">♡</span>
-      <span class="heart">♥</span>
-    </div>
+<div class="card">
+  <div class="top-decoration">🌷 ✨ 🎀 ✨ 🌷</div>
+  <div class="eyebrow">A little world made especially for you</div>
 
-    <div class="card">
+  <h1>Happy Birthday<br>Anum ❤️</h1>
 
-      <div class="small">A little world made for you</div>
+  <p class="subtitle">
+    <strong>20 saal mubarak</strong> uss larki ko
+    jiske liye shayad mere paas lafz hamesha kam par jaayen. 🥹
+    <br><br>
+    Aaj sirf birthday nahi...
+    <br>
+    <strong>aaj aapki zindagi ka ek aur khoobsurat chapter hai.</strong>
+  </p>
 
-      <h1>Anum ❤️</h1>
+  <div class="flowers">🌷 🌸 🌹 🌸 🌷</div>
 
-      <p class="subtitle">
-        <strong>20 saal mubarak</strong> uss larki ko
-        jiske liye shayad mujhe itne saare lafz bhi kam par jaayein. 🥹
-        <br><br>
-        Aaj ka din sirf birthday nahi...
-        <br>
-        <span class="name">aaj aapki duniya ka ek aur khoobsurat chapter hai.</span>
-      </p>
+  <button class="btn icon-btn" onclick="showPage(2)">🎂</button>
 
-      <button class="cake-button" onclick="nextPage()" aria-label="Open story">
-        🎂
-      </button>
+  <p class="small-note">Cake par click karein... kahani shuru karte hain. ✨</p>
+</div>
+</section>
 
-      <div class="hint">
-        Cake par click karein... hamari story shuru karte hain. ✨
-      </div>
 
-    </div>
-  </section>
-<!-- PAGE 2 -->
-<section class="page" id="page2">
+<!-- ================= PAGE 2 ================= -->
+<section class="page page2" id="page2">
+<span class="heart h1">♡</span><span class="heart h2">♥</span>
+<span class="heart h3">♡</span><span class="heart h4">♥</span>
 
-  <div class="hearts">
-    <span class="heart">♡</span>
-    <span class="heart">♥</span>
-    <span class="heart">♡</span>
-    <span class="heart">♥</span>
+<div class="card">
+  <div class="top-decoration">🎀 🌸 2 0 🌸 🎀</div>
+  <div class="eyebrow">Aaj ka din sirf aapka hai</div>
+
+  <div class="big-number">20</div>
+
+  <h2>20 saal mubarak, Anum ❤️</h2>
+
+  <p class="subtitle">
+    Aaj aapki zindagi ka ek aur khoobsurat saal shuru ho raha hai.
+    <br><br>
+    Aur mujhe sabse zyada khushi is baat ki hai
+    ke main is khaas din par aapko apni taraf se wish kar raha hoon. 🥹
+    <br><br>
+    Dua hai aapki zindagi ka har agla saal
+    pichle saal se zyada khoobsurat ho. 🌷
+  </p>
+
+  <button class="btn icon-btn" onclick="showPage(3)">💗</button>
+</div>
+</section>
+
+
+<!-- ================= PAGE 3 ================= -->
+<section class="page page3" id="page3">
+<span class="heart h1">♡</span><span class="heart h2">♥</span>
+<span class="heart h3">♡</span><span class="heart h4">♥</span>
+
+<div class="card">
+  <div class="top-decoration">😂 ❤️ 🧸 ❤️ 😂</div>
+  <div class="eyebrow">Aap ke bohat saare naam hain...</div>
+
+  <h2>Anu, Piyaari Churail 😭❤️</h2>
+
+  <p class="subtitle">
+    Golo Molo...  
+    <br>
+    Cuteii Bauni...
+    <br>
+    1 Number Aurat...
+    <br><br>
+    Aur kabhi kabhi...
+    <br>
+    <strong>2 Number admi ki sabse badi museebat. 😂</strong>
+  </p>
+
+  <div class="quote">
+    Lekin sach ye hai ke in sab naamon ke peeche
+    ek hi insaan hai...
+    <strong>Anum.</strong> 🤍
+    <br><br>
+    Aur mujhe us insaan ki har cute si adat,
+    har shararat aur har chhoti si baat pasand hai.
   </div>
 
-  <div class="card">
+  <button class="btn icon-btn" onclick="showPage(4)">🌷</button>
+</div>
+</section>
 
-    <div class="small">Aaj ka din sirf aapka hai</div>
 
-    <h1>20 ✨</h1>
+<!-- ================= PAGE 4 ================= -->
+<section class="page page4" id="page4">
+<span class="heart h1">♡</span><span class="heart h2">♥</span>
+<span class="heart h3">♡</span><span class="heart h4">♥</span>
 
+<div class="card">
+  <div class="top-decoration">🕰️ 🌷 🤍 🌷 🕰️</div>
+  <div class="eyebrow">6 saal pehle...</div>
+
+  <h2>Pehli Mulaqat</h2>
+
+  <p class="subtitle">
+    Hamari pehli mulaqat aapke ghar ki kisi normal si mulaqat jaisi
+    nahi thi...
+    <br><br>
+    Woh <strong>doodh pilayi ki rasam</strong> ke liye aayi thi.
+    Aur us waqt shayad aapko bilkul andaaza nahi tha
+    ke koi aapko itni gaur se dekh raha hai. 👀❤️
+  </p>
+
+  <div class="quote">
+    Mera love at first sight tha...
+    <br>
+    Aur sach kahun to us waqt ye sirf meri taraf se tha.
+    🥹
+  </div>
+
+  <p class="subtitle">
+    6 saal tak ye baat mere dil mein rahi...
+    aur phir ek din finally keh hi di.
+  </p>
+
+  <button class="btn icon-btn" onclick="showPage(5)">🌙</button>
+</div>
+</section>
+
+
+<!-- ================= PAGE 5 ================= -->
+<section class="page page5 dark-text" id="page5">
+<span class="heart h1">♡</span><span class="heart h2">✦</span>
+<span class="heart h3">♡</span><span class="heart h4">✦</span>
+
+<div class="card">
+  <div class="top-decoration">🌙 ✨ 🌙 ✨ 🌙</div>
+  <div class="eyebrow">December ki woh yaad</div>
+
+  <h2>Woh Lahore Wala December</h2>
+
+  <p class="subtitle">
+    Jab main Lahore aaya tha...
+    <br><br>
+    Aapke wapas aane se pehle hi
+    main ne aapko message kar diya tha.
+    <br><br>
+    Face to face kehne ki himmat pehle nahi ho paayi...
+    😭
+    <br><br>
+    Isliye wapas aane ke baad
+    message se dil ki baat keh di.
+  </p>
+
+  <div class="quote">
+    Kabhi kabhi ek message woh baat keh deta hai
+    jo saamne kharay ho kar kehne ki himmat nahi hoti. 🤍
+  </div>
+
+  <button class="btn icon-btn" onclick="showPage(6)">❤️</button>
+</div>
+</section>
+
+
+<!-- ================= PAGE 6 ================= -->
+<section class="page page6" id="page6">
+<span class="heart h1">♡</span><span class="heart h2">♥</span>
+<span class="heart h3">♡</span><span class="heart h4">♥</span>
+
+<div class="card">
+  <div class="top-decoration">❤️ 01 • 01 ❤️</div>
+  <div class="eyebrow">Aur phir...</div>
+
+  <h2>1 January</h2>
+
+  <p class="subtitle">
+    <strong>1 January</strong> se hamari kahani ne
+    ek naya naam le liya. ❤️
+    <br><br>
+    Jo baat pehle sirf mere dil mein thi,
+    woh ab hum dono ki kahani ban gayi.
+    <br><br>
+    Aur shayad isi liye
+    <strong>1 January</strong> mere liye sirf ek date nahi...
+    ek yaad hai. 🌷
+  </p>
+
+  <div class="flowers">🌹 ❤️ 🌹 ❤️ 🌹</div>
+
+  <button class="btn icon-btn" onclick="showPage(7)">💌</button>
+</div>
+</section>
+
+
+<!-- ================= PAGE 7 ================= -->
+<section class="page page7" id="page7">
+<span class="heart h1">♡</span><span class="heart h2">♥</span>
+<span class="heart h3">♡</span><span class="heart h4">♥</span>
+
+<div class="card">
+  <div class="top-decoration">💗 🌷 💗 🌷 💗</div>
+  <div class="eyebrow">Hamari chhoti si timeline</div>
+
+  <h2>9 Months Of Us ❤️</h2>
+
+  <div class="timeline">
+    <div><strong>Pehle:</strong> ek tarfa si feeling...</div>
+    <div><strong>Phir:</strong> himmat karke message...</div>
+    <div><strong>1 January:</strong> kahani ka naya chapter...</div>
+    <div><strong>Phir:</strong> baatein, care, flirting, laraiyan 😂</div>
+    <div><strong>Aaj:</strong> 9 months aur bohat saari memories. 🥹</div>
+  </div>
+
+  <p class="subtitle">
+    9 months guzr gaye...
+    aur main ab bhi aapko dekh kar
+    wahi pyaar feel karta hoon. ❤️
+  </p>
+
+  <button class="btn icon-btn" onclick="showPage(8)">🌸</button>
+</div>
+</section>
+
+
+<!-- ================= PAGE 8 ================= -->
+<section class="page page8" id="page8">
+<span class="heart h1">♡</span><span class="heart h2">♥</span>
+<span class="heart h3">♡</span><span class="heart h4">♥</span>
+
+<div class="card">
+  <div class="top-decoration">🌹 🌷 🌻 🌷 🌹</div>
+  <div class="eyebrow">Things I remember about you</div>
+
+  <h2>Aapki Favourite Cheezein 🌷</h2>
+
+  <div class="grid">
+    <div class="item">🌹<b>Roses</b>White roses too</div>
+    <div class="item">🌷<b>Tulips</b>Pretty flowers</div>
+    <div class="item">🌻<b>Sunflowers</b>Bright like you</div>
+    <div class="item">📚<b>Novels</b>Little worlds</div>
+    <div class="item">💌<b>Handwritten Letters</b>🥹</div>
+    <div class="item">💍<b>Minimal Jewellery</b>Simple & pretty</div>
+    <div class="item">🎨<b>Painting Colours</b>Creative you</div>
+    <div class="item">👜<b>Hand Bags</b>Obviously! 😂</div>
+    <div class="item">👗<b>Kapray</b>Number 7 confirmed</div>
+    <div class="item">💄<b>Makeup</b>Number 10, no debate 😂</div>
+  </div>
+
+  <button class="btn icon-btn" onclick="showPage(9)">🌷</button>
+</div>
+</section>
+
+
+<!-- ================= PAGE 9 ================= -->
+<section class="page page9" id="page9">
+<span class="heart h1">♡</span><span class="heart h2">♥</span>
+<span class="heart h3">♡</span><span class="heart h4">♥</span>
+
+<div class="card">
+  <div class="top-decoration">🤍 🫶🏻 🤍 🫶🏻 🤍</div>
+  <div class="eyebrow">The things I love about us</div>
+
+  <h2>Hamari Chhoti Si Duniya</h2>
+
+  <p class="subtitle">
+    Aapka pyaar karna...
+    <br>
+    mera khayal rakhna...
+    <br>
+    larayi ke waqt bhi care karna...
+    <br>
+    mujhse flirting karna... 👀😂
+    <br><br>
+    Aur sabse pyari baat:
+    <br>
+    <strong>aapka mujhe chhor kar na jana.</strong> ❤️
+  </p>
+
+  <div class="quote">
+    Hamari kahani perfect nahi hai.
+    Kabhi larai hoti hai, kabhi mood off,
+    kabhi main 2 number ban jata hoon 😂...
+    <br><br>
+    Lekin isi sab ke beech jo pyaar hai,
+    woh mere liye sabse precious hai.
+  </div>
+
+  <button class="btn icon-btn" onclick="showPage(10)">🫶🏻</button>
+</div>
+</section>
+
+
+<!-- ================= PAGE 10 ================= -->
+<section class="page page10" id="page10">
+<span class="heart h1">♡</span><span class="heart h2">♥</span>
+<span class="heart h3">♡</span><span class="heart h4">♥</span>
+
+<div class="card">
+  <div class="top-decoration">🖤 🤍 ❤️ 🤍 🖤</div>
+  <div class="eyebrow">Aapki favourite list</div>
+
+  <h2>Things That Make Anum, Anum 😌</h2>
+
+  <div class="grid">
+    <div class="item">🏎️<b>BMW M4 Competition</b>Fav car</div>
+    <div class="item">🚘<b>Mark X</b>Pakistani car fav</div>
+    <div class="item">🖤<b>Black</b>Favourite colour</div>
+    <div class="item">🤍<b>White</b>Favourite colour</div>
+    <div class="item">🍛<b>Biryani</b>Favourite food</div>
+    <div class="item">🍚<b>Kheer</b>Favourite sweet</div>
+    <div class="item">🍫<b>All Chocolates</b>Dark chocolate excluded 😂</div>
+    <div class="item">🏔️<b>Northern Areas</b>Favourite visiting vibe</div>
+    <div class="item">🌹<b>Flowers</b>Especially roses</div>
+    <div class="item">🎨<b>Colours</b>Painting wali</div>
+  </div>
+
+  <p class="small-note">
+    Funny thing is... personally mujhe bhi in mein se bohat si cheezein pasand hain. 👀❤️
+  </p>
+
+  <button class="btn icon-btn" onclick="showPage(11)">🖤</button>
+</div>
+</section>
+
+
+<!-- ================= PAGE 11 ================= -->
+<section class="page page11" id="page11">
+<span class="heart h1">♡</span><span class="heart h2">♥</span>
+<span class="heart h3">♡</span><span class="heart h4">♥</span>
+
+<div class="card">
+  <div class="top-decoration">💌 🌸 💌 🌸 💌</div>
+  <div class="eyebrow">Aapke liye ek chhoti si baat</div>
+
+  <h2>Overthinking Department 😭❤️</h2>
+
+  <p class="subtitle">
+    Anum... please chhoti chhoti baaton ko
+    apne dil ka permanent resident na banaya karein. 😭😂
+  </p>
+
+  <div class="quote">
+    Aap bohat soft-hearted hain.
+    Kabhi kisi ki baat dil par lag jaati hai,
+    kabhi koi chhoti si cheez bohat der tak dimagh mein chalti rehti hai.
+    <br><br>
+    Lekin har baat ka matlab nikalna zaroori nahi hota.
+    Har silence narazgi nahi hoti.
+    Har bad day ka matlab bad life nahi hota.
+    🤍
+  </div>
+
+  <p class="subtitle">
+    Kabhi rona aaye to ro lena...
+    bas aansu pochhne ke baad khud ko yaad dilana:
+    <br><br>
+    <strong>“Main is se bhi nikal jaungi.”</strong> ❤️
+    <br><br>
+    Aur agar phir bhi na niklein...
+    <br>
+    <strong>apne 2 number admi ko bula lena. 😂</strong>
+  </p>
+
+  <button class="btn icon-btn" onclick="showPage(12)">💌</button>
+</div>
+</section>
+
+
+<!-- ================= PAGE 12 ================= -->
+<section class="page page12" id="page12">
+<span class="heart h1">✦</span><span class="heart h2">♡</span>
+<span class="heart h3">✦</span><span class="heart h4">♡</span>
+
+<div class="card">
+  <div class="top-decoration">🌙 ✨ 🏔️ ✨ 🌙</div>
+  <div class="eyebrow">For the future you deserve</div>
+
+  <h2>Aapke Saare Dreams ❤️</h2>
+
+  <p class="subtitle">
+    Main dil se dua karta hoon ke aapki zindagi mein
+    woh har khushi aaye jiske liye aapne kabhi dua ki ho. 🤲🏻
+    <br><br>
+    Aap apne dreams poore karein,
+    apna acha maqam banayein,
+    apne favourite places dekhein,
+    apni favourite cheezein hasil karein...
+    <br><br>
+    Aur jab bhi koi naya dream aaye,
+    usko chhota samajh kar kabhi chhorna nahi.
+  </p>
+
+  <div class="quote">
+    Main promise karta hoon ke jahan tak mere bas mein hua,
+    main aapke dreams ko poora karne mein
+    aapka saath dene ki poori koshish karunga. ❤️
+  </div>
+
+  <p class="subtitle">
+    Bas ek request...
+    <br>
+    <strong>hamesha khush rehna. 🌷</strong>
+  </p>
+
+  <button class="btn icon-btn" onclick="showPage(13)">🎁</button>
+</div>
+</section>
+
+
+<!-- ================= PAGE 13 ================= -->
+<section class="page page13" id="page13">
+<span class="heart h1">♡</span><span class="heart h2">🎁</span>
+<span class="heart h3">♡</span><span class="heart h4">🎁</span>
+
+<div class="card">
+  <div class="top-decoration">🎁 🚚 🎀 🚚 🎁</div>
+  <div class="eyebrow">Acha ji birthday girl...</div>
+
+  <h2>The Surprise Is On Its Way 🎁</h2>
+
+  <p class="subtitle">
+    Aapko laga kahani yahin khatam ho gayi?
+    <br>
+    <strong>Nahi ji. 👀❤️</strong>
+    <br><br>
+    Aapke liye kuch raste mein hai...
+    lekin main abhi nahi bataunga ke kya hai. 😌
+  </p>
+
+  <div id="giftQuestion">
+    <p class="subtitle"><strong>Kya aapko apna surprise receive ho gaya?</strong></p>
+
+    <button class="btn" onclick="giftReceived()">🎁 YES — Mil gaya!</button>
+    <br><br>
+    <button class="btn" onclick="giftNotReceived()">🚚 NO — Abhi nahi mila</button>
+  </div>
+
+  <div id="giftLoading" style="display:none">
+    <div class="truck">🚚</div>
+    <p class="subtitle">Bas thora sa sabar, meri cuteii bauni... 🥺</p>
+    <div class="progress"><span></span></div>
+    <p class="small-note"><strong>98%</strong> — Bas 2% aur... 😭😂</p>
+    <button class="btn" onclick="showPage(14)">Aagay chalo ❤️</button>
+  </div>
+
+  <div id="giftVerify" style="display:none">
     <p class="subtitle">
-      <strong>20 saal mubarak, Anum. ❤️</strong>
+      Ohhh... finally! 👀❤️
       <br><br>
-
-      Aaj aapki zindagi ka ek aur khoobsurat saal
-      shuru ho raha hai...
-      <br><br>
-
-      Aur pata hai?
-      <br>
-      Mujhe sabse zyada khushi is baat ki hai
-      ke main is khaas din par aapko
-      <strong>apni taraf se wish kar raha hoon. 🥹</strong>
-      <br><br>
-
-      Dua hai aapki zindagi ka har agla saal
-      pichle saal se zyada khoobsurat ho. 🌷
+      Lekin secret page unlock karne se pehle
+      ek chhoti si verification hai. 🔐
     </p>
 
-    <button class="cake-button" onclick="showPage(3)">
-      🎂
-    </button>
+    <p><strong>Parcel mein aapko kitne paise receive hue?</strong> 💰</p>
 
-    <div class="hint">
-      Cake dabayein... kahani abhi baqi hai. ✨
-    </div>
+    <input id="amount" class="answer" type="number" placeholder="Answer likhein">
 
+    <br><br>
+
+    <button class="btn" onclick="checkAmount()">Verify 🔐</button>
+
+    <div id="feedback" class="feedback"></div>
   </div>
-
+</div>
 </section>
-  <script>
-    function nextPage() {
-  showPage(2);
-}
 
-function showPage(number) {
-  document.querySelectorAll(".page").forEach(page => {
-    page.classList.remove("active");
-  });
 
-  document.getElementById("page" + number).classList.add("active");
-}
-  </script>
-
-</body>
-</html>
+<!
