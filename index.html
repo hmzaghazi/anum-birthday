@@ -37,22 +37,46 @@ body{
     overflow:hidden;
 
     background:
-    radial-gradient(
-        circle at 20% 20%,
-        rgba(255,255,255,.9),
-        transparent 25%
-    ),
-    radial-gradient(
-        circle at 80% 30%,
-        rgba(255,182,210,.7),
-        transparent 30%
-    ),
-    linear-gradient(
-        135deg,
-        #ffd8e7,
-        #fff0f6,
-        #ffd0e3
-    );
+    radial-gradient(circle at 20% 20%,rgba(255,255,255,.9),transparent 25%),
+    radial-gradient(circle at 80% 30%,rgba(255,182,210,.7),transparent 30%),
+    radial-gradient(circle at 50% 100%,rgba(255,195,220,.6),transparent 35%),
+    linear-gradient(135deg,#ffd8e7,#fff0f6,#ffd0e3);
+}
+
+.background::before{
+    content:"";
+    position:absolute;
+    width:420px;
+    height:420px;
+    border-radius:50%;
+    background:rgba(255,255,255,.25);
+    filter:blur(60px);
+    top:10%;
+    left:-100px;
+    animation:glowMove 8s ease-in-out infinite alternate;
+}
+
+.background::after{
+    content:"";
+    position:absolute;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:rgba(255,105,170,.13);
+    filter:blur(70px);
+    bottom:5%;
+    right:-80px;
+    animation:glowMove2 10s ease-in-out infinite alternate;
+}
+
+@keyframes glowMove{
+    from{transform:translate(0,0);}
+    to{transform:translate(180px,80px);}
+}
+
+@keyframes glowMove2{
+    from{transform:translate(0,0);}
+    to{transform:translate(-150px,-80px);}
 }
 
 .floating{
@@ -61,12 +85,13 @@ body{
     animation:floatUp linear infinite;
     opacity:.7;
     pointer-events:none;
+    user-select:none;
 }
 
 @keyframes floatUp{
 
     0%{
-        transform:translateY(0) rotate(0deg);
+        transform:translateY(0) rotate(0deg) scale(.7);
         opacity:0;
     }
 
@@ -79,7 +104,7 @@ body{
     }
 
     100%{
-        transform:translateY(-115vh) rotate(360deg);
+        transform:translateY(-115vh) rotate(360deg) scale(1.15);
         opacity:0;
     }
 
@@ -93,37 +118,32 @@ body{
 .header{
 
     position:fixed;
-
     top:0;
     left:0;
     right:0;
-
     z-index:100;
 
     height:65px;
 
     display:flex;
-
     align-items:center;
-
     justify-content:space-between;
 
     padding:8px 15px;
 
-    background:rgba(255,245,250,.9);
+    background:rgba(255,245,250,.88);
 
-    backdrop-filter:blur(14px);
+    backdrop-filter:blur(16px);
 
     border-bottom:
     1px solid
     rgba(255,105,160,.2);
 
     box-shadow:
-    0 4px 20px
-    rgba(100,30,70,.1);
+    0 4px 25px
+    rgba(100,30,70,.12);
 
 }
-
 
 .header-title{
 
@@ -140,10 +160,13 @@ body{
 
     text-overflow:ellipsis;
 
-    max-width:75%;
+    max-width:78%;
+
+    text-shadow:
+    0 2px 8px
+    rgba(197,47,104,.12);
 
 }
-
 
 .back-button{
 
@@ -151,8 +174,7 @@ body{
 
     margin:0;
 
-    padding:
-    8px 15px;
+    padding:8px 15px;
 
     font-size:13px;
 
@@ -171,11 +193,8 @@ body{
 ========================= */
 
 #pages{
-
     padding-top:65px;
-
 }
-
 
 .page{
 
@@ -193,7 +212,6 @@ body{
 
 }
 
-
 .page.active{
 
     display:flex;
@@ -203,27 +221,16 @@ body{
 
 }
 
-
 @keyframes pageIn{
 
     from{
-
         opacity:0;
-
-        transform:
-        translateY(20px)
-        scale(.98);
-
+        transform:translateY(20px) scale(.98);
     }
 
     to{
-
         opacity:1;
-
-        transform:
-        translateY(0)
-        scale(1);
-
+        transform:translateY(0) scale(1);
     }
 
 }
@@ -248,9 +255,9 @@ body{
     border-radius:30px;
 
     background:
-    rgba(255,255,255,.8);
+    rgba(255,255,255,.82);
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:blur(16px);
 
     border:
     2px solid
@@ -269,20 +276,24 @@ body{
 
 }
 
-
-.card::-webkit-scrollbar{
-
-    width:6px;
-
+.card::before{
+    content:"";
+    display:block;
+    width:55px;
+    height:5px;
+    border-radius:20px;
+    margin:0 auto 22px;
+    background:linear-gradient(90deg,#f08aae,#d83c78,#f08aae);
+    opacity:.6;
 }
 
+.card::-webkit-scrollbar{
+    width:6px;
+}
 
 .card::-webkit-scrollbar-thumb{
-
     background:#e89ab9;
-
     border-radius:10px;
-
 }
 
 
@@ -303,7 +314,6 @@ h1{
 
 }
 
-
 h2{
 
     font-size:
@@ -315,7 +325,6 @@ h2{
 
 }
 
-
 h3{
 
     font-size:
@@ -326,7 +335,6 @@ h3{
     color:#8f3158;
 
 }
-
 
 p,
 .text{
@@ -342,7 +350,6 @@ p,
 
 }
 
-
 .subtitle{
 
     font-size:18px;
@@ -355,19 +362,19 @@ p,
 
 }
 
-
 .page-label{
 
     color:#ba2c63;
 
     font-weight:bold;
 
-    font-size:20px;
+    font-size:16px;
 
     margin-bottom:15px;
 
-}
+    opacity:.8;
 
+}
 
 .big-number{
 
@@ -424,22 +431,21 @@ button{
 
 }
 
-
 button:hover{
 
     transform:
     translateY(-3px)
     scale(1.02);
 
-}
+    box-shadow:
+    0 14px 30px
+    rgba(202,49,106,.35);
 
+}
 
 button:active{
-
     transform:scale(.97);
-
 }
-
 
 .yes-button{
 
@@ -452,7 +458,6 @@ button:active{
 
 }
 
-
 .no-button{
 
     background:
@@ -463,7 +468,6 @@ button:active{
     );
 
 }
-
 
 .button-row{
 
@@ -492,7 +496,6 @@ button:active{
 
 }
 
-
 .favourite{
 
     padding:
@@ -510,8 +513,19 @@ button:active{
     1px solid
     rgba(211,79,127,.12);
 
+    transition:.25s;
+
 }
 
+.favourite:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 8px 20px
+    rgba(190,65,110,.1);
+
+}
 
 .favourite strong{
 
@@ -537,7 +551,6 @@ button:active{
     margin-top:25px;
 
 }
-
 
 .delivery-area{
 
@@ -565,6 +578,23 @@ button:active{
 
 }
 
+.delivery-area::before{
+
+    content:"☁️   ☁️       ☁️";
+
+    position:absolute;
+
+    top:18px;
+
+    left:10%;
+
+    font-size:25px;
+
+    opacity:.55;
+
+    letter-spacing:30px;
+
+}
 
 .road{
 
@@ -581,7 +611,6 @@ button:active{
     background:#6e6570;
 
 }
-
 
 .road::after{
 
@@ -606,7 +635,6 @@ button:active{
 
 }
 
-
 .truck{
 
     position:absolute;
@@ -620,11 +648,16 @@ button:active{
     transform:scaleX(-1);
 
     transition:
-    left 3.8s
+    left 4s
     cubic-bezier(.15,.8,.25,1);
 
-}
+    filter:
+    drop-shadow(
+        0 8px 5px
+        rgba(0,0,0,.15)
+    );
 
+}
 
 .truck.go{
 
@@ -632,7 +665,6 @@ button:active{
     calc(95% - 80px);
 
 }
-
 
 .delivery-progress{
 
@@ -657,7 +689,6 @@ button:active{
     25px auto 0;
 
 }
-
 
 .answer-input{
 
@@ -684,7 +715,6 @@ button:active{
 
 }
 
-
 .answer-input:focus{
 
     border-color:#d84278;
@@ -694,7 +724,6 @@ button:active{
     rgba(216,66,120,.1);
 
 }
-
 
 .lock-status{
 
@@ -706,7 +735,6 @@ button:active{
 
 }
 
-
 .chance-text{
 
     margin-top:12px;
@@ -716,7 +744,6 @@ button:active{
     color:#9b4669;
 
 }
-
 
 .wrong-message{
 
@@ -735,7 +762,6 @@ button:active{
     animation:shake .45s ease;
 
 }
-
 
 @keyframes shake{
 
@@ -782,13 +808,11 @@ button:active{
 
 }
 
-
 .glitch-screen.show{
 
     display:flex;
 
 }
-
 
 .glitch-text{
 
@@ -801,7 +825,6 @@ button:active{
     glitch .15s infinite;
 
 }
-
 
 @keyframes glitch{
 
@@ -827,7 +850,6 @@ button:active{
 
 }
 
-
 .final-heart{
 
     font-size:55px;
@@ -838,7 +860,6 @@ button:active{
     heartbeat 1s infinite;
 
 }
-
 
 @keyframes heartbeat{
 
@@ -860,18 +881,12 @@ button:active{
 @media(max-width:600px){
 
     .header{
-
         height:58px;
-
     }
-
 
     #pages{
-
         padding-top:58px;
-
     }
-
 
     .page{
 
@@ -883,7 +898,6 @@ button:active{
 
     }
 
-
     .card{
 
         padding:
@@ -893,20 +907,13 @@ button:active{
 
     }
 
-
     .big-number{
-
         font-size:85px;
-
     }
-
 
     .header-title{
-
         max-width:65%;
-
     }
-
 
     .back-button{
 
@@ -926,16 +933,8 @@ button:active{
 <body>
 
 
-<!-- =========================
-     BACKGROUND
-========================= -->
-
 <div class="background" id="background"></div>
 
-
-<!-- =========================
-     HEADER
-========================= -->
 
 <header class="header">
 
@@ -945,7 +944,6 @@ button:active{
     >
         OPERATION JERRY ❤️
     </div>
-
 
     <button
         class="back-button"
@@ -958,14 +956,12 @@ button:active{
 </header>
 
 
-<!-- =========================
-     ALL PAGES
-========================= -->
-
 <div id="pages">
 
 
-<!-- PAGE 1 -->
+<!-- =========================
+     PAGE 1
+========================= -->
 
 <section
 class="page active"
@@ -1007,7 +1003,9 @@ START MISSION ❤️
 </section>
 
 
-<!-- PAGE 2 -->
+<!-- =========================
+     PAGE 2
+========================= -->
 
 <section
 class="page"
@@ -1019,10 +1017,6 @@ data-title="CHAPTER 01 — A SPECIAL GIRL 🌷"
 <div class="page-label">
 PAGE 2 — INTRO
 </div>
-
-<h2>
-CHAPTER 01 — A SPECIAL GIRL 🌷
-</h2>
 
 <h3>
 THE MOST SPECIAL PERSON ❤️
@@ -1047,7 +1041,9 @@ CONTINUE →
 </section>
 
 
-<!-- PAGE 3 -->
+<!-- =========================
+     PAGE 3
+========================= -->
 
 <section
 class="page"
@@ -1059,10 +1055,6 @@ data-title="CHAPTER 02 — AGE VERIFIED 🎂"
 <div class="page-label">
 PAGE 3 — 20 YEARS
 </div>
-
-<h2>
-CHAPTER 02 — AGE VERIFIED 🎂
-</h2>
 
 <div class="big-number">
 20
@@ -1087,7 +1079,9 @@ NEXT CHAPTER →
 </section>
 
 
-<!-- PAGE 4 -->
+<!-- =========================
+     PAGE 4
+========================= -->
 
 <section
 class="page"
@@ -1099,10 +1093,6 @@ data-title="CHAPTER 03 — FIRST MEMORY 🌷"
 <div class="page-label">
 PAGE 4 — MERA PEHLA NAZAR KA PIYAAR
 </div>
-
-<h2>
-CHAPTER 03 — FIRST MEMORY 🌷
-</h2>
 
 <h3>
 DOODH PILAYI  KI RASAM🥛❤️
@@ -1125,7 +1115,9 @@ UNLOCK NEXT →
 </section>
 
 
-<!-- PAGE 5 -->
+<!-- =========================
+     PAGE 5
+========================= -->
 
 <section
 class="page"
@@ -1137,10 +1129,6 @@ data-title="CHAPTER 04 — LAHORE KA TOUR 🌙"
 <div class="page-label">
 PAGE 5 — HAMARA STORY KA START
 </div>
-
-<h2>
-CHAPTER 04 — LAHORE KA TOUR 🌙
-</h2>
 
 <h3>
 THE THING BILLA COULDN'T SAY
@@ -1169,7 +1157,9 @@ CONTINUE →
 </section>
 
 
-<!-- PAGE 6 -->
+<!-- =========================
+     PAGE 6
+========================= -->
 
 <section
 class="page"
@@ -1181,10 +1171,6 @@ data-title="CHAPTER 05 — STORY STARTED BY BOTH SIDES❤️"
 <div class="page-label">
 PAGE 6 — 1 JANUARY
 </div>
-
-<h2>
-CHAPTER 05 — STORY STARTED BY BOTH SIDES❤️
-</h2>
 
 <h3>
 THE DAY IT OUR RELATIONSHIP START
@@ -1207,7 +1193,9 @@ NEXT →
 </section>
 
 
-<!-- PAGE 7 -->
+<!-- =========================
+     PAGE 7
+========================= -->
 
 <section
 class="page"
@@ -1219,10 +1207,6 @@ data-title="CHAPTER 06 — LOVING DAYS ❤️"
 <div class="page-label">
 PAGE 7 — 9 MONTHS COMPLETED
 </div>
-
-<h2>
-CHAPTER 06 — LOVING DAYS ❤️
-</h2>
 
 <h3>
 OUR TIMELINE
@@ -1251,7 +1235,9 @@ OPEN HER FILE →
 </section>
 
 
-<!-- PAGE 8 -->
+<!-- =========================
+     PAGE 8
+========================= -->
 
 <section
 class="page"
@@ -1263,11 +1249,6 @@ data-title="CHAPTER 07 — JERRY'S FAV THINGS FILE 🌷"
 <div class="page-label">
 PAGE 8 — FAVOURITES
 </div>
-
-<h2>
-CHAPTER 07 — JERRY'S FAV THINGS FILE 🌷
-</h2>
-
 
 <div class="favourites">
 
@@ -1387,7 +1368,9 @@ NEXT FILE →
 </section>
 
 
-<!-- PAGE 9 -->
+<!-- =========================
+     PAGE 9
+========================= -->
 
 <section
 class="page"
@@ -1399,10 +1382,6 @@ data-title="CHAPTER 08 — WARNING ⚠️"
 <div class="page-label">
 PAGE 9 — JEERY KI BIMARYIAN 🤒
 </div>
-
-<h2>
-CHAPTER 08 — WARNING ⚠️
-</h2>
 
 <h3>
 OVERTHINKING DETECTED 😭
@@ -1439,7 +1418,9 @@ CONTINUE ❤️
 </section>
 
 
-<!-- PAGE 10 -->
+<!-- =========================
+     PAGE 10
+========================= -->
 
 <section
 class="page"
@@ -1451,10 +1432,6 @@ data-title="CHAPTER 09 — DREAMS 🏔️"
 <div class="page-label">
 PAGE 10 — DREAMS
 </div>
-
-<h2>
-CHAPTER 09 — DREAMS 🏔️
-</h2>
 
 <h3>
 DREAMS DATABASE ✨
@@ -1485,7 +1462,9 @@ NEXT →
 </section>
 
 
-<!-- PAGE 11 -->
+<!-- =========================
+     PAGE 11
+========================= -->
 
 <section
 class="page"
@@ -1497,10 +1476,6 @@ data-title="CHAPTER 10 — PROMISE KARYIEE BILLA SATH🤍"
 <div class="page-label">
 PAGE 11 — PROMISE
 </div>
-
-<h2>
-CHAPTER 10 — PROMISE KARYIEE BILLA SATH🤍
-</h2>
 
 <h3>
 ONE IMPORTANT REQUEST
@@ -1529,7 +1504,9 @@ FINAL MISSION →
 </section>
 
 
-<!-- PAGE 12 -->
+<!-- =========================
+     PAGE 12
+========================= -->
 
 <section
 class="page"
@@ -1541,10 +1518,6 @@ data-title="FINAL MISSION — PACKAGE 🎁"
 <div class="page-label">
 PAGE 12 — GIFT
 </div>
-
-<h2>
-FINAL MISSION — PACKAGE 🎁
-</h2>
 
 <h3>
 INCOMING PACKAGE DETECTED
@@ -1563,7 +1536,9 @@ CHECK DELIVERY →
 </section>
 
 
-<!-- PAGE 13 -->
+<!-- =========================
+     PAGE 13
+========================= -->
 
 <section
 class="page"
@@ -1575,10 +1550,6 @@ data-title="PACKAGE VERIFICATION 🔐"
 <div class="page-label">
 PAGE 13 — YES / NO
 </div>
-
-<h2>
-PACKAGE VERIFICATION 🔐
-</h2>
 
 <h3>
 GIFT RECEIVE HUA? 👀
@@ -1606,30 +1577,6 @@ class="no-button"
 onclick="startTruck()"
 >
 NO 🚚
-</button>
-
-</div>
-
-
-<!-- YES MESSAGE -->
-
-<div
-id="yesMessage"
-style="
-display:none;
-margin-top:25px;
-padding:20px;
-border-radius:20px;
-background:rgba(255,225,237,.8);
-"
->
-
-Agar aap guesses lagana chahein to laga sakti hain... 👀❤️
-
-<br>
-
-<button onclick="goToPage(14)">
-CHECK PACKAGE →
 </button>
 
 </div>
@@ -1663,20 +1610,6 @@ id="deliveryProgress"
 DELIVERY: 0%
 </div>
 
-
-<!-- ONLY THIS TEXT AFTER TRUCK -->
-
-<p id="deliveryMessage"></p>
-
-
-<button
-id="packageButton"
-style="display:none"
-onclick="goToPage(14)"
->
-CHECK PACKAGE →
-</button>
-
 </div>
 
 </div>
@@ -1684,7 +1617,9 @@ CHECK PACKAGE →
 </section>
 
 
-<!-- PAGE 14 -->
+<!-- =========================
+     PAGE 14
+========================= -->
 
 <section
 class="page"
@@ -1696,10 +1631,6 @@ data-title="PACKAGE ACCESS / SECRET VERIFICATION 🔐"
 <div class="page-label">
 PAGE 14 — SECRET QUESTION
 </div>
-
-<h2>
-PACKAGE ACCESS / SECRET VERIFICATION 🔐
-</h2>
 
 <p>
 Gift receive ho gaya?
@@ -1768,7 +1699,9 @@ id="wrongMessage"
 </section>
 
 
-<!-- PAGE 15 -->
+<!-- =========================
+     PAGE 15
+========================= -->
 
 <section
 class="page"
@@ -1968,27 +1901,31 @@ function goToPage(pageNumber){
 
 
 /* =========================
-   YES BUTTON
+   YES = DIRECTLY OPEN
+   SECRET QUESTION
 ========================= */
 
 function yesGift(){
 
-    const yesMessage =
-    document.getElementById(
-        "yesMessage"
-    );
-
-    yesMessage.style.display =
-    "block";
+    goToPage(14);
 
 }
 
 
 /* =========================
    TRUCK
+   NO NEVER OPENS NEXT PAGE
 ========================= */
 
+let truckRunning = false;
+
 function startTruck(){
+
+    if(truckRunning){
+        return;
+    }
+
+    truckRunning = true;
 
     const deliveryBox =
     document.getElementById(
@@ -2005,27 +1942,9 @@ function startTruck(){
         "deliveryProgress"
     );
 
-    const deliveryMessage =
-    document.getElementById(
-        "deliveryMessage"
-    );
-
-    const packageButton =
-    document.getElementById(
-        "packageButton"
-    );
-
 
     deliveryBox.style.display =
     "block";
-
-
-    packageButton.style.display =
-    "none";
-
-
-    deliveryMessage.innerHTML =
-    "";
 
 
     progressText.innerHTML =
@@ -2035,6 +1954,9 @@ function startTruck(){
     truck.classList.remove(
         "go"
     );
+
+
+    void truck.offsetWidth;
 
 
     setTimeout(()=>{
@@ -2067,26 +1989,22 @@ function startTruck(){
 
             clearInterval(timer);
 
-
             progressText.innerHTML =
             "DELIVERY: 95%";
 
+            /*
+              IMPORTANT:
 
-            deliveryMessage.innerHTML = `
+              Truck stops at 95%.
 
-                <strong>
-                95% tak aa gaya...
-                </strong>
+              No message.
+              No button.
+              No page change.
 
-                <br><br>
+              User must press YES.
+            */
 
-                Ab 5% tumhari sabr ki test hai. 😂❤️
-
-            `;
-
-
-            packageButton.style.display =
-            "inline-block";
+            truckRunning = false;
 
         }
 
@@ -2167,6 +2085,11 @@ function checkAnswer(){
         "none";
 
 
+        input.disabled = true;
+
+        lockButton.disabled = true;
+
+
         setTimeout(
             startFinalUnlock,
             700
@@ -2180,13 +2103,10 @@ function checkAnswer(){
 
     /* =====================
        WRONG ANSWER
+       ALWAYS STAYS PAGE 14
     ===================== */
 
     wrongAttempts++;
-
-
-    const remaining =
-    maxAttempts - wrongAttempts;
 
 
     lockStatus.innerHTML =
@@ -2228,7 +2148,19 @@ function checkAnswer(){
 
             <br><br>
 
-            Abhi bhi guess laga rahi ho? 😂❤️
+            Pehle gift ko aa lene do.
+
+            <br><br>
+
+            Choti duniya na guesses lagaao.
+
+            <br><br>
+
+            Kia darwaza torna ka mood hai? 😂
+
+            <br><br>
+
+            Achy bachy pehly gift ko aa lwny do. ❤️
 
         `;
 
@@ -2243,15 +2175,30 @@ function checkAnswer(){
 
             <br><br>
 
-            3 chances bhi khatam kar diye!
+            Sabar karlo naww!
 
             <br><br>
 
-            Ab sahi answer 501 ke baghair darwaza nahi khulega. 🔐😂❤️
+            Jab gift mil gaya hai us mein answer hoga, tab seedha sahi likh kar khol lena.
+
+            <br><br>
+
+            Abhi kya darwaza torne ka mood hai?
+
+            <br><br>
+
+            Chalo achy bachy, pehly gift ko aa lwny do. ❤️
 
         `;
 
     }
+
+
+    const remaining =
+    Math.max(
+        maxAttempts - wrongAttempts,
+        0
+    );
 
 
     if(remaining > 0){
@@ -2265,21 +2212,22 @@ function checkAnswer(){
     else{
 
         chanceText.innerHTML =
-        "0 CHANCES — 501 KE BAGHAIR UNLOCK NAHI HOGA 🔒";
+        "3 CHANCES USED";
 
     }
 
 
     /*
-       IMPORTANT:
+       VERY IMPORTANT:
 
-       WRONG ANSWER NEVER CHANGES PAGE.
+       Wrong answer NEVER unlocks.
+       Wrong answer NEVER changes page.
+       501 is the ONLY correct answer.
 
-       User stays on PAGE 14.
+       Even after 3 wrong answers,
+       user stays on Page 14.
 
-       Even after 3 wrong attempts,
-       PAGE 15 remains locked.
-
+       They can still enter 501.
     */
 
 
@@ -2393,14 +2341,15 @@ const symbols = [
     "🌷",
     "🌹",
     "🌻",
-    "✨"
+    "✨",
+    "🫶🏻"
 
 ];
 
 
 for(
     let i = 0;
-    i < 45;
+    i < 50;
     i++
 ){
 
